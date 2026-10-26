@@ -1,0 +1,19 @@
+
+---
+title: "Posts"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+---
+
+# Yang's study diary
+
+Self-studied materials in:
+
+Healthcare, Finance, Reinforcement Learning, Maths, etc.
+
+May contain incorrect information or misinterpretations.
+
+Open to academic advise and feedbacks.

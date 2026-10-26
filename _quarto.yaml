@@ -1,0 +1,49 @@
+
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Yang's study diary"
+  description: "Talking Potato interested in various fields"
+
+  navbar:
+    left:
+      - text: "Posts"
+        href: index.qmd
+
+  sidebar:
+    style: docked
+    collapse-level: 1
+    contents:
+      - text: "All Posts"
+        href: index.qmd
+
+      - section: "Math"
+        contents:
+          - text: "Set Theory"
+            href: set-theory.qmd
+          - text: "Real Analysis"
+            href: real-analysis.qmd
+
+      - section: "Research"
+        contents:
+          - text: "Research"
+            href: research.qmd
+          - text: "Healthcare Paper Review"
+            href: healthcare-review.qmd
+          - text: "Finance Paper Review"
+            href: finance-review.qmd
+          - text: "Reinforcement Learning"
+            href: reinforcement-review.qmd
+  search: true
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    html-math-method: mathjax
+    code-copy: true
+
+lang: ko
