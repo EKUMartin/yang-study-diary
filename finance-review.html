@@ -85,9 +85,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -286,15 +286,46 @@ window.Quarto = {
 <p>Paper review on Finance Paper</p>
 
 
-
-</section>
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+</section><div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="RmluYW5jZSUyQ1RlY2huaWNhbCUyMEluZGljYXRvcnM=" data-listing-date-sort="1793113200000" data-listing-file-modified-sort="1793196235810" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
+<div class="thumbnail"><a href="./posts/Research/Finance-review/Exponential Moving Average.html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/Research/Finance-review/Exponential Moving Average.html" class="no-external">Exponential Moving Average (EMA)</a>
+</h3>
+<div class="delink listing-description"><a href="./posts/Research/Finance-review/Exponential Moving Average.html" class="no-external">
+This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/Research/Finance-review/Exponential Moving Average.html" class="no-external">
+<div class="listing-date">
+<ol start="2026" type="1">
+<li><ol start="10" type="1">
+<li>28.
+</li></ol></li></ol></div>
+
+
+</a>
+<p>:::</p>
+<p>:::</p>
+<p>:::</p>
+<div class="listing-no-matching d-none">일치 없음</div>
+<p>:::</p>
+<p>:::</p>
 
 </div>
-<div class="listing-no-matching d-none">일치 없음</div>
-</div></main> <!-- /main -->
+</div>
+</div>
+</div></main></div>
+
+
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -695,7 +726,7 @@ window.Quarto = {
     }
   });
   </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 

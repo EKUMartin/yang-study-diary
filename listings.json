@@ -10,18 +10,21 @@
     "items": []
   },
   {
-    "listing": "/healthcare-review.html",
-    "items": []
+    "listing": "/index.html",
+    "items": [
+      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+      "/posts/Research/Finance-review/Exponential Moving Average.html"
+    ]
   },
   {
     "listing": "/finance-review.html",
-    "items": []
+    "items": [
+      "/posts/Research/Finance-review/Exponential Moving Average.html"
+    ]
   },
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html"
-    ]
+    "listing": "/healthcare-review.html",
+    "items": []
   },
   {
     "listing": "/real-analysis.html",

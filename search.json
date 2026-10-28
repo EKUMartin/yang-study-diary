@@ -24,6 +24,55 @@
     ]
   },
   {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "",
+    "text": "This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.\nThe equation for the Exponential Moving Average is as follows:\n\\[\nEMA_t = \\alpha P_t + (1-\\alpha)EMA_{t-1}\n\\]\nThe equation consists of three components: the current price, the smoothing factor, and the previous period’s EMA.\nWhere:\nThe smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.\nThe smoothing factor is calculated as follows:\n\\[\n\\alpha = \\frac{2}{N+1}\n\\]\nwhere \\(N\\) represents the number of periods.\nIf we want to place less emphasis on previous values, we can increase the smoothing factor.\nEMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.\nHowever, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.\nAnother limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors."
+  },
+  {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "Works Cited",
+    "text": "Works Cited\nInvestopedia - Exponential Moving Average (EMA)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advise and feedbacks.\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\n\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "crumbs": [
+      "Posts",
+      "All Posts"
+    ]
+  },
+  {
+    "objectID": "finance-review.html",
+    "href": "finance-review.html",
+    "title": "Finance Paper Review",
+    "section": "",
+    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Finance Paper Review"
+    ]
+  },
+  {
+    "objectID": "healthcare-review.html",
+    "href": "healthcare-review.html",
+    "title": "Healthcare Paper Review",
+    "section": "",
+    "text": "Healthcare Paper Review\nPaper review on Healthcare Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Healthcare Paper Review"
+    ]
+  },
+  {
     "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
     "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
     "title": "Classes and Sets 0 - Sentences",
@@ -92,41 +141,6 @@
     "title": "Classes and Sets 0 - Sentences",
     "section": "4.3 Complete Truth Table",
     "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
-  },
-  {
-    "objectID": "healthcare-review.html",
-    "href": "healthcare-review.html",
-    "title": "Healthcare Paper Review",
-    "section": "",
-    "text": "Healthcare Paper Review\nPaper review on Healthcare Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Healthcare Paper Review"
-    ]
-  },
-  {
-    "objectID": "finance-review.html",
-    "href": "finance-review.html",
-    "title": "Finance Paper Review",
-    "section": "",
-    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Finance Paper Review"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advise and feedbacks.\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
-    "crumbs": [
-      "Posts",
-      "All Posts"
-    ]
   },
   {
     "objectID": "real-analysis.html",
