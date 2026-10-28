@@ -1,11 +1,18 @@
 
 ---
 title: "Posts"
+toc: false
+
 listing:
   contents: posts
+  type: grid
+  grid-columns: 1
+  fields: [title, description, categories]
   sort: "date desc"
-  type: default
-  categories: true
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  date-format: "medium"
 ---
 
 # Yang's study diary
@@ -16,4 +23,4 @@ Healthcare, Finance, Reinforcement Learning, Maths, etc.
 
 May contain incorrect information or misinterpretations.
 
-Open to academic advise and feedbacks.
+Open to academic advice and feedback.

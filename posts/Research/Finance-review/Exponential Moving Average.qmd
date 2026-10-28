@@ -1,6 +1,7 @@
 
 ---
 title: "Exponential Moving Average (EMA)"
+description: "An introduction to EMA, its calculation, applications, and limitations."
 date: 2026-10-28
 categories: [Finance, Technical Indicators]
 toc: true
