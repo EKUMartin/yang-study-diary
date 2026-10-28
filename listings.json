@@ -1,14 +1,16 @@
 [
   {
     "listing": "/set-theory.html",
-    "items": []
+    "items": [
+      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html"
+    ]
   },
   {
     "listing": "/reinforcement-review.html",
     "items": []
   },
   {
-    "listing": "/index.html",
+    "listing": "/healthcare-review.html",
     "items": []
   },
   {
@@ -16,8 +18,10 @@
     "items": []
   },
   {
-    "listing": "/healthcare-review.html",
-    "items": []
+    "listing": "/index.html",
+    "items": [
+      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html"
+    ]
   },
   {
     "listing": "/real-analysis.html",
