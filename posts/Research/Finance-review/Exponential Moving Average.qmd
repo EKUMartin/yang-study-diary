@@ -1,0 +1,47 @@
+
+---
+title: "Exponential Moving Average (EMA)"
+date: 2026-10-28
+categories: [Finance, Technical Indicators]
+toc: true
+draft: false
+---
+
+This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.
+
+The equation for the Exponential Moving Average is as follows:
+
+$$
+EMA_t = \alpha P_t + (1-\alpha)EMA_{t-1}
+$$
+
+The equation consists of three components: the current price, the smoothing factor, and the previous period's EMA.
+
+Where:
+
+- $EMA_t$: EMA at time $t$
+- $P_t$: Price at time $t$
+- $\alpha$: Smoothing factor
+- $EMA_{t-1}$: EMA from the previous period
+
+The smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.
+
+The smoothing factor is calculated as follows:
+
+$$
+\alpha = \frac{2}{N+1}
+$$
+
+where $N$ represents the number of periods.
+
+If we want to place less emphasis on previous values, we can increase the smoothing factor.
+
+EMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.
+
+However, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.
+
+Another limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors.
+
+## Works Cited
+
+[Investopedia - Exponential Moving Average (EMA)](https://www.investopedia.com/terms/e/ema.asp)

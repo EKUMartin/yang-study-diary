@@ -1,0 +1,404 @@
+
+---
+title: "Classes and Sets 0 - Sentences"
+description: "An introduction to propositions, logical connectives, and truth tables."
+date: 2026-10-28
+categories: [Math, Set Theory]
+toc: true
+draft: false
+---
+
+# Introduction
+
+This post will cover **"Classes and Sets"**.
+
+The following contents are mainly about notations and symbols that are frequently used throughout this book.
+
+The first topic is **statements**, also known as propositions.
+
+# 1. Statements (Propositions)
+
+A statement(sentence) is a declarative sentence that is unambiguously either **true or false**, but not both.
+
+We use capital letters such as $P$, $Q$, and $R$ to represent statements.
+
+For example:
+
+- $P$: $1+1=2$ (True)
+- $Q$: $2+2=5$ (False)
+
+We can combine statements using four fundamental logical connectives:
+
+1. Negation
+2. Conjunction
+3. Disjunction
+4. Implication
+
+# 2. Logical Connectives
+
+## 2.1 Negation
+
+Negation is denoted by
+
+$$
+\neg P
+$$
+
+and read as **"Not P"**.
+
+Negation reverses the truth value of a statement.
+
+If $P$ is true, then $\neg P$ is false, and vice versa.
+
+| $P$ | $\neg P$ |
+|:---:|:---:|
+| T | F |
+| F | T |
+
+For example:
+
+Let $P$ be the statement
+
+$$
+P: 1+1=2
+$$
+
+Then its negation is
+
+$$
+\neg P: 1+1\neq 2
+$$
+
+Since $P$ is true, $\neg P$ is false.
+
+## 2.2 Conjunction
+
+Conjunction is denoted by
+
+$$
+P \land Q
+$$
+
+and read as **"P and Q"**.
+
+This means that both $P$ and $Q$ must be true for the conjunction to be true.
+
+In other words,
+
+$$
+P \land Q = T
+\iff P=T \text{ and } Q=T
+$$
+
+The conjunction is false if at least one of the statements is false.
+
+| $P$ | $Q$ | $P\land Q$ |
+|:---:|:---:|:---:|
+| T | T | T |
+| T | F | F |
+| F | T | F |
+| F | F | F |
+
+## 2.3 Disjunction
+
+Disjunction is denoted by
+
+$$
+P \lor Q
+$$
+
+and read as **"P or Q"**.
+
+Unlike conjunction, disjunction is true whenever at least one of the statements is true.
+
+It is false only when both $P$ and $Q$ are false.
+
+$$
+P \lor Q = F
+\iff P=F \text{ and } Q=F
+$$
+
+| $P$ | $Q$ | $P\lor Q$ |
+|:---:|:---:|:---:|
+| T | T | T |
+| T | F | T |
+| F | T | T |
+| F | F | F |
+
+An important point is that the logical OR is **inclusive**.
+
+This means that $P\lor Q$ is also true when both $P$ and $Q$ are true.
+
+## 2.4 Implication
+
+Next, we have implication, which is denoted by
+
+$$
+P \implies Q
+$$
+
+and read as **"P implies Q"**.
+
+It can also be interpreted as:
+
+**"If P is true, then Q is true."**
+
+However, this does not necessarily mean that there is a causal relationship between $P$ and $Q$.
+
+In classical propositional logic, an implication is false only when $P$ is true and $Q$ is false.
+
+In all other cases, it is true.
+
+| $P$ | $Q$ | $P\implies Q$ |
+|:---:|:---:|:---:|
+| T | T | T |
+| T | F | F |
+| F | T | T |
+| F | F | T |
+
+Therefore,
+
+$$
+P\implies Q \equiv \neg P\lor Q
+$$
+
+This equivalence shows that implication can be expressed using negation and disjunction.
+
+### Example
+
+Consider the following statements.
+
+$$
+P: 1+1=2
+$$
+
+$$
+Q: \text{Water is } H_2O
+$$
+
+Both statements are true.
+
+Therefore,
+
+$$
+P\implies Q
+$$
+
+is true.
+
+However, the fact that $1+1=2$ does not cause water to be $H_2O$.
+
+This illustrates that **logical implication does not necessarily indicate causation**.
+
+In propositional logic, implication is determined by the truth values of the statements, not by their causal relationship.
+
+# 3. Truth Tables
+
+When multiple logical connectives appear simultaneously, it is useful to construct a **truth table** to examine the truth value of the entire expression.
+
+A truth table lists all possible combinations of truth values and evaluates a logical expression for each combination.
+
+## 3.1 Steps for Constructing a Truth Table
+
+### Step 1. Identify the Variables
+
+Write down all the basic statements in the logical expression.
+
+For example,
+
+$$
+P,\ Q,\ R
+$$
+
+represent three distinct propositional variables.
+
+### Step 2. Determine the Number of Rows
+
+For $n$ distinct propositional variables, the number of possible combinations is
+
+$$
+\boxed{2^n}
+$$
+
+For example:
+
+- 2 variables: $2^2=4$ rows
+- 3 variables: $2^3=8$ rows
+- 4 variables: $2^4=16$ rows
+
+### Step 3. Create Columns
+
+Make a column for each propositional variable.
+
+Add additional columns for intermediate logical operations and the final expression.
+
+### Step 4. Fill in All Combinations
+
+List every possible combination of True (T) and False (F).
+
+For two variables, the possible combinations are
+
+$$
+(T,T),\ (T,F),\ (F,T),\ (F,F)
+$$
+
+### Step 5. Evaluate the Expression
+
+Evaluate each intermediate operation using the logical rules introduced earlier.
+
+Finally, determine the truth value of the complete expression.
+
+## 3.2 Truth Table for the Four Logical Connectives
+
+The four logical connectives can be summarized in a single truth table.
+
+| $P$ | $Q$ | $\neg P$ | $P\land Q$ | $P\lor Q$ | $P\implies Q$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| T | T | F | T | T | T |
+| T | F | F | F | T | F |
+| F | T | T | F | T | T |
+| F | F | T | F | F | T |
+
+# 4. Example: A Complex Logical Expression
+
+Now, consider a logical expression involving four propositional variables and multiple logical connectives.
+
+Let
+
+$$
+P,\ Q,\ R,\ S
+$$
+
+be four distinct propositional variables.
+
+We want to evaluate the following expression:
+
+$$
+\boxed{
+((\neg P\land Q)\lor R)\implies S
+}
+$$
+
+This expression contains all four fundamental logical connectives:
+
+- Negation: $\neg P$
+- Conjunction: $\neg P\land Q$
+- Disjunction: $(\neg P\land Q)\lor R$
+- Implication: $((\neg P\land Q)\lor R)\implies S$
+
+## 4.1 Number of Possible Combinations
+
+Since there are four propositional variables,
+
+$$
+n=4
+$$
+
+the truth table must contain
+
+$$
+2^4=16
+$$
+
+rows.
+
+## 4.2 Evaluate Intermediate Expressions
+
+First, evaluate the negation:
+
+$$
+\neg P
+$$
+
+Next, evaluate the conjunction:
+
+$$
+\neg P\land Q
+$$
+
+Then, evaluate the disjunction:
+
+$$
+(\neg P\land Q)\lor R
+$$
+
+Finally, evaluate the implication:
+
+$$
+((\neg P\land Q)\lor R)\implies S
+$$
+
+## 4.3 Complete Truth Table
+
+For convenience, define
+
+$$
+A=\neg P\land Q
+$$
+
+$$
+B=A\lor R
+$$
+
+$$
+E=B\implies S
+$$
+
+The complete truth table is as follows.
+
+| $P$ | $Q$ | $R$ | $S$ | $A$ | $B$ | $E$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| T | T | T | T | F | T | T |
+| T | T | T | F | F | T | F |
+| T | T | F | T | F | F | T |
+| T | T | F | F | F | F | T |
+| T | F | T | T | F | T | T |
+| T | F | T | F | F | T | F |
+| T | F | F | T | F | F | T |
+| T | F | F | F | F | F | T |
+| F | T | T | T | T | T | T |
+| F | T | T | F | T | T | F |
+| F | T | F | T | T | T | T |
+| F | T | F | F | T | T | F |
+| F | F | T | T | F | T | T |
+| F | F | T | F | F | T | F |
+| F | F | F | T | F | F | T |
+| F | F | F | F | F | F | T |
+
+### Interpretation
+
+The expression is false only when its antecedent is true and its consequent is false.
+
+In this example, the antecedent is
+
+$$
+(\neg P\land Q)\lor R
+$$
+
+and the consequent is $S$.
+
+Therefore, the entire expression is false exactly when
+
+$$
+((\neg P\land Q)\lor R)=T
+$$
+
+and
+
+$$
+S=F
+$$
+
+In all other cases, the implication is true.
+
+# 5. Summary
+
+In this post, we introduced statements and the four fundamental logical connectives.
+
+The key points are:
+
+1. **Negation** reverses a statement's truth value.
+2. **Conjunction** is true only when both statements are true.
+3. **Disjunction** is true when at least one statement is true.
+4. **Implication** is false only when the antecedent is true and the consequent is false.
+5. **Truth tables** allow us to systematically evaluate complex logical expressions.

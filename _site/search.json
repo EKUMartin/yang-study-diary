@@ -4,7 +4,7 @@
     "href": "set-theory.html",
     "title": "Set Theory",
     "section": "",
-    "text": "Set Theory\nSet Theory related Contents\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n일치 없음",
+    "text": "Set Theory\nSet Theory related Contents\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
     "crumbs": [
       "Posts",
       "Math",
@@ -24,6 +24,43 @@
     ]
   },
   {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "",
+    "text": "This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.\nThe equation for the Exponential Moving Average is as follows:\n\\[\nEMA_t = \\alpha P_t + (1-\\alpha)EMA_{t-1}\n\\]\nThe equation consists of three components: the current price, the smoothing factor, and the previous period’s EMA.\nWhere:\nThe smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.\nThe smoothing factor is calculated as follows:\n\\[\n\\alpha = \\frac{2}{N+1}\n\\]\nwhere \\(N\\) represents the number of periods.\nIf we want to place less emphasis on previous values, we can increase the smoothing factor.\nEMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.\nHowever, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.\nAnother limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors."
+  },
+  {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "Works Cited",
+    "text": "Works Cited\nInvestopedia - Exponential Moving Average (EMA)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advise and feedbacks.\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\n\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "crumbs": [
+      "Posts",
+      "All Posts"
+    ]
+  },
+  {
+    "objectID": "finance-review.html",
+    "href": "finance-review.html",
+    "title": "Finance Paper Review",
+    "section": "",
+    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Finance Paper Review"
+    ]
+  },
+  {
     "objectID": "healthcare-review.html",
     "href": "healthcare-review.html",
     "title": "Healthcare Paper Review",
@@ -36,27 +73,74 @@
     ]
   },
   {
-    "objectID": "finance-review.html",
-    "href": "finance-review.html",
-    "title": "Finance Paper Review",
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+    "title": "Classes and Sets 0 - Sentences",
     "section": "",
-    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Finance Paper Review"
-    ]
+    "text": "This post will cover “Classes and Sets”.\nThe following contents are mainly about notations and symbols that are frequently used throughout this book.\nThe first topic is statements, also known as propositions."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advise and feedbacks.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "All Posts"
-    ]
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.1 Negation",
+    "text": "2.1 Negation\nNegation is denoted by\n\\[\n\\neg P\n\\]\nand read as “Not P”.\nNegation reverses the truth value of a statement.\nIf \\(P\\) is true, then \\(\\neg P\\) is false, and vice versa.\n\n\n\n\\(P\\)\n\\(\\neg P\\)\n\n\n\n\nT\nF\n\n\nF\nT\n\n\n\nFor example:\nLet \\(P\\) be the statement\n\\[\nP: 1+1=2\n\\]\nThen its negation is\n\\[\n\\neg P: 1+1\\neq 2\n\\]\nSince \\(P\\) is true, \\(\\neg P\\) is false."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.2 Conjunction",
+    "text": "2.2 Conjunction\nConjunction is denoted by\n\\[\nP \\land Q\n\\]\nand read as “P and Q”.\nThis means that both \\(P\\) and \\(Q\\) must be true for the conjunction to be true.\nIn other words,\n\\[\nP \\land Q = T\n\\iff P=T \\text{ and } Q=T\n\\]\nThe conjunction is false if at least one of the statements is false.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\land Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nF\n\n\nF\nF\nF"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.3 Disjunction",
+    "text": "2.3 Disjunction\nDisjunction is denoted by\n\\[\nP \\lor Q\n\\]\nand read as “P or Q”.\nUnlike conjunction, disjunction is true whenever at least one of the statements is true.\nIt is false only when both \\(P\\) and \\(Q\\) are false.\n\\[\nP \\lor Q = F\n\\iff P=F \\text{ and } Q=F\n\\]\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\lor Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nT\n\n\nF\nT\nT\n\n\nF\nF\nF\n\n\n\nAn important point is that the logical OR is inclusive.\nThis means that \\(P\\lor Q\\) is also true when both \\(P\\) and \\(Q\\) are true."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.4 Implication",
+    "text": "2.4 Implication\nNext, we have implication, which is denoted by\n\\[\nP \\implies Q\n\\]\nand read as “P implies Q”.\nIt can also be interpreted as:\n“If P is true, then Q is true.”\nHowever, this does not necessarily mean that there is a causal relationship between \\(P\\) and \\(Q\\).\nIn classical propositional logic, an implication is false only when \\(P\\) is true and \\(Q\\) is false.\nIn all other cases, it is true.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nT\n\n\nF\nF\nT\n\n\n\nTherefore,\n\\[\nP\\implies Q \\equiv \\neg P\\lor Q\n\\]\nThis equivalence shows that implication can be expressed using negation and disjunction.\n\nExample\nConsider the following statements.\n\\[\nP: 1+1=2\n\\]\n\\[\nQ: \\text{Water is } H_2O\n\\]\nBoth statements are true.\nTherefore,\n\\[\nP\\implies Q\n\\]\nis true.\nHowever, the fact that \\(1+1=2\\) does not cause water to be \\(H_2O\\).\nThis illustrates that logical implication does not necessarily indicate causation.\nIn propositional logic, implication is determined by the truth values of the statements, not by their causal relationship."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "3.1 Steps for Constructing a Truth Table",
+    "text": "3.1 Steps for Constructing a Truth Table\n\nStep 1. Identify the Variables\nWrite down all the basic statements in the logical expression.\nFor example,\n\\[\nP,\\ Q,\\ R\n\\]\nrepresent three distinct propositional variables.\n\n\nStep 2. Determine the Number of Rows\nFor \\(n\\) distinct propositional variables, the number of possible combinations is\n\\[\n\\boxed{2^n}\n\\]\nFor example:\n\n2 variables: \\(2^2=4\\) rows\n3 variables: \\(2^3=8\\) rows\n4 variables: \\(2^4=16\\) rows\n\n\n\nStep 3. Create Columns\nMake a column for each propositional variable.\nAdd additional columns for intermediate logical operations and the final expression.\n\n\nStep 4. Fill in All Combinations\nList every possible combination of True (T) and False (F).\nFor two variables, the possible combinations are\n\\[\n(T,T),\\ (T,F),\\ (F,T),\\ (F,F)\n\\]\n\n\nStep 5. Evaluate the Expression\nEvaluate each intermediate operation using the logical rules introduced earlier.\nFinally, determine the truth value of the complete expression."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "3.2 Truth Table for the Four Logical Connectives",
+    "text": "3.2 Truth Table for the Four Logical Connectives\nThe four logical connectives can be summarized in a single truth table.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(\\neg P\\)\n\\(P\\land Q\\)\n\\(P\\lor Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nF\nT\nT\nT\n\n\nT\nF\nF\nF\nT\nF\n\n\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.1 Number of Possible Combinations",
+    "text": "4.1 Number of Possible Combinations\nSince there are four propositional variables,\n\\[\nn=4\n\\]\nthe truth table must contain\n\\[\n2^4=16\n\\]\nrows."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.2 Evaluate Intermediate Expressions",
+    "text": "4.2 Evaluate Intermediate Expressions\nFirst, evaluate the negation:\n\\[\n\\neg P\n\\]\nNext, evaluate the conjunction:\n\\[\n\\neg P\\land Q\n\\]\nThen, evaluate the disjunction:\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nFinally, evaluate the implication:\n\\[\n((\\neg P\\land Q)\\lor R)\\implies S\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.3 Complete Truth Table",
+    "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
   },
   {
     "objectID": "real-analysis.html",
