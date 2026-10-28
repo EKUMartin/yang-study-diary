@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
@@ -137,7 +137,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -176,7 +176,7 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -252,7 +252,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -261,7 +261,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
@@ -281,75 +281,54 @@ window.Quarto = {
 <p>Open to academic advice and feedback.</p>
 
 
-</section><div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+
+</section>
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-1">
 <div class="g-col-1" data-index="0" data-categories="TWF0aCUyQ1NldCUyMFRoZW9yeQ==" data-listing-date-sort="1793113200000" data-listing-file-modified-sort="1793187290208" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1196">
 <a href="./posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html" class="quarto-grid-link">
-</a><div class="quarto-grid-item card h-100 card-left"><a href="./posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html" class="quarto-grid-link">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Classes and Sets 0 - Sentences
 </h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0aA=='); return false;">Math</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2V0JTIwVGhlb3J5'); return false;">Set Theory</div>
+
+</div>
 <div class="card-text listing-description delink">
 <p>An introduction to propositions, logical connectives, and truth tables.</p>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
 </div>
-<div class="listing-date">
-<ol start="2026" type="1">
-<li><ol start="10" type="1">
-<li>28.
-</li></ol></li></ol></div>
-
-
-</div>
-<p>:::</p>
 </div></a>
-<p>:::</p>
+</div>
 <div class="g-col-1" data-index="1" data-categories="RmluYW5jZSUyQ1RlY2huaWNhbCUyMEluZGljYXRvcnM=" data-listing-date-sort="1793113200000" data-listing-file-modified-sort="1793196501099" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
 <a href="./posts/Research/Finance-review/Exponential Moving Average.html" class="quarto-grid-link">
-</a><div class="quarto-grid-item card h-100 card-left"><a href="./posts/Research/Finance-review/Exponential Moving Average.html" class="quarto-grid-link">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="quarto-grid-item card h-100 card-left">
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Exponential Moving Average (EMA)
 </h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RmluYW5jZQ=='); return false;">Finance</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGVjaG5pY2FsJTIwSW5kaWNhdG9ycw=='); return false;">Technical Indicators</div>
+
+</div>
 <div class="card-text listing-description delink">
 <p>An introduction to EMA, its calculation, applications, and limitations.</p>
 </div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
 </div>
-<div class="listing-date">
-<ol start="2026" type="1">
-<li><ol start="10" type="1">
-<li>28.
-</li></ol></li></ol></div>
-
-
-</div>
-<p>:::</p>
 </div></a>
-<p>:::</p>
-<p>:::</p>
+</div>
+</div>
 <div class="listing-no-matching d-none">일치 없음</div>
-<p>:::</p>
-<p>:::</p>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div></main></div>
-
-
-
- <!-- /main -->
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -750,7 +729,7 @@ Exponential Moving Average (EMA)
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 
 
 
