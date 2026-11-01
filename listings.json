@@ -7,14 +7,13 @@
   },
   {
     "listing": "/reinforcement-review.html",
-    "items": []
+    "items": [
+      "/posts/Research/reinforcementLearning-review/option-critic.html"
+    ]
   },
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-      "/posts/Research/Finance-review/Exponential Moving Average.html"
-    ]
+    "listing": "/healthcare-review.html",
+    "items": []
   },
   {
     "listing": "/finance-review.html",
@@ -23,8 +22,12 @@
     ]
   },
   {
-    "listing": "/healthcare-review.html",
-    "items": []
+    "listing": "/index.html",
+    "items": [
+      "/posts/Research/reinforcementLearning-review/option-critic.html",
+      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+      "/posts/Research/Finance-review/Exponential Moving Average.html"
+    ]
   },
   {
     "listing": "/real-analysis.html",

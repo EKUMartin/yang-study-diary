@@ -16,7 +16,7 @@
     "href": "reinforcement-review.html",
     "title": "Reinforcement Learning Paper Review",
     "section": "",
-    "text": "Reinforcement Learning Paper Review\nPaper review on Reinforcement Learning Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
+    "text": "Reinforcement Learning Paper Review\nPaper review on Reinforcement Learning Paper\n\n\n\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n1.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
     "crumbs": [
       "Posts",
       "Research",
@@ -24,53 +24,144 @@
     ]
   },
   {
-    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
-    "href": "posts/Research/Finance-review/Exponential Moving Average.html",
-    "title": "Exponential Moving Average (EMA)",
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html",
+    "title": "Paper Review: The Option-Critic Architecture",
     "section": "",
-    "text": "This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.\nThe equation for the Exponential Moving Average is as follows:\n\\[\nEMA_t = \\alpha P_t + (1-\\alpha)EMA_{t-1}\n\\]\nThe equation consists of three components: the current price, the smoothing factor, and the previous period’s EMA.\nWhere:\nThe smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.\nThe smoothing factor is calculated as follows:\n\\[\n\\alpha = \\frac{2}{N+1}\n\\]\nwhere \\(N\\) represents the number of periods.\nIf we want to place less emphasis on previous values, we can increase the smoothing factor.\nEMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.\nHowever, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.\nAnother limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors."
+    "text": "This post reviews “The Option-Critic Architecture” by Pierre-Luc Bacon, Jean Harb, and Doina Precup.\nIn reinforcement learning, options are temporally extended actions that allow an agent to execute multiple primitive actions over time. They provide a framework for learning and planning with temporally extended behaviors.\nPrevious studies often focused on discovering subgoals and learning policies to achieve them. However, identifying useful subgoals can be difficult, and learning separate policies for those subgoals may require substantial data and computation.\nThis paper proposes an alternative approach: learning intra-option policies and termination functions directly through policy gradient methods, without requiring manually specified subgoals or additional rewards.\nThe key idea is to optimize the expected discounted return of the overall task rather than learning each option solely to accomplish a predefined subgoal."
   },
   {
-    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
-    "href": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
-    "title": "Exponential Moving Average (EMA)",
-    "section": "Works Cited",
-    "text": "Works Cited\nInvestopedia - Exponential Moving Average (EMA)"
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#definition-of-an-option",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#definition-of-an-option",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "2.1 Definition of an Option",
+    "text": "2.1 Definition of an Option\nAn option is represented by the following triple:\n\\[\n\\omega=(I_\\omega,\\pi_\\omega,\\beta_\\omega)\n\\]\nwhere:\n\n\\(I_\\omega\\): Initiation set\n\\(\\pi_\\omega\\): Intra-option policy\n\\(\\beta_\\omega\\): Termination function\n\nThe initiation set specifies the states in which an option can be initiated.\n\\[\nI_\\omega\\subseteq\\mathcal{S}\n\\]\nThe intra-option policy determines the probability of selecting a primitive action while executing an option.\n\\[\n\\pi_{\\omega,\\theta}(a\\mid s)\n=\nP(a_t=a\\mid s_t=s,\\omega_t=\\omega)\n\\]\nHere, \\(\\theta\\) represents the parameters of the intra-option policy.\nThe termination function determines the probability that the current option terminates upon entering a state.\n\\[\n\\beta_{\\omega,\\vartheta}(s)\n=\nP(\\text{terminate }\\omega\\mid s)\n\\]\nwhere\n\\[\n0\\leq\\beta_{\\omega,\\vartheta}(s)\\leq1\n\\]\nand \\(\\vartheta\\) represents the parameters of the termination function.\nThus, an option specifies where it can start, how it selects primitive actions, and when it may terminate.\nIn the main derivations, the paper assumes that all options are available in every state:\n\\[\nI_\\omega=\\mathcal{S},\n\\qquad \\forall\\omega\\in\\Omega\n\\]\nThis assumption simplifies the mathematical analysis."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "All Posts"
-    ]
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#call-and-return-execution-model",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#call-and-return-execution-model",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "2.2 Call-and-Return Execution Model",
+    "text": "2.2 Call-and-Return Execution Model\nThe paper adopts the call-and-return option execution model.\nAn agent first selects an option according to a policy over options:\n\\[\n\\omega_t\\sim\\pi_\\Omega(\\cdot\\mid s_t)\n\\]\nIt then follows the selected intra-option policy:\n\\[\na_t\\sim\\pi_{\\omega_t,\\theta}(\\cdot\\mid s_t)\n\\]\nAfter the environment transitions to the next state, the termination function determines whether the option should end.\nIf the option continues, the agent follows the same option in the next state.\nIf the option terminates, the agent selects another option using \\(\\pi_\\Omega\\).\nTherefore, the high-level policy does not necessarily select a new option at every primitive time step.\nAn option can persist across multiple primitive actions."
   },
   {
-    "objectID": "finance-review.html",
-    "href": "finance-review.html",
-    "title": "Finance Paper Review",
-    "section": "",
-    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Finance Paper Review"
-    ]
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#option-value-function",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#option-value-function",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "3.1 Option-Value Function",
+    "text": "3.1 Option-Value Function\nThe option-value function is\n\\[\nQ_\\Omega(s,\\omega)\n=\n\\sum_a\n\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n\\]\nThis represents the expected discounted return when option \\(\\omega\\) is executed in state \\(s\\).\nThe function \\(Q_U\\) is the value of taking a primitive action \\(a\\) while executing option \\(\\omega\\):\n\\[\nQ_U(s,\\omega,a)\n=\nr(s,a)\n+\n\\gamma\n\\sum_{s'}\nP(s'\\mid s,a)\nU(\\omega,s')\n\\]\nwhere:\n\n\\(r(s,a)\\): Expected immediate reward\n\\(\\gamma\\): Discount factor\n\\(P(s'\\mid s,a)\\): State transition probability\n\\(U(\\omega,s')\\): Value upon arriving at the next state\n\nThe function \\(U\\) is defined as\n\\[\n\\begin{aligned}\nU(\\omega,s')\n={}&\n(1-\\beta_{\\omega,\\vartheta}(s'))\nQ_\\Omega(s',\\omega)\\\\\n&+\n\\beta_{\\omega,\\vartheta}(s')\nV_\\Omega(s')\n\\end{aligned}\n\\]\nThis equation is important because it accounts for both possible outcomes after reaching the next state.\nIf the current option continues, its value is\n\\[\nQ_\\Omega(s',\\omega)\n\\]\nIf it terminates, the agent selects an option according to the policy over options, giving the value\n\\[\nV_\\Omega(s')\n=\n\\sum_{\\omega'}\n\\pi_\\Omega(\\omega'\\mid s')\nQ_\\Omega(s',\\omega')\n\\]\nThe arrival value is therefore a probability-weighted combination of continuation and termination."
   },
   {
-    "objectID": "healthcare-review.html",
-    "href": "healthcare-review.html",
-    "title": "Healthcare Paper Review",
-    "section": "",
-    "text": "Healthcare Paper Review\nPaper review on Healthcare Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Healthcare Paper Review"
-    ]
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#interpretation-of-the-arrival-value",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#interpretation-of-the-arrival-value",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "3.2 Interpretation of the Arrival Value",
+    "text": "3.2 Interpretation of the Arrival Value\nThe distinction between \\(Q_U\\) and \\(U\\) is important.\n\\(Q_U(s,\\omega,a)\\) evaluates a primitive action in the context of the currently executing option.\nIn contrast, \\(U(\\omega,s')\\) evaluates what happens after the agent reaches the next state and considers whether to continue or terminate the option.\nThe termination of an option does not necessarily imply the termination of the entire episode.\nIt only means that the current temporally extended action has ended and that another option may be selected."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#gradient-of-the-option-value-function",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#gradient-of-the-option-value-function",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "5.1 Gradient of the Option-Value Function",
+    "text": "5.1 Gradient of the Option-Value Function\nRecall that\n\\[\nQ_\\Omega(s,\\omega)\n=\n\\sum_a\n\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n\\]\nDifferentiating with respect to \\(\\theta\\) gives\n\\[\n\\begin{aligned}\n\\nabla_\\theta Q_\\Omega(s,\\omega)\n={}&\n\\sum_a\n\\nabla_\\theta\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\\\\\n&+\n\\sum_a\n\\pi_{\\omega,\\theta}(a\\mid s)\n\\nabla_\\theta Q_U(s,\\omega,a)\n\\end{aligned}\n\\]\nSubstituting the Bellman equation for \\(Q_U\\) gives\n\\[\n\\begin{aligned}\n\\nabla_\\theta Q_\\Omega(s,\\omega)\n={}&\n\\sum_a\n\\nabla_\\theta\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\\\\\n&+\n\\gamma\\sum_a\\pi_{\\omega,\\theta}(a\\mid s)\n\\sum_{s'}P(s'\\mid s,a)\n\\nabla_\\theta U(\\omega,s')\n\\end{aligned}\n\\]\nThe first term represents the direct effect of changing the probability of primitive actions.\nThe second term represents the indirect effect on future returns."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#intra-option-policy-gradient-theorem",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#intra-option-policy-gradient-theorem",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "5.2 Intra-Option Policy Gradient Theorem",
+    "text": "5.2 Intra-Option Policy Gradient Theorem\nThe theorem states that\n\\[\n\\boxed{\n\\begin{aligned}\n\\nabla_\\theta Q_\\Omega(s_0,\\omega_0)\n={}&\n\\sum_{s,\\omega}\n\\mu_\\Omega(s,\\omega\\mid s_0,\\omega_0)\\\\\n&\\times\n\\sum_a\n\\nabla_\\theta\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n\\end{aligned}\n}\n\\]\nwhere\n\\[\n\\mu_\\Omega(s,\\omega\\mid s_0,\\omega_0)\n=\n\\sum_{t=0}^{\\infty}\n\\gamma^t\nP(s_t=s,\\omega_t=\\omega\\mid s_0,\\omega_0)\n\\]\nis the discounted occupancy measure over state-option pairs.\nIt measures how frequently a state-option pair is visited along trajectories, weighted by the discount factor.\nThe gradient therefore combines the effect of a local policy change with its discounted frequency of occurrence."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#proof-of-the-intra-option-policy-gradient-theorem",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#proof-of-the-intra-option-policy-gradient-theorem",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "5.3 Proof of the Intra-Option Policy Gradient Theorem",
+    "text": "5.3 Proof of the Intra-Option Policy Gradient Theorem\nFor this derivation, the policy over options and the termination functions are held fixed with respect to \\(\\theta\\).\n\nStep 1. Separate the local gradient\nDefine\n\\[\ng_\\theta(s,\\omega)\n=\n\\sum_a\n\\nabla_\\theta\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n\\]\nThen\n\\[\n\\begin{aligned}\n\\nabla_\\theta Q_\\Omega(s,\\omega)\n={}&g_\\theta(s,\\omega)\\\\\n&+\\gamma\\sum_a\n\\pi_{\\omega,\\theta}(a\\mid s)\n\\sum_{s'}P(s'\\mid s,a)\n\\nabla_\\theta U(\\omega,s')\n\\end{aligned}\n\\]\n\n\nStep 2. Differentiate the arrival value\nRecall that\n\\[\nU(\\omega,s')\n=\n(1-\\beta_\\omega(s'))Q_\\Omega(s',\\omega)\n+\n\\beta_\\omega(s')V_\\Omega(s')\n\\]\nSince the termination function is held fixed with respect to \\(\\theta\\),\n\\[\n\\begin{aligned}\n\\nabla_\\theta U(\\omega,s')\n={}&\n(1-\\beta_\\omega(s'))\n\\nabla_\\theta Q_\\Omega(s',\\omega)\\\\\n&+\n\\beta_\\omega(s')\n\\sum_{\\omega'}\n\\pi_\\Omega(\\omega'\\mid s')\n\\nabla_\\theta Q_\\Omega(s',\\omega')\n\\end{aligned}\n\\]\nThis means that the gradient of the arrival value can be represented as a weighted combination of gradients of future option values.\n\n\nStep 3. Express the recursion\nLet\n\\[\nG_\\theta(s,\\omega)\n=\n\\nabla_\\theta Q_\\Omega(s,\\omega)\n\\]\nand let \\(T_\\Omega\\) denote the transition matrix over state-option pairs.\nSubstituting the previous equation gives\n\\[\nG_\\theta\n=\ng_\\theta+\\gamma T_\\Omega G_\\theta\n\\]\nExpanding the recursion,\n\\[\n\\begin{aligned}\nG_\\theta\n&=g_\\theta+\\gamma T_\\Omega G_\\theta\\\\\n&=g_\\theta+\\gamma T_\\Omega g_\\theta\n+\\gamma^2T_\\Omega^2G_\\theta\\\\\n&=\\sum_{k=0}^{\\infty}\n\\gamma^k T_\\Omega^k g_\\theta\n\\end{aligned}\n\\]\nThe infinite expansion follows under the discounted setting and the usual boundedness conditions.\n\n\nStep 4. Recover the occupancy measure\nThe term\n\\[\nT_\\Omega^k((s,\\omega)\\mid(s_0,\\omega_0))\n\\]\nrepresents the probability of reaching state-option pair \\((s,\\omega)\\) after \\(k\\) transitions.\nTherefore,\n\\[\n\\begin{aligned}\nG_\\theta(s_0,\\omega_0)\n={}&\n\\sum_{s,\\omega}\n\\left[\n\\sum_{k=0}^{\\infty}\n\\gamma^k\nP(s_k=s,\\omega_k=\\omega\\mid s_0,\\omega_0)\n\\right]\\\\\n&\\times g_\\theta(s,\\omega)\n\\end{aligned}\n\\]\nRecognizing the term in brackets as \\(\\mu_\\Omega\\) gives\n\\[\n\\boxed{\n\\nabla_\\theta Q_\\Omega(s_0,\\omega_0)\n=\n\\sum_{s,\\omega}\n\\mu_\\Omega(s,\\omega\\mid s_0,\\omega_0)\n\\sum_a\n\\nabla_\\theta\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n}\n\\]\nThis completes the derivation."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#interpretation",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#interpretation",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "5.4 Interpretation",
+    "text": "5.4 Interpretation\nThe theorem allows the agent to improve primitive-action policies while considering their contributions to the overall task.\nUsing the log-derivative identity,\n\\[\n\\nabla_\\theta\\pi_{\\omega,\\theta}(a\\mid s)\n=\n\\pi_{\\omega,\\theta}(a\\mid s)\n\\nabla_\\theta\\log\\pi_{\\omega,\\theta}(a\\mid s)\n\\]\nwe obtain a sample-based gradient direction proportional to\n\\[\n\\nabla_\\theta\n\\log\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n\\]\nThis leads to the intra-option policy update\n\\[\n\\boxed{\n\\theta\n\\leftarrow\n\\theta+\n\\alpha_\\theta\n\\nabla_\\theta\n\\log\\pi_{\\omega,\\theta}(a\\mid s)\nQ_U(s,\\omega,a)\n}\n\\]\nThus, the intra-option policy is updated to favor primitive actions that improve expected return."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#gradient-with-respect-to-termination-parameters",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#gradient-with-respect-to-termination-parameters",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "6.1 Gradient with Respect to Termination Parameters",
+    "text": "6.1 Gradient with Respect to Termination Parameters\nThe derivative of the option-value function with respect to \\(\\vartheta\\) is\n\\[\n\\begin{aligned}\n\\nabla_\\vartheta Q_\\Omega(s,\\omega)\n={}&\n\\sum_a\\pi_{\\omega,\\theta}(a\\mid s)\n\\sum_{s'}\\gamma P(s'\\mid s,a)\\\\\n&\\times\\nabla_\\vartheta U(\\omega,s')\n\\end{aligned}\n\\]\nThe key quantity is therefore\n\\[\n\\nabla_\\vartheta U(\\omega,s')\n\\]\nbecause the termination decision is evaluated after the agent reaches the next state."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#advantage-over-options",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#advantage-over-options",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "6.2 Advantage over Options",
+    "text": "6.2 Advantage over Options\nThe advantage function over options is defined as\n\\[\n\\boxed{\nA_\\Omega(s,\\omega)\n=\nQ_\\Omega(s,\\omega)-V_\\Omega(s)\n}\n\\]\nThis compares the value of continuing the current option with the expected value of selecting an option according to the high-level policy.\nIf\n\\[\nA_\\Omega(s,\\omega)&gt;0\n\\]\nthen the current option is more valuable than the high-level policy’s expected alternative.\nIf\n\\[\nA_\\Omega(s,\\omega)&lt;0\n\\]\nthen the current option is less valuable, making termination potentially beneficial."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#proof-of-the-termination-gradient",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#proof-of-the-termination-gradient",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "6.3 Proof of the Termination Gradient",
+    "text": "6.3 Proof of the Termination Gradient\nFor this derivation, the intra-option policies and the policy over options are held fixed with respect to \\(\\vartheta\\).\n\nStep 1. Rewrite the arrival value\nStart with\n\\[\nU(\\omega,s')\n=\n(1-\\beta_{\\omega,\\vartheta}(s'))\nQ_\\Omega(s',\\omega)\n+\n\\beta_{\\omega,\\vartheta}(s')\nV_\\Omega(s')\n\\]\nEquivalently,\n\\[\nU(\\omega,s')\n=\nQ_\\Omega(s',\\omega)\n+\n\\beta_{\\omega,\\vartheta}(s')\n\\left[\nV_\\Omega(s')-Q_\\Omega(s',\\omega)\n\\right]\n\\]\n\n\nStep 2. Differentiate with respect to termination parameters\nApplying the product rule gives\n\\[\n\\begin{aligned}\n\\nabla_\\vartheta U(\\omega,s')\n={}&\n\\nabla_\\vartheta Q_\\Omega(s',\\omega)\\\\\n&+\n\\nabla_\\vartheta\\beta_{\\omega,\\vartheta}(s')\n\\left[\nV_\\Omega(s')-Q_\\Omega(s',\\omega)\n\\right]\\\\\n&+\n\\beta_{\\omega,\\vartheta}(s')\n\\left[\n\\nabla_\\vartheta V_\\Omega(s')\n-\n\\nabla_\\vartheta Q_\\Omega(s',\\omega)\n\\right]\n\\end{aligned}\n\\]\nCombining terms,\n\\[\n\\begin{aligned}\n\\nabla_\\vartheta U(\\omega,s')\n={}&\n-\\nabla_\\vartheta\\beta_{\\omega,\\vartheta}(s')\nA_\\Omega(s',\\omega)\\\\\n&+\n(1-\\beta_{\\omega,\\vartheta}(s'))\n\\nabla_\\vartheta Q_\\Omega(s',\\omega)\\\\\n&+\n\\beta_{\\omega,\\vartheta}(s')\n\\nabla_\\vartheta V_\\Omega(s')\n\\end{aligned}\n\\]\nThe negative advantage term appears directly from differentiating the probability of termination.\nThis is the main mathematical reason for the negative sign in the termination gradient theorem.\n\n\nStep 3. Express future gradients recursively\nThe remaining two terms depend on future returns.\nSubstituting the Bellman equations allows us to express the gradient as\n\\[\n\\begin{aligned}\n\\nabla_\\vartheta U(\\omega,s')\n={}&\n-\\nabla_\\vartheta\\beta_{\\omega,\\vartheta}(s')\nA_\\Omega(s',\\omega)\\\\\n&+\n\\gamma\\sum_{\\omega',s''}\n\\widetilde{P}(s'',\\omega'\\mid s',\\omega)\n\\nabla_\\vartheta U(\\omega',s'')\n\\end{aligned}\n\\]\nHere, \\(\\widetilde{P}\\) is the transition kernel that first accounts for termination and option selection at \\(s'\\), and then transitions to the following state \\(s''\\).\nIt is a one-step-shifted representation of the augmented process.\nRepeated substitution expands the gradient over all future state-option pairs.\n\n\nStep 4. Introduce the shifted occupancy measure\nDefine\n\\[\n\\widetilde{\\mu}_\\Omega(s',\\omega\\mid s_1,\\omega_0)\n=\n\\sum_{t=0}^{\\infty}\n\\gamma^t\nP(s_{t+1}=s',\\omega_t=\\omega\\mid s_1,\\omega_0)\n\\]\nUnlike the intra-option policy gradient, which uses the pairs \\((s_t,\\omega_t)\\), the termination gradient uses the next state together with the option that was active before the termination decision.\nExpanding the recursion therefore gives\n\\[\n\\boxed{\n\\begin{aligned}\n\\nabla_\\vartheta U(\\omega_0,s_1)\n={}&-\n\\sum_{s',\\omega}\n\\widetilde{\\mu}_\\Omega(s',\\omega\\mid s_1,\\omega_0)\\\\\n&\\times\n\\nabla_\\vartheta\\beta_{\\omega,\\vartheta}(s')\nA_\\Omega(s',\\omega)\n\\end{aligned}\n}\n\\]\nThis is the Termination Gradient Theorem in the arrival-state formulation."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#interpretation-of-the-termination-gradient",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#interpretation-of-the-termination-gradient",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "6.4 Interpretation of the Termination Gradient",
+    "text": "6.4 Interpretation of the Termination Gradient\nThe termination gradient contains\n\\[\n-\\nabla_\\vartheta\\beta_{\\omega,\\vartheta}(s')\nA_\\Omega(s',\\omega)\n\\]\nConsider the following cases.\nCase 1: Positive Advantage\n\\[\nA_\\Omega(s',\\omega)&gt;0\n\\]\nThe current option is relatively valuable. Gradient ascent generally encourages the termination probability to decrease.\nCase 2: Negative Advantage\n\\[\nA_\\Omega(s',\\omega)&lt;0\n\\]\nThe current option is relatively less valuable. Gradient ascent generally encourages the termination probability to increase.\nThe corresponding parameter update is\n\\[\n\\boxed{\n\\vartheta\n\\leftarrow\n\\vartheta-\n\\alpha_\\vartheta\n\\nabla_\\vartheta\\beta_{\\omega,\\vartheta}(s')\nA_\\Omega(s',\\omega)\n}\n\\]\nThe key insight is that the agent learns when to terminate based on the relative value of the current option.\nThe algorithm does not require explicit termination labels or predefined subgoals."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#execution-flow",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#execution-flow",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "7.1 Execution Flow",
+    "text": "7.1 Execution Flow\nThe following diagram summarizes the call-and-return execution process.\n\n\n\n\n\nflowchart TD\n    A[\"Current state and option\"] --&gt; B[\"Sample primitive action from intra-option policy\"]\n    B --&gt; C[\"Environment transition and reward\"]\n    C --&gt; D[\"Critic evaluates action and option values\"]\n    D --&gt; E{\"Does the option terminate?\"}\n    E --&gt;|\"No\"| F[\"Continue current option at next state\"]\n    E --&gt;|\"Yes\"| G[\"Select option using policy over options\"]\n    F --&gt; B\n    G --&gt; B\n    D -.-&gt; H[\"Update intra-option policy and termination function\"]\n\n\n\n\n\n\nThe agent continues executing the same option until its termination condition is satisfied.\nAfter termination, the high-level policy can choose another option."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#one-step-off-policy-update-target",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#one-step-off-policy-update-target",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "8.1 One-Step Off-Policy Update Target",
+    "text": "8.1 One-Step Off-Policy Update Target\nWhen the policy over options is greedy with respect to option values, the one-step update target is\n\\[\n\\begin{aligned}\ng_t^{(1)}\n={}&r_{t+1}\\\\\n&+\\gamma\\Big[\n(1-\\beta_{\\omega_t,\\vartheta}(s_{t+1}))\nQ_\\Omega(s_{t+1},\\omega_t)\\\\\n&\\qquad+\n\\beta_{\\omega_t,\\vartheta}(s_{t+1})\n\\max_{\\bar{\\omega}}\nQ_\\Omega(s_{t+1},\\bar{\\omega})\n\\Big]\n\\end{aligned}\n\\]\nThe first component within the brackets represents continuing the current option.\nThe second component represents terminating it and selecting the most valuable option.\nThe TD error is\n\\[\n\\delta_t\n=\ng_t^{(1)}\n-\nQ_U(s_t,\\omega_t,a_t)\n\\]\nFor a terminal next state, the continuation value is set to zero.\nThe critic update is\n\\[\nQ_U(s_t,\\omega_t,a_t)\n\\leftarrow\nQ_U(s_t,\\omega_t,a_t)\n+\n\\alpha\\delta_t\n\\]"
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#actor-updates",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#actor-updates",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "8.2 Actor Updates",
+    "text": "8.2 Actor Updates\nThe intra-option policy is updated using\n\\[\n\\theta\n\\leftarrow\n\\theta+\n\\alpha_\\theta\n\\nabla_\\theta\n\\log\\pi_{\\omega_t,\\theta}(a_t\\mid s_t)\nQ_U(s_t,\\omega_t,a_t)\n\\]\nThe termination function is updated using\n\\[\n\\vartheta\n\\leftarrow\n\\vartheta-\n\\alpha_\\vartheta\n\\nabla_\\vartheta\n\\beta_{\\omega_t,\\vartheta}(s_{t+1})\nA_\\Omega(s_{t+1},\\omega_t)\n\\]\nThus, the two updates serve different purposes.\nThe intra-option policy gradient improves which action to take.\nThe termination gradient improves when to stop the current option."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#simplified-pseudocode",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#simplified-pseudocode",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "8.3 Simplified Pseudocode",
+    "text": "8.3 Simplified Pseudocode\nThe following is a simplified explanation of the learning procedure, rather than a direct reproduction of the paper’s algorithm.\nInitialize option policies, termination functions,\nthe policy over options, and the critic.\n\nFor each episode:\n\n    Observe the initial state.\n    Select an initial option.\n\n    Until the episode ends:\n\n        1. Sample a primitive action\n           from the current intra-option policy.\n\n        2. Execute the action and observe\n           the next state and reward.\n\n        3. Calculate the TD target and TD error.\n\n        4. Update the critic.\n\n        5. Update the intra-option policy\n           using the policy gradient.\n\n        6. Update the termination function\n           using the option advantage.\n\n        7. If the current option terminates,\n           choose an option using the\n           policy over options.\n\n        8. Continue from the next state.\nThe original paper presents a tabular implementation and also studies implementations with function approximation.\nThe authors use a two-timescale learning framework in which the critic is updated on a faster timescale than the policy and termination parameters."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#four-rooms-domain",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#four-rooms-domain",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "10.1 Four-Rooms Domain",
+    "text": "10.1 Four-Rooms Domain\nThe first experiment considers navigation in a four-rooms environment.\nAfter 1,000 episodes, the goal location changes.\nThe purpose is to examine whether learned options can help the agent adapt to a change in the environment.\nThe paper reports that Option-Critic adapts faster than the compared primitive actor-critic and SARSA(0) agents in this setting.\nAn interesting observation is that termination probabilities tend to become higher around doorways.\nThis suggests that useful temporal boundaries can emerge without explicitly providing doorway states as subgoals."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#pinball-domain",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#pinball-domain",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "10.2 Pinball Domain",
+    "text": "10.2 Pinball Domain\nThe Pinball environment has continuous state variables and requires controlling a ball through obstacles.\nThe experiments demonstrate that Option-Critic can learn temporally extended and specialized behaviors in this environment.\nThis is important because the framework is not restricted to small tabular state spaces."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/option-critic.html#arcade-learning-environment",
+    "href": "posts/Research/reinforcementLearning-review/option-critic.html#arcade-learning-environment",
+    "title": "Paper Review: The Option-Critic Architecture",
+    "section": "10.3 Arcade Learning Environment",
+    "text": "10.3 Arcade Learning Environment\nThe paper also applies Option-Critic with deep neural network function approximation to Atari environments.\nThis demonstrates that the architecture can be combined with nonlinear function approximation.\nHowever, the experimental results should not be interpreted as proving that Option-Critic is universally superior to other reinforcement learning algorithms."
   },
   {
     "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
@@ -141,6 +232,55 @@
     "title": "Classes and Sets 0 - Sentences",
     "section": "4.3 Complete Truth Table",
     "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
+  },
+  {
+    "objectID": "healthcare-review.html",
+    "href": "healthcare-review.html",
+    "title": "Healthcare Paper Review",
+    "section": "",
+    "text": "Healthcare Paper Review\nPaper review on Healthcare Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Healthcare Paper Review"
+    ]
+  },
+  {
+    "objectID": "finance-review.html",
+    "href": "finance-review.html",
+    "title": "Finance Paper Review",
+    "section": "",
+    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Finance Paper Review"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "All Posts"
+    ]
+  },
+  {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "",
+    "text": "This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.\nThe equation for the Exponential Moving Average is as follows:\n\\[\nEMA_t = \\alpha P_t + (1-\\alpha)EMA_{t-1}\n\\]\nThe equation consists of three components: the current price, the smoothing factor, and the previous period’s EMA.\nWhere:\nThe smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.\nThe smoothing factor is calculated as follows:\n\\[\n\\alpha = \\frac{2}{N+1}\n\\]\nwhere \\(N\\) represents the number of periods.\nIf we want to place less emphasis on previous values, we can increase the smoothing factor.\nEMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.\nHowever, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.\nAnother limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors."
+  },
+  {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "Works Cited",
+    "text": "Works Cited\nInvestopedia - Exponential Moving Average (EMA)"
   },
   {
     "objectID": "real-analysis.html",

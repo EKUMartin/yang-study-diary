@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="A review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.">
+
+<title>Paper Review: The Option-Critic Architecture – Yang’s study diary</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-2aa33e8751edae3f9b77d048c1294c38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+<script src="../../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Yang’s study diary</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Paper Review: The Option-Critic Architecture</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">All Posts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Math</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../set-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../real-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Real Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Research</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Research</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../healthcare-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Healthcare Paper Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../finance-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finance Paper Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../reinforcement-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#the-options-framework" id="toc-the-options-framework" class="nav-link" data-scroll-target="#the-options-framework">2. The Options Framework</a>
+  <ul class="collapse">
+  <li><a href="#definition-of-an-option" id="toc-definition-of-an-option" class="nav-link" data-scroll-target="#definition-of-an-option">2.1 Definition of an Option</a></li>
+  <li><a href="#call-and-return-execution-model" id="toc-call-and-return-execution-model" class="nav-link" data-scroll-target="#call-and-return-execution-model">2.2 Call-and-Return Execution Model</a></li>
+  </ul></li>
+  <li><a href="#value-functions-for-options" id="toc-value-functions-for-options" class="nav-link" data-scroll-target="#value-functions-for-options">3. Value Functions for Options</a>
+  <ul class="collapse">
+  <li><a href="#option-value-function" id="toc-option-value-function" class="nav-link" data-scroll-target="#option-value-function">3.1 Option-Value Function</a></li>
+  <li><a href="#interpretation-of-the-arrival-value" id="toc-interpretation-of-the-arrival-value" class="nav-link" data-scroll-target="#interpretation-of-the-arrival-value">3.2 Interpretation of the Arrival Value</a></li>
+  </ul></li>
+  <li><a href="#transition-probabilities-over-state-option-pairs" id="toc-transition-probabilities-over-state-option-pairs" class="nav-link" data-scroll-target="#transition-probabilities-over-state-option-pairs">4. Transition Probabilities over State-Option Pairs</a></li>
+  <li><a href="#intra-option-policy-gradient" id="toc-intra-option-policy-gradient" class="nav-link" data-scroll-target="#intra-option-policy-gradient">5. Intra-Option Policy Gradient</a>
+  <ul class="collapse">
+  <li><a href="#gradient-of-the-option-value-function" id="toc-gradient-of-the-option-value-function" class="nav-link" data-scroll-target="#gradient-of-the-option-value-function">5.1 Gradient of the Option-Value Function</a></li>
+  <li><a href="#intra-option-policy-gradient-theorem" id="toc-intra-option-policy-gradient-theorem" class="nav-link" data-scroll-target="#intra-option-policy-gradient-theorem">5.2 Intra-Option Policy Gradient Theorem</a></li>
+  <li><a href="#proof-of-the-intra-option-policy-gradient-theorem" id="toc-proof-of-the-intra-option-policy-gradient-theorem" class="nav-link" data-scroll-target="#proof-of-the-intra-option-policy-gradient-theorem">5.3 Proof of the Intra-Option Policy Gradient Theorem</a>
+  <ul class="collapse">
+  <li><a href="#step-1.-separate-the-local-gradient" id="toc-step-1.-separate-the-local-gradient" class="nav-link" data-scroll-target="#step-1.-separate-the-local-gradient">Step 1. Separate the local gradient</a></li>
+  <li><a href="#step-2.-differentiate-the-arrival-value" id="toc-step-2.-differentiate-the-arrival-value" class="nav-link" data-scroll-target="#step-2.-differentiate-the-arrival-value">Step 2. Differentiate the arrival value</a></li>
+  <li><a href="#step-3.-express-the-recursion" id="toc-step-3.-express-the-recursion" class="nav-link" data-scroll-target="#step-3.-express-the-recursion">Step 3. Express the recursion</a></li>
+  <li><a href="#step-4.-recover-the-occupancy-measure" id="toc-step-4.-recover-the-occupancy-measure" class="nav-link" data-scroll-target="#step-4.-recover-the-occupancy-measure">Step 4. Recover the occupancy measure</a></li>
+  </ul></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">5.4 Interpretation</a></li>
+  </ul></li>
+  <li><a href="#termination-gradient" id="toc-termination-gradient" class="nav-link" data-scroll-target="#termination-gradient">6. Termination Gradient</a>
+  <ul class="collapse">
+  <li><a href="#gradient-with-respect-to-termination-parameters" id="toc-gradient-with-respect-to-termination-parameters" class="nav-link" data-scroll-target="#gradient-with-respect-to-termination-parameters">6.1 Gradient with Respect to Termination Parameters</a></li>
+  <li><a href="#advantage-over-options" id="toc-advantage-over-options" class="nav-link" data-scroll-target="#advantage-over-options">6.2 Advantage over Options</a></li>
+  <li><a href="#proof-of-the-termination-gradient" id="toc-proof-of-the-termination-gradient" class="nav-link" data-scroll-target="#proof-of-the-termination-gradient">6.3 Proof of the Termination Gradient</a>
+  <ul class="collapse">
+  <li><a href="#step-1.-rewrite-the-arrival-value" id="toc-step-1.-rewrite-the-arrival-value" class="nav-link" data-scroll-target="#step-1.-rewrite-the-arrival-value">Step 1. Rewrite the arrival value</a></li>
+  <li><a href="#step-2.-differentiate-with-respect-to-termination-parameters" id="toc-step-2.-differentiate-with-respect-to-termination-parameters" class="nav-link" data-scroll-target="#step-2.-differentiate-with-respect-to-termination-parameters">Step 2. Differentiate with respect to termination parameters</a></li>
+  <li><a href="#step-3.-express-future-gradients-recursively" id="toc-step-3.-express-future-gradients-recursively" class="nav-link" data-scroll-target="#step-3.-express-future-gradients-recursively">Step 3. Express future gradients recursively</a></li>
+  <li><a href="#step-4.-introduce-the-shifted-occupancy-measure" id="toc-step-4.-introduce-the-shifted-occupancy-measure" class="nav-link" data-scroll-target="#step-4.-introduce-the-shifted-occupancy-measure">Step 4. Introduce the shifted occupancy measure</a></li>
+  </ul></li>
+  <li><a href="#interpretation-of-the-termination-gradient" id="toc-interpretation-of-the-termination-gradient" class="nav-link" data-scroll-target="#interpretation-of-the-termination-gradient">6.4 Interpretation of the Termination Gradient</a></li>
+  </ul></li>
+  <li><a href="#the-option-critic-architecture" id="toc-the-option-critic-architecture" class="nav-link" data-scroll-target="#the-option-critic-architecture">7. The Option-Critic Architecture</a>
+  <ul class="collapse">
+  <li><a href="#execution-flow" id="toc-execution-flow" class="nav-link" data-scroll-target="#execution-flow">7.1 Execution Flow</a></li>
+  </ul></li>
+  <li><a href="#learning-algorithm" id="toc-learning-algorithm" class="nav-link" data-scroll-target="#learning-algorithm">8. Learning Algorithm</a>
+  <ul class="collapse">
+  <li><a href="#one-step-off-policy-update-target" id="toc-one-step-off-policy-update-target" class="nav-link" data-scroll-target="#one-step-off-policy-update-target">8.1 One-Step Off-Policy Update Target</a></li>
+  <li><a href="#actor-updates" id="toc-actor-updates" class="nav-link" data-scroll-target="#actor-updates">8.2 Actor Updates</a></li>
+  <li><a href="#simplified-pseudocode" id="toc-simplified-pseudocode" class="nav-link" data-scroll-target="#simplified-pseudocode">8.3 Simplified Pseudocode</a></li>
+  </ul></li>
+  <li><a href="#comparison-with-actor-critic" id="toc-comparison-with-actor-critic" class="nav-link" data-scroll-target="#comparison-with-actor-critic">9. Comparison with Actor-Critic</a></li>
+  <li><a href="#experimental-results" id="toc-experimental-results" class="nav-link" data-scroll-target="#experimental-results">10. Experimental Results</a>
+  <ul class="collapse">
+  <li><a href="#four-rooms-domain" id="toc-four-rooms-domain" class="nav-link" data-scroll-target="#four-rooms-domain">10.1 Four-Rooms Domain</a></li>
+  <li><a href="#pinball-domain" id="toc-pinball-domain" class="nav-link" data-scroll-target="#pinball-domain">10.2 Pinball Domain</a></li>
+  <li><a href="#arcade-learning-environment" id="toc-arcade-learning-environment" class="nav-link" data-scroll-target="#arcade-learning-environment">10.3 Arcade Learning Environment</a></li>
+  </ul></li>
+  <li><a href="#discussion-and-limitations" id="toc-discussion-and-limitations" class="nav-link" data-scroll-target="#discussion-and-limitations">11. Discussion and Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">12. Conclusion</a></li>
+  <li><a href="#works-cited" id="toc-works-cited" class="nav-link" data-scroll-target="#works-cited">Works Cited</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Paper Review: The Option-Critic Architecture</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Research</div>
+    <div class="quarto-category">Reinforcement Learning</div>
+    <div class="quarto-category">Paper Review</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">공개</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026년 11월 1일</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>This post reviews “The Option-Critic Architecture” by Pierre-Luc Bacon, Jean Harb, and Doina Precup.</p>
+<p>In reinforcement learning, options are temporally extended actions that allow an agent to execute multiple primitive actions over time. They provide a framework for learning and planning with temporally extended behaviors.</p>
+<p>Previous studies often focused on discovering subgoals and learning policies to achieve them. However, identifying useful subgoals can be difficult, and learning separate policies for those subgoals may require substantial data and computation.</p>
+<p>This paper proposes an alternative approach: learning intra-option policies and termination functions directly through policy gradient methods, without requiring manually specified subgoals or additional rewards.</p>
+<p>The key idea is to optimize the expected discounted return of the overall task rather than learning each option solely to accomplish a predefined subgoal.</p>
+</section>
+<section id="the-options-framework" class="level1">
+<h1>2. The Options Framework</h1>
+<section id="definition-of-an-option" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-an-option">2.1 Definition of an Option</h2>
+<p>An option is represented by the following triple:</p>
+<p><span class="math display">\[
+\omega=(I_\omega,\pi_\omega,\beta_\omega)
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(I_\omega\)</span>: Initiation set</li>
+<li><span class="math inline">\(\pi_\omega\)</span>: Intra-option policy</li>
+<li><span class="math inline">\(\beta_\omega\)</span>: Termination function</li>
+</ul>
+<p>The <strong>initiation set</strong> specifies the states in which an option can be initiated.</p>
+<p><span class="math display">\[
+I_\omega\subseteq\mathcal{S}
+\]</span></p>
+<p>The <strong>intra-option policy</strong> determines the probability of selecting a primitive action while executing an option.</p>
+<p><span class="math display">\[
+\pi_{\omega,\theta}(a\mid s)
+=
+P(a_t=a\mid s_t=s,\omega_t=\omega)
+\]</span></p>
+<p>Here, <span class="math inline">\(\theta\)</span> represents the parameters of the intra-option policy.</p>
+<p>The <strong>termination function</strong> determines the probability that the current option terminates upon entering a state.</p>
+<p><span class="math display">\[
+\beta_{\omega,\vartheta}(s)
+=
+P(\text{terminate }\omega\mid s)
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+0\leq\beta_{\omega,\vartheta}(s)\leq1
+\]</span></p>
+<p>and <span class="math inline">\(\vartheta\)</span> represents the parameters of the termination function.</p>
+<p>Thus, an option specifies where it can start, how it selects primitive actions, and when it may terminate.</p>
+<p>In the main derivations, the paper assumes that all options are available in every state:</p>
+<p><span class="math display">\[
+I_\omega=\mathcal{S},
+\qquad \forall\omega\in\Omega
+\]</span></p>
+<p>This assumption simplifies the mathematical analysis.</p>
+</section>
+<section id="call-and-return-execution-model" class="level2">
+<h2 class="anchored" data-anchor-id="call-and-return-execution-model">2.2 Call-and-Return Execution Model</h2>
+<p>The paper adopts the <strong>call-and-return option execution model</strong>.</p>
+<p>An agent first selects an option according to a policy over options:</p>
+<p><span class="math display">\[
+\omega_t\sim\pi_\Omega(\cdot\mid s_t)
+\]</span></p>
+<p>It then follows the selected intra-option policy:</p>
+<p><span class="math display">\[
+a_t\sim\pi_{\omega_t,\theta}(\cdot\mid s_t)
+\]</span></p>
+<p>After the environment transitions to the next state, the termination function determines whether the option should end.</p>
+<p>If the option continues, the agent follows the same option in the next state.</p>
+<p>If the option terminates, the agent selects another option using <span class="math inline">\(\pi_\Omega\)</span>.</p>
+<p>Therefore, the high-level policy does not necessarily select a new option at every primitive time step.</p>
+<p>An option can persist across multiple primitive actions.</p>
+</section>
+</section>
+<section id="value-functions-for-options" class="level1">
+<h1>3. Value Functions for Options</h1>
+<p>The paper introduces three closely related value functions.</p>
+<section id="option-value-function" class="level2">
+<h2 class="anchored" data-anchor-id="option-value-function">3.1 Option-Value Function</h2>
+<p>The option-value function is</p>
+<p><span class="math display">\[
+Q_\Omega(s,\omega)
+=
+\sum_a
+\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+\]</span></p>
+<p>This represents the expected discounted return when option <span class="math inline">\(\omega\)</span> is executed in state <span class="math inline">\(s\)</span>.</p>
+<p>The function <span class="math inline">\(Q_U\)</span> is the value of taking a primitive action <span class="math inline">\(a\)</span> while executing option <span class="math inline">\(\omega\)</span>:</p>
+<p><span class="math display">\[
+Q_U(s,\omega,a)
+=
+r(s,a)
++
+\gamma
+\sum_{s'}
+P(s'\mid s,a)
+U(\omega,s')
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(r(s,a)\)</span>: Expected immediate reward</li>
+<li><span class="math inline">\(\gamma\)</span>: Discount factor</li>
+<li><span class="math inline">\(P(s'\mid s,a)\)</span>: State transition probability</li>
+<li><span class="math inline">\(U(\omega,s')\)</span>: Value upon arriving at the next state</li>
+</ul>
+<p>The function <span class="math inline">\(U\)</span> is defined as</p>
+<p><span class="math display">\[
+\begin{aligned}
+U(\omega,s')
+={}&amp;
+(1-\beta_{\omega,\vartheta}(s'))
+Q_\Omega(s',\omega)\\
+&amp;+
+\beta_{\omega,\vartheta}(s')
+V_\Omega(s')
+\end{aligned}
+\]</span></p>
+<p>This equation is important because it accounts for both possible outcomes after reaching the next state.</p>
+<p>If the current option continues, its value is</p>
+<p><span class="math display">\[
+Q_\Omega(s',\omega)
+\]</span></p>
+<p>If it terminates, the agent selects an option according to the policy over options, giving the value</p>
+<p><span class="math display">\[
+V_\Omega(s')
+=
+\sum_{\omega'}
+\pi_\Omega(\omega'\mid s')
+Q_\Omega(s',\omega')
+\]</span></p>
+<p>The arrival value is therefore a probability-weighted combination of continuation and termination.</p>
+</section>
+<section id="interpretation-of-the-arrival-value" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-the-arrival-value">3.2 Interpretation of the Arrival Value</h2>
+<p>The distinction between <span class="math inline">\(Q_U\)</span> and <span class="math inline">\(U\)</span> is important.</p>
+<p><span class="math inline">\(Q_U(s,\omega,a)\)</span> evaluates a primitive action in the context of the currently executing option.</p>
+<p>In contrast, <span class="math inline">\(U(\omega,s')\)</span> evaluates what happens after the agent reaches the next state and considers whether to continue or terminate the option.</p>
+<p>The termination of an option does not necessarily imply the termination of the entire episode.</p>
+<p>It only means that the current temporally extended action has ended and that another option may be selected.</p>
+</section>
+</section>
+<section id="transition-probabilities-over-state-option-pairs" class="level1">
+<h1>4. Transition Probabilities over State-Option Pairs</h1>
+<p>To analyze option learning, the paper introduces an augmented state space consisting of state-option pairs:</p>
+<p><span class="math display">\[
+\mathcal{S}\times\Omega
+\]</span></p>
+<p>The probability of transitioning from <span class="math inline">\((s_t,\omega_t)\)</span> to <span class="math inline">\((s_{t+1},\omega_{t+1})\)</span> is</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; P_\Omega(s_{t+1},\omega_{t+1}\mid s_t,\omega_t)\\
+&amp;=\sum_a
+\pi_{\omega_t,\theta}(a\mid s_t)
+P(s_{t+1}\mid s_t,a)\\
+&amp;\quad\times
+\Big[
+(1-\beta_{\omega_t,\vartheta}(s_{t+1}))
+\mathbf{1}_{\{\omega_t=\omega_{t+1}\}}\\
+&amp;\qquad+
+\beta_{\omega_t,\vartheta}(s_{t+1})
+\pi_\Omega(\omega_{t+1}\mid s_{t+1})
+\Big]
+\end{aligned}
+\]</span></p>
+<p>The first term represents the probability of continuing the current option.</p>
+<p>The second term represents the probability of terminating the option and selecting a new one.</p>
+<p>The process is a time-homogeneous Markov chain when the environment dynamics and policies are stationary.</p>
+<p>This means that its transition probabilities do not explicitly depend on the time index.</p>
+<p>However, <strong>time homogeneity does not imply that the state distribution is stationary</strong>.</p>
+<p>A stationary distribution exists and is unique only under additional conditions, such as appropriate irreducibility and recurrence assumptions.</p>
+</section>
+<section id="intra-option-policy-gradient" class="level1">
+<h1>5. Intra-Option Policy Gradient</h1>
+<p>The paper derives a policy gradient theorem for learning the parameters of intra-option policies.</p>
+<p>The objective is to maximize the expected discounted return of the task:</p>
+<p><span class="math display">\[
+J(\theta,\vartheta)
+=
+\mathbb{E}
+\left[
+\sum_{t=0}^{\infty}
+\gamma^t r_{t+1}
+\right]
+\]</span></p>
+<p>Here, the expectation depends on the option policies and termination functions.</p>
+<section id="gradient-of-the-option-value-function" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-of-the-option-value-function">5.1 Gradient of the Option-Value Function</h2>
+<p>Recall that</p>
+<p><span class="math display">\[
+Q_\Omega(s,\omega)
+=
+\sum_a
+\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+\]</span></p>
+<p>Differentiating with respect to <span class="math inline">\(\theta\)</span> gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\theta Q_\Omega(s,\omega)
+={}&amp;
+\sum_a
+\nabla_\theta\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)\\
+&amp;+
+\sum_a
+\pi_{\omega,\theta}(a\mid s)
+\nabla_\theta Q_U(s,\omega,a)
+\end{aligned}
+\]</span></p>
+<p>Substituting the Bellman equation for <span class="math inline">\(Q_U\)</span> gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\theta Q_\Omega(s,\omega)
+={}&amp;
+\sum_a
+\nabla_\theta\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)\\
+&amp;+
+\gamma\sum_a\pi_{\omega,\theta}(a\mid s)
+\sum_{s'}P(s'\mid s,a)
+\nabla_\theta U(\omega,s')
+\end{aligned}
+\]</span></p>
+<p>The first term represents the direct effect of changing the probability of primitive actions.</p>
+<p>The second term represents the indirect effect on future returns.</p>
+</section>
+<section id="intra-option-policy-gradient-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="intra-option-policy-gradient-theorem">5.2 Intra-Option Policy Gradient Theorem</h2>
+<p>The theorem states that</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+\nabla_\theta Q_\Omega(s_0,\omega_0)
+={}&amp;
+\sum_{s,\omega}
+\mu_\Omega(s,\omega\mid s_0,\omega_0)\\
+&amp;\times
+\sum_a
+\nabla_\theta\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+\end{aligned}
+}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\mu_\Omega(s,\omega\mid s_0,\omega_0)
+=
+\sum_{t=0}^{\infty}
+\gamma^t
+P(s_t=s,\omega_t=\omega\mid s_0,\omega_0)
+\]</span></p>
+<p>is the <strong>discounted occupancy measure</strong> over state-option pairs.</p>
+<p>It measures how frequently a state-option pair is visited along trajectories, weighted by the discount factor.</p>
+<p>The gradient therefore combines the effect of a local policy change with its discounted frequency of occurrence.</p>
+</section>
+<section id="proof-of-the-intra-option-policy-gradient-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="proof-of-the-intra-option-policy-gradient-theorem">5.3 Proof of the Intra-Option Policy Gradient Theorem</h2>
+<p>For this derivation, the policy over options and the termination functions are held fixed with respect to <span class="math inline">\(\theta\)</span>.</p>
+<section id="step-1.-separate-the-local-gradient" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-separate-the-local-gradient">Step 1. Separate the local gradient</h3>
+<p>Define</p>
+<p><span class="math display">\[
+g_\theta(s,\omega)
+=
+\sum_a
+\nabla_\theta\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\theta Q_\Omega(s,\omega)
+={}&amp;g_\theta(s,\omega)\\
+&amp;+\gamma\sum_a
+\pi_{\omega,\theta}(a\mid s)
+\sum_{s'}P(s'\mid s,a)
+\nabla_\theta U(\omega,s')
+\end{aligned}
+\]</span></p>
+</section>
+<section id="step-2.-differentiate-the-arrival-value" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-differentiate-the-arrival-value">Step 2. Differentiate the arrival value</h3>
+<p>Recall that</p>
+<p><span class="math display">\[
+U(\omega,s')
+=
+(1-\beta_\omega(s'))Q_\Omega(s',\omega)
++
+\beta_\omega(s')V_\Omega(s')
+\]</span></p>
+<p>Since the termination function is held fixed with respect to <span class="math inline">\(\theta\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\theta U(\omega,s')
+={}&amp;
+(1-\beta_\omega(s'))
+\nabla_\theta Q_\Omega(s',\omega)\\
+&amp;+
+\beta_\omega(s')
+\sum_{\omega'}
+\pi_\Omega(\omega'\mid s')
+\nabla_\theta Q_\Omega(s',\omega')
+\end{aligned}
+\]</span></p>
+<p>This means that the gradient of the arrival value can be represented as a weighted combination of gradients of future option values.</p>
+</section>
+<section id="step-3.-express-the-recursion" class="level3">
+<h3 class="anchored" data-anchor-id="step-3.-express-the-recursion">Step 3. Express the recursion</h3>
+<p>Let</p>
+<p><span class="math display">\[
+G_\theta(s,\omega)
+=
+\nabla_\theta Q_\Omega(s,\omega)
+\]</span></p>
+<p>and let <span class="math inline">\(T_\Omega\)</span> denote the transition matrix over state-option pairs.</p>
+<p>Substituting the previous equation gives</p>
+<p><span class="math display">\[
+G_\theta
+=
+g_\theta+\gamma T_\Omega G_\theta
+\]</span></p>
+<p>Expanding the recursion,</p>
+<p><span class="math display">\[
+\begin{aligned}
+G_\theta
+&amp;=g_\theta+\gamma T_\Omega G_\theta\\
+&amp;=g_\theta+\gamma T_\Omega g_\theta
++\gamma^2T_\Omega^2G_\theta\\
+&amp;=\sum_{k=0}^{\infty}
+\gamma^k T_\Omega^k g_\theta
+\end{aligned}
+\]</span></p>
+<p>The infinite expansion follows under the discounted setting and the usual boundedness conditions.</p>
+</section>
+<section id="step-4.-recover-the-occupancy-measure" class="level3">
+<h3 class="anchored" data-anchor-id="step-4.-recover-the-occupancy-measure">Step 4. Recover the occupancy measure</h3>
+<p>The term</p>
+<p><span class="math display">\[
+T_\Omega^k((s,\omega)\mid(s_0,\omega_0))
+\]</span></p>
+<p>represents the probability of reaching state-option pair <span class="math inline">\((s,\omega)\)</span> after <span class="math inline">\(k\)</span> transitions.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+G_\theta(s_0,\omega_0)
+={}&amp;
+\sum_{s,\omega}
+\left[
+\sum_{k=0}^{\infty}
+\gamma^k
+P(s_k=s,\omega_k=\omega\mid s_0,\omega_0)
+\right]\\
+&amp;\times g_\theta(s,\omega)
+\end{aligned}
+\]</span></p>
+<p>Recognizing the term in brackets as <span class="math inline">\(\mu_\Omega\)</span> gives</p>
+<p><span class="math display">\[
+\boxed{
+\nabla_\theta Q_\Omega(s_0,\omega_0)
+=
+\sum_{s,\omega}
+\mu_\Omega(s,\omega\mid s_0,\omega_0)
+\sum_a
+\nabla_\theta\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+}
+\]</span></p>
+<p>This completes the derivation.</p>
+</section>
+</section>
+<section id="interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation">5.4 Interpretation</h2>
+<p>The theorem allows the agent to improve primitive-action policies while considering their contributions to the overall task.</p>
+<p>Using the log-derivative identity,</p>
+<p><span class="math display">\[
+\nabla_\theta\pi_{\omega,\theta}(a\mid s)
+=
+\pi_{\omega,\theta}(a\mid s)
+\nabla_\theta\log\pi_{\omega,\theta}(a\mid s)
+\]</span></p>
+<p>we obtain a sample-based gradient direction proportional to</p>
+<p><span class="math display">\[
+\nabla_\theta
+\log\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+\]</span></p>
+<p>This leads to the intra-option policy update</p>
+<p><span class="math display">\[
+\boxed{
+\theta
+\leftarrow
+\theta+
+\alpha_\theta
+\nabla_\theta
+\log\pi_{\omega,\theta}(a\mid s)
+Q_U(s,\omega,a)
+}
+\]</span></p>
+<p>Thus, the intra-option policy is updated to favor primitive actions that improve expected return.</p>
+</section>
+</section>
+<section id="termination-gradient" class="level1">
+<h1>6. Termination Gradient</h1>
+<p>The second major contribution is the termination gradient theorem.</p>
+<p>Unlike the intra-option policy gradient, the termination gradient determines when an option should stop.</p>
+<section id="gradient-with-respect-to-termination-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-with-respect-to-termination-parameters">6.1 Gradient with Respect to Termination Parameters</h2>
+<p>The derivative of the option-value function with respect to <span class="math inline">\(\vartheta\)</span> is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\vartheta Q_\Omega(s,\omega)
+={}&amp;
+\sum_a\pi_{\omega,\theta}(a\mid s)
+\sum_{s'}\gamma P(s'\mid s,a)\\
+&amp;\times\nabla_\vartheta U(\omega,s')
+\end{aligned}
+\]</span></p>
+<p>The key quantity is therefore</p>
+<p><span class="math display">\[
+\nabla_\vartheta U(\omega,s')
+\]</span></p>
+<p>because the termination decision is evaluated after the agent reaches the next state.</p>
+</section>
+<section id="advantage-over-options" class="level2">
+<h2 class="anchored" data-anchor-id="advantage-over-options">6.2 Advantage over Options</h2>
+<p>The advantage function over options is defined as</p>
+<p><span class="math display">\[
+\boxed{
+A_\Omega(s,\omega)
+=
+Q_\Omega(s,\omega)-V_\Omega(s)
+}
+\]</span></p>
+<p>This compares the value of continuing the current option with the expected value of selecting an option according to the high-level policy.</p>
+<p>If</p>
+<p><span class="math display">\[
+A_\Omega(s,\omega)&gt;0
+\]</span></p>
+<p>then the current option is more valuable than the high-level policy’s expected alternative.</p>
+<p>If</p>
+<p><span class="math display">\[
+A_\Omega(s,\omega)&lt;0
+\]</span></p>
+<p>then the current option is less valuable, making termination potentially beneficial.</p>
+</section>
+<section id="proof-of-the-termination-gradient" class="level2">
+<h2 class="anchored" data-anchor-id="proof-of-the-termination-gradient">6.3 Proof of the Termination Gradient</h2>
+<p>For this derivation, the intra-option policies and the policy over options are held fixed with respect to <span class="math inline">\(\vartheta\)</span>.</p>
+<section id="step-1.-rewrite-the-arrival-value" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-rewrite-the-arrival-value">Step 1. Rewrite the arrival value</h3>
+<p>Start with</p>
+<p><span class="math display">\[
+U(\omega,s')
+=
+(1-\beta_{\omega,\vartheta}(s'))
+Q_\Omega(s',\omega)
++
+\beta_{\omega,\vartheta}(s')
+V_\Omega(s')
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+U(\omega,s')
+=
+Q_\Omega(s',\omega)
++
+\beta_{\omega,\vartheta}(s')
+\left[
+V_\Omega(s')-Q_\Omega(s',\omega)
+\right]
+\]</span></p>
+</section>
+<section id="step-2.-differentiate-with-respect-to-termination-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-differentiate-with-respect-to-termination-parameters">Step 2. Differentiate with respect to termination parameters</h3>
+<p>Applying the product rule gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\vartheta U(\omega,s')
+={}&amp;
+\nabla_\vartheta Q_\Omega(s',\omega)\\
+&amp;+
+\nabla_\vartheta\beta_{\omega,\vartheta}(s')
+\left[
+V_\Omega(s')-Q_\Omega(s',\omega)
+\right]\\
+&amp;+
+\beta_{\omega,\vartheta}(s')
+\left[
+\nabla_\vartheta V_\Omega(s')
+-
+\nabla_\vartheta Q_\Omega(s',\omega)
+\right]
+\end{aligned}
+\]</span></p>
+<p>Combining terms,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\vartheta U(\omega,s')
+={}&amp;
+-\nabla_\vartheta\beta_{\omega,\vartheta}(s')
+A_\Omega(s',\omega)\\
+&amp;+
+(1-\beta_{\omega,\vartheta}(s'))
+\nabla_\vartheta Q_\Omega(s',\omega)\\
+&amp;+
+\beta_{\omega,\vartheta}(s')
+\nabla_\vartheta V_\Omega(s')
+\end{aligned}
+\]</span></p>
+<p>The negative advantage term appears directly from differentiating the probability of termination.</p>
+<p>This is the main mathematical reason for the negative sign in the termination gradient theorem.</p>
+</section>
+<section id="step-3.-express-future-gradients-recursively" class="level3">
+<h3 class="anchored" data-anchor-id="step-3.-express-future-gradients-recursively">Step 3. Express future gradients recursively</h3>
+<p>The remaining two terms depend on future returns.</p>
+<p>Substituting the Bellman equations allows us to express the gradient as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\vartheta U(\omega,s')
+={}&amp;
+-\nabla_\vartheta\beta_{\omega,\vartheta}(s')
+A_\Omega(s',\omega)\\
+&amp;+
+\gamma\sum_{\omega',s''}
+\widetilde{P}(s'',\omega'\mid s',\omega)
+\nabla_\vartheta U(\omega',s'')
+\end{aligned}
+\]</span></p>
+<p>Here, <span class="math inline">\(\widetilde{P}\)</span> is the transition kernel that first accounts for termination and option selection at <span class="math inline">\(s'\)</span>, and then transitions to the following state <span class="math inline">\(s''\)</span>.</p>
+<p>It is a one-step-shifted representation of the augmented process.</p>
+<p>Repeated substitution expands the gradient over all future state-option pairs.</p>
+</section>
+<section id="step-4.-introduce-the-shifted-occupancy-measure" class="level3">
+<h3 class="anchored" data-anchor-id="step-4.-introduce-the-shifted-occupancy-measure">Step 4. Introduce the shifted occupancy measure</h3>
+<p>Define</p>
+<p><span class="math display">\[
+\widetilde{\mu}_\Omega(s',\omega\mid s_1,\omega_0)
+=
+\sum_{t=0}^{\infty}
+\gamma^t
+P(s_{t+1}=s',\omega_t=\omega\mid s_1,\omega_0)
+\]</span></p>
+<p>Unlike the intra-option policy gradient, which uses the pairs <span class="math inline">\((s_t,\omega_t)\)</span>, the termination gradient uses the next state together with the option that was active before the termination decision.</p>
+<p>Expanding the recursion therefore gives</p>
+<p><span class="math display">\[
+\boxed{
+\begin{aligned}
+\nabla_\vartheta U(\omega_0,s_1)
+={}&amp;-
+\sum_{s',\omega}
+\widetilde{\mu}_\Omega(s',\omega\mid s_1,\omega_0)\\
+&amp;\times
+\nabla_\vartheta\beta_{\omega,\vartheta}(s')
+A_\Omega(s',\omega)
+\end{aligned}
+}
+\]</span></p>
+<p>This is the <strong>Termination Gradient Theorem</strong> in the arrival-state formulation.</p>
+</section>
+</section>
+<section id="interpretation-of-the-termination-gradient" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-the-termination-gradient">6.4 Interpretation of the Termination Gradient</h2>
+<p>The termination gradient contains</p>
+<p><span class="math display">\[
+-\nabla_\vartheta\beta_{\omega,\vartheta}(s')
+A_\Omega(s',\omega)
+\]</span></p>
+<p>Consider the following cases.</p>
+<p><strong>Case 1: Positive Advantage</strong></p>
+<p><span class="math display">\[
+A_\Omega(s',\omega)&gt;0
+\]</span></p>
+<p>The current option is relatively valuable. Gradient ascent generally encourages the termination probability to decrease.</p>
+<p><strong>Case 2: Negative Advantage</strong></p>
+<p><span class="math display">\[
+A_\Omega(s',\omega)&lt;0
+\]</span></p>
+<p>The current option is relatively less valuable. Gradient ascent generally encourages the termination probability to increase.</p>
+<p>The corresponding parameter update is</p>
+<p><span class="math display">\[
+\boxed{
+\vartheta
+\leftarrow
+\vartheta-
+\alpha_\vartheta
+\nabla_\vartheta\beta_{\omega,\vartheta}(s')
+A_\Omega(s',\omega)
+}
+\]</span></p>
+<p>The key insight is that the agent learns when to terminate based on the relative value of the current option.</p>
+<p>The algorithm does not require explicit termination labels or predefined subgoals.</p>
+</section>
+</section>
+<section id="the-option-critic-architecture" class="level1">
+<h1>7. The Option-Critic Architecture</h1>
+<p>The proposed architecture combines an actor with a critic, as in conventional actor-critic methods.</p>
+<p>However, instead of learning only a policy over primitive actions, Option-Critic learns temporally extended behaviors.</p>
+<p>The <strong>actor</strong> includes:</p>
+<ul>
+<li>Intra-option policies</li>
+<li>Termination functions</li>
+<li>A policy over options</li>
+</ul>
+<p>The <strong>critic</strong> estimates:</p>
+<ul>
+<li>Action values within options, <span class="math inline">\(Q_U\)</span></li>
+<li>Option advantages, <span class="math inline">\(A_\Omega\)</span></li>
+</ul>
+<p>The critic evaluates behavior and supplies information for updating the actor.</p>
+<section id="execution-flow" class="level2">
+<h2 class="anchored" data-anchor-id="execution-flow">7.1 Execution Flow</h2>
+<p>The following diagram summarizes the call-and-return execution process.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["Current state and option"] --&gt; B["Sample primitive action from intra-option policy"]
+    B --&gt; C["Environment transition and reward"]
+    C --&gt; D["Critic evaluates action and option values"]
+    D --&gt; E{"Does the option terminate?"}
+    E --&gt;|"No"| F["Continue current option at next state"]
+    E --&gt;|"Yes"| G["Select option using policy over options"]
+    F --&gt; B
+    G --&gt; B
+    D -.-&gt; H["Update intra-option policy and termination function"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The agent continues executing the same option until its termination condition is satisfied.</p>
+<p>After termination, the high-level policy can choose another option.</p>
+</section>
+</section>
+<section id="learning-algorithm" class="level1">
+<h1>8. Learning Algorithm</h1>
+<p>The paper combines intra-option value learning with gradient-based policy improvement.</p>
+<section id="one-step-off-policy-update-target" class="level2">
+<h2 class="anchored" data-anchor-id="one-step-off-policy-update-target">8.1 One-Step Off-Policy Update Target</h2>
+<p>When the policy over options is greedy with respect to option values, the one-step update target is</p>
+<p><span class="math display">\[
+\begin{aligned}
+g_t^{(1)}
+={}&amp;r_{t+1}\\
+&amp;+\gamma\Big[
+(1-\beta_{\omega_t,\vartheta}(s_{t+1}))
+Q_\Omega(s_{t+1},\omega_t)\\
+&amp;\qquad+
+\beta_{\omega_t,\vartheta}(s_{t+1})
+\max_{\bar{\omega}}
+Q_\Omega(s_{t+1},\bar{\omega})
+\Big]
+\end{aligned}
+\]</span></p>
+<p>The first component within the brackets represents continuing the current option.</p>
+<p>The second component represents terminating it and selecting the most valuable option.</p>
+<p>The TD error is</p>
+<p><span class="math display">\[
+\delta_t
+=
+g_t^{(1)}
+-
+Q_U(s_t,\omega_t,a_t)
+\]</span></p>
+<p>For a terminal next state, the continuation value is set to zero.</p>
+<p>The critic update is</p>
+<p><span class="math display">\[
+Q_U(s_t,\omega_t,a_t)
+\leftarrow
+Q_U(s_t,\omega_t,a_t)
++
+\alpha\delta_t
+\]</span></p>
+</section>
+<section id="actor-updates" class="level2">
+<h2 class="anchored" data-anchor-id="actor-updates">8.2 Actor Updates</h2>
+<p>The intra-option policy is updated using</p>
+<p><span class="math display">\[
+\theta
+\leftarrow
+\theta+
+\alpha_\theta
+\nabla_\theta
+\log\pi_{\omega_t,\theta}(a_t\mid s_t)
+Q_U(s_t,\omega_t,a_t)
+\]</span></p>
+<p>The termination function is updated using</p>
+<p><span class="math display">\[
+\vartheta
+\leftarrow
+\vartheta-
+\alpha_\vartheta
+\nabla_\vartheta
+\beta_{\omega_t,\vartheta}(s_{t+1})
+A_\Omega(s_{t+1},\omega_t)
+\]</span></p>
+<p>Thus, the two updates serve different purposes.</p>
+<p>The intra-option policy gradient improves <strong>which action to take</strong>.</p>
+<p>The termination gradient improves <strong>when to stop the current option</strong>.</p>
+</section>
+<section id="simplified-pseudocode" class="level2">
+<h2 class="anchored" data-anchor-id="simplified-pseudocode">8.3 Simplified Pseudocode</h2>
+<p>The following is a simplified explanation of the learning procedure, rather than a direct reproduction of the paper’s algorithm.</p>
+<pre class="text"><code>Initialize option policies, termination functions,
+the policy over options, and the critic.
+
+For each episode:
+
+    Observe the initial state.
+    Select an initial option.
+
+    Until the episode ends:
+
+        1. Sample a primitive action
+           from the current intra-option policy.
+
+        2. Execute the action and observe
+           the next state and reward.
+
+        3. Calculate the TD target and TD error.
+
+        4. Update the critic.
+
+        5. Update the intra-option policy
+           using the policy gradient.
+
+        6. Update the termination function
+           using the option advantage.
+
+        7. If the current option terminates,
+           choose an option using the
+           policy over options.
+
+        8. Continue from the next state.</code></pre>
+<p>The original paper presents a tabular implementation and also studies implementations with function approximation.</p>
+<p>The authors use a two-timescale learning framework in which the critic is updated on a faster timescale than the policy and termination parameters.</p>
+</section>
+</section>
+<section id="comparison-with-actor-critic" class="level1">
+<h1>9. Comparison with Actor-Critic</h1>
+<p>The main difference between conventional actor-critic and Option-Critic is the introduction of temporally extended actions.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Actor-Critic</th>
+<th>Option-Critic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Action selection</td>
+<td>Primitive-action policy</td>
+<td>Intra-option policies</td>
+</tr>
+<tr class="even">
+<td>Temporal abstraction</td>
+<td>Not explicitly modeled</td>
+<td>Explicit options</td>
+</tr>
+<tr class="odd">
+<td>Termination learning</td>
+<td>Not applicable to ordinary primitive actions</td>
+<td>Learned termination functions</td>
+</tr>
+<tr class="even">
+<td>Critic</td>
+<td>State/action values</td>
+<td>Values and advantages involving options</td>
+</tr>
+<tr class="odd">
+<td>Main objective</td>
+<td>Expected return</td>
+<td>Expected return</td>
+</tr>
+</tbody>
+</table>
+<p>Both approaches optimize expected return.</p>
+<p>However, Option-Critic introduces a hierarchy in which the agent can maintain a behavior over multiple time steps before selecting another option.</p>
+<p>Therefore, it is not simply an actor-critic model that evaluates options instead of actions.</p>
+<p>It learns both how to act within an option and when to switch between options.</p>
+</section>
+<section id="experimental-results" class="level1">
+<h1>10. Experimental Results</h1>
+<p>The paper evaluates the architecture in several environments.</p>
+<section id="four-rooms-domain" class="level2">
+<h2 class="anchored" data-anchor-id="four-rooms-domain">10.1 Four-Rooms Domain</h2>
+<p>The first experiment considers navigation in a four-rooms environment.</p>
+<p>After 1,000 episodes, the goal location changes.</p>
+<p>The purpose is to examine whether learned options can help the agent adapt to a change in the environment.</p>
+<p>The paper reports that Option-Critic adapts faster than the compared primitive actor-critic and SARSA(0) agents in this setting.</p>
+<p>An interesting observation is that termination probabilities tend to become higher around doorways.</p>
+<p>This suggests that useful temporal boundaries can emerge without explicitly providing doorway states as subgoals.</p>
+</section>
+<section id="pinball-domain" class="level2">
+<h2 class="anchored" data-anchor-id="pinball-domain">10.2 Pinball Domain</h2>
+<p>The Pinball environment has continuous state variables and requires controlling a ball through obstacles.</p>
+<p>The experiments demonstrate that Option-Critic can learn temporally extended and specialized behaviors in this environment.</p>
+<p>This is important because the framework is not restricted to small tabular state spaces.</p>
+</section>
+<section id="arcade-learning-environment" class="level2">
+<h2 class="anchored" data-anchor-id="arcade-learning-environment">10.3 Arcade Learning Environment</h2>
+<p>The paper also applies Option-Critic with deep neural network function approximation to Atari environments.</p>
+<p>This demonstrates that the architecture can be combined with nonlinear function approximation.</p>
+<p>However, the experimental results should not be interpreted as proving that Option-Critic is universally superior to other reinforcement learning algorithms.</p>
+</section>
+</section>
+<section id="discussion-and-limitations" class="level1">
+<h1>11. Discussion and Limitations</h1>
+<p>The paper makes two important contributions.</p>
+<p>First, it extends policy gradient methods to the options framework, allowing intra-option policies to be learned directly from the overall expected return.</p>
+<p>Second, it derives a termination gradient that uses the option advantage to determine whether continuing an option is beneficial.</p>
+<p>This enables learning temporally extended behaviors without requiring predefined subgoals.</p>
+<p>Nevertheless, several considerations remain.</p>
+<p>The number of options is still a design choice.</p>
+<p>The framework also does not guarantee that all learned options will be distinct, interpretable, or equally useful.</p>
+<p>Moreover, learning useful temporal abstractions depends on the task, the optimization process, and the chosen function approximators.</p>
+<p>These limitations suggest that the quality and diversity of learned options should be evaluated rather than assumed.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>12. Conclusion</h1>
+<p>The Option-Critic Architecture provides a framework for learning temporally extended actions using policy gradient methods.</p>
+<p>The most important theoretical results are the Intra-Option Policy Gradient Theorem and the Termination Gradient Theorem.</p>
+<p>The first determines how to improve primitive actions within an option.</p>
+<p>The second determines when an option should terminate based on its advantage relative to alternative options.</p>
+<p>Together, these results make it possible to learn the internal behavior and termination conditions of options while optimizing the expected discounted return of the overall task.</p>
+</section>
+<section id="works-cited" class="level1">
+<h1>Works Cited</h1>
+<p>Bacon, P.-L., Harb, J., &amp; Precup, D. (2017). <em>The Option-Critic Architecture</em>. Proceedings of the AAAI Conference on Artificial Intelligence, 31(1), 1726–1734.</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1609.05140">Original paper (arXiv)</a></li>
+<li><a href="https://doi.org/10.1609/aaai.v31i1.10916">AAAI publication</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/EKUMartin\.github\.io\/yang-study-diary\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
