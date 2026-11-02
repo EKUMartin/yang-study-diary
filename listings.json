@@ -2,6 +2,7 @@
   {
     "listing": "/set-theory.html",
     "items": [
+      "/posts/math/set-theory/Classes and Sets 1 - Classes.html",
       "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html"
     ]
   },
@@ -12,8 +13,13 @@
     ]
   },
   {
-    "listing": "/healthcare-review.html",
-    "items": []
+    "listing": "/index.html",
+    "items": [
+      "/posts/math/set-theory/Classes and Sets 1 - Classes.html",
+      "/posts/Research/reinforcementLearning-review/option-critic.html",
+      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+      "/posts/Research/Finance-review/Exponential Moving Average.html"
+    ]
   },
   {
     "listing": "/finance-review.html",
@@ -22,12 +28,8 @@
     ]
   },
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/Research/reinforcementLearning-review/option-critic.html",
-      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-      "/posts/Research/Finance-review/Exponential Moving Average.html"
-    ]
+    "listing": "/healthcare-review.html",
+    "items": []
   },
   {
     "listing": "/real-analysis.html",

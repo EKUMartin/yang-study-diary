@@ -4,7 +4,7 @@
     "href": "set-theory.html",
     "title": "Set Theory",
     "section": "",
-    "text": "Set Theory\nSet Theory related Contents\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "text": "Set Theory\nSet Theory related Contents\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n2.\n\n\n\n\n:::\n:::\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
     "crumbs": [
       "Posts",
       "Math",
@@ -164,6 +164,139 @@
     "text": "10.3 Arcade Learning Environment\nThe paper also applies Option-Critic with deep neural network function approximation to Atari environments.\nThis demonstrates that the architecture can be combined with nonlinear function approximation.\nHowever, the experimental results should not be interpreted as proving that Option-Critic is universally superior to other reinforcement learning algorithms."
   },
   {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "",
+    "text": "This post will cover “Building Classes”.\nAll objects are called classes, but we have to distinguish between sets and proper classes, which are two types of classes.\nThere is also a notation called membership notation, which is represented as follows.\nIf \\(x\\) and \\(A\\) are classes, and we want to say “x is an element of A”, “x belongs to A”, or “x is in A”, then we write\n\\[\nx \\in A\n\\]\nIf \\(x\\) is not an element of \\(A\\), then we write\n\\[\nx \\notin A\n\\]\nDefinition — Element\nLet \\(x\\) be a class. If \\(x\\) is an element of some class \\(A\\), then \\(x\\) is called an element.\nLowercase letters represent elements, while uppercase letters may denote either elements or classes that are not elements.\nIn this framework, a set is a class that can be an element of another class, whereas a proper class cannot be an element of any class."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-equality-of-classes",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-equality-of-classes",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.9 Definition — Equality of Classes",
+    "text": "1.9 Definition — Equality of Classes\nLet \\(A\\) and \\(B\\) be classes.\nWe define \\(A=B\\) to mean that every class that has \\(A\\) as an element also has \\(B\\) as an element, and vice versa.\nIn symbols,\n\\[\nA=B\n\\iff\n\\forall X\\,\n\\left[\n(A\\in X\\implies B\\in X)\n\\land\n(B\\in X\\implies A\\in X)\n\\right]\n\\]\nEquivalently,\n\\[\nA=B\n\\iff\n\\forall X\\,(A\\in X\\iff B\\in X)\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#axiom-a1-axiom-of-extent",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#axiom-a1-axiom-of-extent",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "Axiom A1 — Axiom of Extent",
+    "text": "Axiom A1 — Axiom of Extent\nTwo classes are equal if and only if they have exactly the same elements.\n\\[\n\\boxed{\nA=B\n\\iff\n\\forall x\\,\n(x\\in A\\iff x\\in B)\n}\n\\]\nThis axiom is sometimes called the Axiom of Extent or Axiom of Extensionality."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-inclusion",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-inclusion",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.10 Definition — Inclusion",
+    "text": "1.10 Definition — Inclusion\nLet \\(A\\) and \\(B\\) be classes.\nWe define \\(A\\subseteq B\\) to mean that every element of \\(A\\) is also an element of \\(B\\).\nIn symbols,\n\\[\n\\boxed{\nA\\subseteq B\n\\iff\n\\forall x\\,\n(x\\in A\\implies x\\in B)\n}\n\\]\nIf \\(A\\subseteq B\\), then we say that \\(A\\) is a subclass of \\(B\\).\nWe define \\(A\\subsetneq B\\) to mean that \\(A\\subseteq B\\) and \\(A\\neq B\\).\n\\[\nA\\subsetneq B\n\\iff\n(A\\subseteq B)\\land(A\\neq B)\n\\]\nIn this case, we say that \\(A\\) is a strict subclass of \\(B\\).\nIf \\(A\\) is a subclass of \\(B\\) and \\(A\\) is a set, we call \\(A\\) a subset of \\(B\\)."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#theorem-properties-of-equality-and-inclusion",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#theorem-properties-of-equality-and-inclusion",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.11 Theorem — Properties of Equality and Inclusion",
+    "text": "1.11 Theorem — Properties of Equality and Inclusion\nFor all classes \\(A\\), \\(B\\), and \\(C\\), the following hold:\n\\[\n\\begin{aligned}\n\\text{(i)}\\quad & A=A\\\\\n\\text{(ii)}\\quad & A=B\\implies B=A\\\\\n\\text{(iii)}\\quad &\n(A=B\\land B=C)\\implies A=C\\\\\n\\text{(iv)}\\quad &\n(A\\subseteq B\\land B\\subseteq A)\\implies A=B\\\\\n\\text{(v)}\\quad &\n(A\\subseteq B\\land B\\subseteq C)\\implies A\\subseteq C\n\\end{aligned}\n\\]\n\nProof\n(i) Reflexivity\nThe first statement is obvious because every element of class \\(A\\) belongs to \\(A\\).\nFor every element \\(x\\),\n\\[\nx\\in A\\iff x\\in A\n\\]\nTherefore, by Axiom A1,\n\\[\nA=A\n\\]\n(ii) Symmetry\nThe second statement follows from Axiom A1.\nIf \\(A=B\\), then \\(A\\) and \\(B\\) have exactly the same elements.\nThus,\n\\[\n\\forall x\\,\n(x\\in B\\iff x\\in A)\n\\]\nTherefore,\n\\[\nB=A\n\\]\n(iii) Transitivity of Equality\nFor the third statement, suppose that\n\\[\nA=B\n\\quad\\text{and}\\quad\nB=C\n\\]\nBy Axiom A1,\n\\[\nx\\in A\\iff x\\in B\n\\]\nand\n\\[\nx\\in B\\iff x\\in C\n\\]\nfor every element \\(x\\).\nCombining these relations gives\n\\[\nx\\in A\\iff x\\in C\n\\]\nThus, by Axiom A1,\n\\[\n\\boxed{A=C}\n\\]\n(iv) Antisymmetry of Inclusion\nFor the fourth statement, suppose that\n\\[\nA\\subseteq B\n\\quad\\text{and}\\quad\nB\\subseteq A\n\\]\nBy the definition of inclusion,\n\\[\nx\\in A\\implies x\\in B\n\\]\nand\n\\[\nx\\in B\\implies x\\in A\n\\]\nTherefore,\n\\[\nx\\in A\\iff x\\in B\n\\]\nBy Axiom A1,\n\\[\n\\boxed{A=B}\n\\]\n(v) Transitivity of Inclusion\nFor the last statement, suppose that\n\\[\nA\\subseteq B\n\\quad\\text{and}\\quad\nB\\subseteq C\n\\]\nIf \\(x\\in A\\), then \\(x\\in B\\).\nSince \\(B\\subseteq C\\), we also have \\(x\\in C\\).\nTherefore,\n\\[\nx\\in A\\implies x\\in C\n\\]\nBy the definition of inclusion,\n\\[\n\\boxed{A\\subseteq C}\n\\]\nThis completes the proof."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#axiom-a2-axiom-of-class-construction",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#axiom-a2-axiom-of-class-construction",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "Axiom A2 — Axiom of Class Construction",
+    "text": "Axiom A2 — Axiom of Class Construction\nLet \\(P(x)\\) be a statement about \\(x\\) expressed using the membership relation, logical connectives, quantifiers, brackets, and variables.\nThe axiom states that there exists a class \\(C\\) consisting of all elements \\(x\\) that satisfy \\(P(x)\\).\nIn symbols,\n\\[\n\\boxed{\nC=\\{x:P(x)\\}\n}\n\\]\nEquivalently,\n\\[\n\\forall x\\,\n(x\\in C\\iff P(x))\n\\]\nAxiom A2 is called the Axiom of Class Construction.\nFrom Axiom A2, we can infer that we can form a class of all elements that satisfy \\(P(x)\\), but this does not mean that we can form a class whose elements are all the classes satisfying \\(P(X)\\).\nWhy is this distinction important?\nIf we allow arbitrary classes to be collected as elements without restriction, logical paradoxes may arise.\nFor example, consider the class\n\\[\nR=\\{x:x\\notin x\\}\n\\]\nThis is the class of all elements that do not belong to themselves.\nNow, suppose that \\(R\\) itself is an element.\nThen we can ask whether\n\\[\nR\\in R\n\\]\nholds.\nBy the definition of \\(R\\),\n\\[\nR\\in R\n\\iff\nR\\notin R\n\\]\nThis is a contradiction.\nTherefore, \\(R\\) cannot be an element of any class.\nIn this framework, \\(R\\) is a proper class, not a set.\nThe contradiction arises only if we incorrectly assume that this class can itself be treated as an element.\nThus, the distinction between elements and arbitrary classes is essential for avoiding Russell’s paradox."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#remark-class-notation",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#remark-class-notation",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.12 Remark — Class Notation",
+    "text": "1.12 Remark — Class Notation\nThe use of lowercase \\(x\\) in the expression\n\\[\nC=\\{x:P(x)\\}\n\\]\nis not accidental.\nLowercase letters such as \\(x\\) and \\(y\\) represent elements, whereas uppercase letters such as \\(A\\) and \\(B\\) can represent arbitrary classes.\nTherefore, the expression means that \\(C\\) is the class of all elements \\(x\\) satisfying \\(P(x)\\).\nIt does not assert that \\(C\\) contains every arbitrary class satisfying the property."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-union",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-union",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.13 Definition — Union",
+    "text": "1.13 Definition — Union\nLet \\(A\\) and \\(B\\) be classes.\nThe union of \\(A\\) and \\(B\\) is the class of all elements that belong to \\(A\\), \\(B\\), or both.\nIn symbols,\n\\[\n\\boxed{\nA\\cup B\n=\n\\{x:x\\in A\\lor x\\in B\\}\n}\n\\]\nThus,\n\\[\nx\\in A\\cup B\n\\iff\n(x\\in A\\lor x\\in B)\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-intersection",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-intersection",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.14 Definition — Intersection",
+    "text": "1.14 Definition — Intersection\nLet \\(A\\) and \\(B\\) be classes.\nThe intersection of \\(A\\) and \\(B\\) is the class of all elements that belong to both \\(A\\) and \\(B\\).\nIn symbols,\n\\[\n\\boxed{\nA\\cap B\n=\n\\{x:x\\in A\\land x\\in B\\}\n}\n\\]\nThus,\n\\[\nx\\in A\\cap B\n\\iff\n(x\\in A\\land x\\in B)\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-universal-class",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-universal-class",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.15 Definition — Universal Class",
+    "text": "1.15 Definition — Universal Class\nThe universal class \\(\\mathcal{U}\\) is the class of all elements.\nIn symbols,\n\\[\n\\boxed{\n\\mathcal{U}\n=\n\\{x:x=x\\}\n}\n\\]\nBy Theorem 1.11(i),\n\\[\nx=x\n\\]\nholds for every element \\(x\\).\nTherefore, every element belongs to the universal class.\n\\[\n\\forall x,\\quad x\\in\\mathcal{U}\n\\]\nIts existence follows from the Axiom of Class Construction."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-empty-class",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-empty-class",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.16 Definition — Empty Class",
+    "text": "1.16 Definition — Empty Class\nThe empty class \\(\\varnothing\\) is the class that has no elements.\nIn symbols,\n\\[\n\\boxed{\n\\varnothing\n=\n\\{x:x\\neq x\\}\n}\n\\]\nBy Theorem 1.11(i),\n\\[\nx=x\n\\]\nfor every element \\(x\\).\nTherefore, no element can satisfy \\(x\\neq x\\).\nHence,\n\\[\n\\forall x,\\quad x\\notin\\varnothing\n\\]\nThe existence of the empty class also follows from the Axiom of Class Construction."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#theorem-empty-and-universal-classes",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#theorem-empty-and-universal-classes",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.17 Theorem — Empty and Universal Classes",
+    "text": "1.17 Theorem — Empty and Universal Classes\nFor every class \\(A\\), the following hold:\n\\[\n\\boxed{\n\\begin{aligned}\n\\text{(i)}\\quad&\\varnothing\\subseteq A\\\\\n\\text{(ii)}\\quad&A\\subseteq\\mathcal{U}\n\\end{aligned}\n}\n\\]\n\nProof\n(i)\nIn order to prove that\n\\[\n\\varnothing\\subseteq A\n\\]\nwe must show that\n\\[\nx\\in\\varnothing\\implies x\\in A\n\\]\nfor every element \\(x\\).\nHowever, the empty class has no elements.\nTherefore, the antecedent \\(x\\in\\varnothing\\) is always false.\nAn implication with a false antecedent is true, so\n\\[\nx\\in\\varnothing\\implies x\\in A\n\\]\nholds for every element \\(x\\).\nThus,\n\\[\n\\boxed{\\varnothing\\subseteq A}\n\\]\n(ii)\nIf \\(x\\in A\\), then \\(x\\) is an element.\nBy the definition of the universal class, every element belongs to \\(\\mathcal{U}\\).\nTherefore,\n\\[\nx\\in A\\implies x\\in\\mathcal{U}\n\\]\nThus,\n\\[\n\\boxed{A\\subseteq\\mathcal{U}}\n\\]\nThis completes the proof."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-disjoint-classes",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-disjoint-classes",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.18 Definition — Disjoint Classes",
+    "text": "1.18 Definition — Disjoint Classes\nIf two classes have no elements in common, they are said to be disjoint.\nIn symbols,\n\\[\n\\boxed{\nA\\cap B=\\varnothing\n}\n\\]\nEquivalently,\n\\[\n\\neg\\exists x\\,\n(x\\in A\\land x\\in B)\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-complement",
+    "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html#definition-complement",
+    "title": "Classes and Sets 1 - Building Classes",
+    "section": "1.19 Definition — Complement",
+    "text": "1.19 Definition — Complement\nThe complement of a class \\(A\\) is the class of all elements that do not belong to \\(A\\).\nIn symbols,\n\\[\n\\boxed{\nA'=\\{x:x\\notin A\\}\n}\n\\]\nThus,\n\\[\nx\\in A'\n\\iff\nx\\notin A\n\\]\nSince the complement is taken with respect to the universal class, we can also write\n\\[\nA'=\\mathcal{U}\\setminus A\n\\]"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "All Posts"
+    ]
+  },
+  {
+    "objectID": "finance-review.html",
+    "href": "finance-review.html",
+    "title": "Finance Paper Review",
+    "section": "",
+    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Finance Paper Review"
+    ]
+  },
+  {
+    "objectID": "healthcare-review.html",
+    "href": "healthcare-review.html",
+    "title": "Healthcare Paper Review",
+    "section": "",
+    "text": "Healthcare Paper Review\nPaper review on Healthcare Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Healthcare Paper Review"
+    ]
+  },
+  {
     "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
     "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
     "title": "Classes and Sets 0 - Sentences",
@@ -232,41 +365,6 @@
     "title": "Classes and Sets 0 - Sentences",
     "section": "4.3 Complete Truth Table",
     "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
-  },
-  {
-    "objectID": "healthcare-review.html",
-    "href": "healthcare-review.html",
-    "title": "Healthcare Paper Review",
-    "section": "",
-    "text": "Healthcare Paper Review\nPaper review on Healthcare Paper\n\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Healthcare Paper Review"
-    ]
-  },
-  {
-    "objectID": "finance-review.html",
-    "href": "finance-review.html",
-    "title": "Finance Paper Review",
-    "section": "",
-    "text": "Finance Paper Review\nPaper review on Finance Paper\n\n\n\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n\n\n28.\n\n\n\n\n:::\n:::\n:::\n일치 없음\n:::\n:::",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Finance Paper Review"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "All Posts"
-    ]
   },
   {
     "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
