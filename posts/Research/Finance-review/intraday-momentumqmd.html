@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A review of the methodology used to identify and evaluate market intraday momentum.">
+<meta name="description" content="A methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.">
 
 <title>Paper Review - Market Intraday Momentum – Yang’s study diary</title>
 <style>
@@ -233,12 +233,17 @@ window.Quarto = {
   <li><a href="#out-of-sample-predictability" id="toc-out-of-sample-predictability" class="nav-link" data-scroll-target="#out-of-sample-predictability">2.2 Out-of-Sample Predictability</a></li>
   <li><a href="#financial-crisis" id="toc-financial-crisis" class="nav-link" data-scroll-target="#financial-crisis">2.3 Financial Crisis</a></li>
   <li><a href="#volatility-and-trading-volume" id="toc-volatility-and-trading-volume" class="nav-link" data-scroll-target="#volatility-and-trading-volume">2.4 Volatility and Trading Volume</a></li>
-  <li><a href="#trade-size-and-liquidity" id="toc-trade-size-and-liquidity" class="nav-link" data-scroll-target="#trade-size-and-liquidity">2.5 Trade Size and Liquidity</a></li>
+  <li><a href="#trade-size-and-liquidity" id="toc-trade-size-and-liquidity" class="nav-link" data-scroll-target="#trade-size-and-liquidity">2.5 Trade Size and Liquidity</a>
+  <ul class="collapse">
+  <li><a href="#trade-size" id="toc-trade-size" class="nav-link" data-scroll-target="#trade-size">Trade Size</a></li>
+  <li><a href="#liquidity" id="toc-liquidity" class="nav-link" data-scroll-target="#liquidity">Liquidity</a></li>
+  </ul></li>
   <li><a href="#institutional-trading" id="toc-institutional-trading" class="nav-link" data-scroll-target="#institutional-trading">2.6 Institutional Trading</a></li>
   </ul></li>
   <li><a href="#economic-significance" id="toc-economic-significance" class="nav-link" data-scroll-target="#economic-significance">3. Economic Significance</a></li>
   <li><a href="#explanations-of-intraday-momentum" id="toc-explanations-of-intraday-momentum" class="nav-link" data-scroll-target="#explanations-of-intraday-momentum">4. Explanations of Intraday Momentum</a></li>
-  <li><a href="#personal-insight" id="toc-personal-insight" class="nav-link" data-scroll-target="#personal-insight">5. Personal Insight</a></li>
+  <li><a href="#additional-findings" id="toc-additional-findings" class="nav-link" data-scroll-target="#additional-findings">5. Additional Findings</a></li>
+  <li><a href="#personal-insight" id="toc-personal-insight" class="nav-link" data-scroll-target="#personal-insight">6. Personal Insight</a></li>
   <li><a href="#works-cited" id="toc-works-cited" class="nav-link" data-scroll-target="#works-cited">Works Cited</a></li>
   </ul>
 </nav>
@@ -251,13 +256,13 @@ window.Quarto = {
 <h1 class="title">Paper Review - Market Intraday Momentum</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Finance</div>
-    <div class="quarto-category">Intraday</div>
+    <div class="quarto-category">Paper-Review</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    A review of the methodology used to identify and evaluate market intraday momentum.
+    A methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.
   </div>
 </div>
 
@@ -282,33 +287,33 @@ window.Quarto = {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This post is a paper review of “Market Intraday Momentum” (2018) by Lei Gao, Yufeng Han, Sophia Zhengzi Li, and Guofu Zhou. This post focuses mainly on the methods used in the paper rather than the empirical results.</p>
-<p>This paper provides one of the first studies of intraday time-series momentum. The authors found that the first half-hour market return, measured from the previous day’s market close to 10:00 a.m., predicts the last half-hour market return.</p>
-<p>They also showed that the predictability of the last half-hour return generally increases with volatility. Therefore, the returns during the first and last half-hour periods could be useful indicators of intraday momentum.</p>
+<p>This post is a paper review of “Market Intraday Momentum” (2018) by Lei Gao, Yufeng Han, Sophia Zhengzi Li, and Guofu Zhou. This post mainly focuses on the methods used in the paper rather than the empirical results.</p>
+<p>This paper presents the first study of market intraday time-series momentum, according to the authors.</p>
+<p>They found that the first half-hour market return, measured from the previous day’s market close to 10:00 a.m., predicts the last half-hour market return.</p>
+<p>They also showed that the predictability of the last half-hour return generally increases with volatility.</p>
+<p>Therefore, the first half-hour return could be used as an indicator for predicting the last half-hour return.</p>
 </section>
 <section id="data-and-return-calculation" class="level1">
 <h1>1. Data and Return Calculation</h1>
-<p>The authors used high-frequency data for SPY, an ETF tracking the S&amp;P 500, from February 1993 to December 2013.</p>
-<p>They divided each trading day into 13 half-hour periods.</p>
-<p>The return for each period is calculated as follows:</p>
+<p>The authors used high-frequency price data for SPY, an ETF tracking the S&amp;P 500, from February 1, 1993, to December 31, 2013.</p>
+<p>They divided the trading day into 13 half-hour periods.</p>
+<p>The return for each period is calculated as</p>
 <p><span class="math display">\[
-\boxed{
-r_{j,t}=\frac{P_{j,t}}{P_{j-1,t}}-1
-}
+r_{j,t}
+=
+\frac{P_{j,t}}{P_{j-1,t}}-1,
+\qquad j=1,\ldots,13
 \]</span></p>
 <p>where:</p>
 <ul>
-<li><span class="math inline">\(r_{j,t}\)</span>: Return of the <span class="math inline">\(j\)</span>-th half-hour period on day <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(r_{j,t}\)</span>: Return for the <span class="math inline">\(j\)</span>-th period on day <span class="math inline">\(t\)</span></li>
 <li><span class="math inline">\(P_{j,t}\)</span>: Price at the end of the <span class="math inline">\(j\)</span>-th period</li>
 <li><span class="math inline">\(P_{j-1,t}\)</span>: Price at the end of the previous period</li>
-<li><span class="math inline">\(j=1,\ldots,13\)</span></li>
 </ul>
-<p>However, the first half-hour return is defined differently from an ordinary 30-minute return.</p>
-<p>For the first period,</p>
+<p>However, the first half-hour return is calculated from the previous trading day’s closing price rather than the current day’s opening price.</p>
 <p><span class="math display">\[
 P_{0,t}=P_{13,t-1}
 \]</span></p>
-<p>which is the previous trading day’s closing price.</p>
 <p>Therefore,</p>
 <p><span class="math display">\[
 \boxed{
@@ -317,13 +322,13 @@ r_{1,t}
 \frac{P_{10:00,t}}{P_{16:00,t-1}}-1
 }
 \]</span></p>
-<p>This means that the first half-hour return includes both the overnight return and the return from 9:30 a.m. to 10:00 a.m.</p>
-<p>The two main predictors considered in the paper are:</p>
+<p>This means that the first half-hour return includes the overnight return and the price movement from 9:30 a.m. to 10:00 a.m.</p>
+<p>The authors mainly considered three returns:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Variable</th>
-<th>Period</th>
+<th>Time period</th>
 <th>Role</th>
 </tr>
 </thead>
@@ -345,31 +350,31 @@ r_{1,t}
 </tr>
 </tbody>
 </table>
-<p>To examine the relationship between volatility and intraday momentum, they first calculated one-minute returns within the first half-hour.</p>
-<p>They then computed realized volatility using these one-minute returns to estimate volatility during the first half-hour.</p>
-<p>A conventional representation of this calculation is:</p>
+<p>To examine volatility, they first calculated one-minute returns during the first half-hour.</p>
+<p>Then, they computed realized volatility using these one-minute returns to estimate volatility during the first half-hour.</p>
+<p>For reference, a conventional realized variance measure can be expressed as</p>
 <p><span class="math display">\[
 RV_{1,t}
 =
 \sum_{m=1}^{30}
 \left(r_{m,t}^{(1\mathrm{min})}\right)^2
 \]</span></p>
-<p>and the corresponding realized volatility is</p>
+<p>and realized volatility can be expressed as</p>
 <p><span class="math display">\[
-\widehat{\sigma}_{1,t}^{RV}
+\sigma_{1,t}^{RV}
 =
 \sqrt{RV_{1,t}}
 \]</span></p>
-<p>Here, <span class="math inline">\(r_{m,t}^{(1\mathrm{min})}\)</span> represents the return of the <span class="math inline">\(m\)</span>-th minute during the first half-hour.</p>
-<p><em>Note: This is a standard mathematical representation of realized volatility. The paper describes its calculation using one-minute returns but does not explicitly present this formula.</em></p>
+<p>Here, <span class="math inline">\(r_{m,t}^{(1\mathrm{min})}\)</span> denotes the return during minute <span class="math inline">\(m\)</span> of the first half-hour.</p>
+<p><em>Note: These are conventional realized-variance and realized-volatility formulas added for explanation. The paper describes the use of one-minute returns but does not explicitly present these exact equations.</em></p>
 </section>
 <section id="research-methodology" class="level1">
 <h1>2. Research Methodology</h1>
-<p>To identify intraday momentum, the authors used predictive regression analysis and conducted an out-of-sample predictability test.</p>
-<p>They also examined the financial crisis period, the effects of volatility and trading volume, trade size and liquidity, and institutional trading.</p>
+<p>To identify intraday momentum, the authors used predictive regression analysis and conducted out-of-sample predictability tests.</p>
+<p>They also examined the financial crisis period and analyzed volatility, trading volume, trade size, liquidity, and institutional trading.</p>
 <section id="predictive-regression-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="predictive-regression-analysis">2.1 Predictive Regression Analysis</h2>
-<p>In the predictive regression analysis, the authors first considered a regression of the last half-hour return on the first half-hour return.</p>
+<p>In the predictive regression analysis, they first considered a regression of the last half-hour return on the first half-hour return.</p>
 <p>The regression equation is</p>
 <p><span class="math display">\[
 \boxed{
@@ -386,13 +391,8 @@ r_{13,t}
 <li><span class="math inline">\(\beta\)</span>: Regression coefficient</li>
 <li><span class="math inline">\(\varepsilon_t\)</span>: Error term</li>
 </ul>
-<p>The coefficient <span class="math inline">\(\beta\)</span> measures the relationship between the first and last half-hour returns.</p>
-<p>If</p>
-<p><span class="math display">\[
-\beta&gt;0
-\]</span></p>
-<p>then a positive first half-hour return tends to be associated with a positive last half-hour return.</p>
-<p>They then added the twelfth half-hour return to the regression to see whether it improves the predictive <span class="math inline">\(R^2\)</span> of the first regression.</p>
+<p>A positive <span class="math inline">\(\beta\)</span> indicates a positive relationship between the first and last half-hour returns.</p>
+<p>Then, they added the twelfth half-hour return to the regression to see whether it improved the explanatory power of the first regression.</p>
 <p>The extended regression is</p>
 <p><span class="math display">\[
 \boxed{
@@ -407,24 +407,27 @@ r_{13,t}
 \varepsilon_t
 }
 \]</span></p>
-<p>The authors compared the explanatory power of the two models.</p>
-<p>The first model achieved an in-sample <span class="math inline">\(R^2\)</span> of 1.6%, while the model using both predictors achieved an <span class="math inline">\(R^2\)</span> of 2.6%.</p>
-<p>This suggests that the twelfth half-hour return provides additional predictive information beyond the first half-hour return.</p>
+<p>The authors compared the <span class="math inline">\(R^2\)</span> values of the two regressions.</p>
+<p>The first regression achieved an in-sample <span class="math inline">\(R^2\)</span> of 1.6%, while the regression using both predictors achieved an <span class="math inline">\(R^2\)</span> of 2.6%.</p>
+<p>This suggests that the twelfth half-hour return provides additional predictive information.</p>
+<p>The paper also used Newey-West robust t-statistics to evaluate the statistical significance of the regression coefficients.</p>
 </section>
 <section id="out-of-sample-predictability" class="level2">
 <h2 class="anchored" data-anchor-id="out-of-sample-predictability">2.2 Out-of-Sample Predictability</h2>
 <p>In the out-of-sample predictability analysis, the authors conducted recursive regressions similar to the predictive regression analysis.</p>
-<p>To forecast the return on day <span class="math inline">\(t\)</span>, they used regression coefficients estimated from data available through day <span class="math inline">\(t-1\)</span>.</p>
-<p>For the first half-hour predictor, the forecast can be written as</p>
+<p>To forecast the last half-hour return on day <span class="math inline">\(t\)</span>, they estimated the regression coefficients using historical data available through day <span class="math inline">\(t-1\)</span>.</p>
+<p>For the first-half-hour-only regression, the forecast is</p>
 <p><span class="math display">\[
-\widehat{r}_{13,t}
+\widehat r_{13,t}
 =
-\widehat{\alpha}_{t-1}
+\widehat\alpha_{t-1}
 +
-\widehat{\beta}_{t-1}r_{1,t}
+\widehat\beta_{t-1}r_{1,t}
 \]</span></p>
-<p>Here, the regression coefficients are estimated using historical data, while the first half-hour return on day <span class="math inline">\(t\)</span> is observed before the final half-hour trading period begins.</p>
-<p>To evaluate the forecasting performance, the authors used the out-of-sample <span class="math inline">\(R^2\)</span>:</p>
+<p>The coefficients are estimated from historical data, but <span class="math inline">\(r_{1,t}\)</span> is observed on the same day before the last half-hour begins.</p>
+<p>When the twelfth half-hour return is added, it is also observable by 3:30 p.m., before the prediction target period begins.</p>
+<p>The authors initially estimated the model using observations through the end of 1997 and then expanded the estimation window by one month at a time.</p>
+<p>To evaluate predictive performance, they used the out-of-sample <span class="math inline">\(R^2\)</span>:</p>
 <p><span class="math display">\[
 \boxed{
 R^2_{OS}
@@ -432,111 +435,224 @@ R^2_{OS}
 1-
 \frac{
 \sum_{t\in\mathcal{T}_{OS}}
-(r_{13,t}-\widehat{r}_{13,t})^2
+(r_{13,t}-\widehat r_{13,t})^2
 }{
 \sum_{t\in\mathcal{T}_{OS}}
-(r_{13,t}-\overline{r}_{13,t})^2
+(r_{13,t}-\overline r_{13,t})^2
 }
 }
 \]</span></p>
 <p>where:</p>
 <ul>
 <li><span class="math inline">\(r_{13,t}\)</span>: Actual last half-hour return</li>
-<li><span class="math inline">\(\widehat{r}_{13,t}\)</span>: Forecast from the predictive regression</li>
-<li><span class="math inline">\(\overline{r}_{13,t}\)</span>: Historical mean forecast based on data through <span class="math inline">\(t-1\)</span></li>
+<li><span class="math inline">\(\widehat r_{13,t}\)</span>: Predicted return</li>
+<li><span class="math inline">\(\overline r_{13,t}\)</span>: Historical-average forecast estimated through <span class="math inline">\(t-1\)</span></li>
 <li><span class="math inline">\(\mathcal{T}_{OS}\)</span>: Out-of-sample evaluation period</li>
 </ul>
-<p>The initial estimation sample ended in December 1997, and the estimation window was expanded by one month at a time.</p>
-<p>A positive <span class="math inline">\(R^2_{OS}\)</span> means that the predictive regression performs better than the historical-average benchmark.</p>
-<p>The authors found positive out-of-sample <span class="math inline">\(R^2\)</span> values for both the single-predictor and two-predictor models.</p>
-<p>This provides evidence that the predictability was not limited to the in-sample regression results.</p>
+<p>If</p>
+<p><span class="math display">\[
+R^2_{OS}&gt;0
+\]</span></p>
+<p>the predictive regression outperforms the historical-average benchmark in terms of squared forecast errors.</p>
+<p>The authors reported an out-of-sample <span class="math inline">\(R^2\)</span> of 1.4% using only the first half-hour return and 2.0% using both predictors.</p>
+<p>This suggests that the predictability was not limited to the in-sample analysis.</p>
 </section>
 <section id="financial-crisis" class="level2">
 <h2 class="anchored" data-anchor-id="financial-crisis">2.3 Financial Crisis</h2>
-<p>For the financial crisis, the authors examined intraday momentum during the 2007–2009 crisis period.</p>
-<p>Conventional monthly momentum strategies are known to have performed poorly during this crisis.</p>
-<p>However, the authors found that the predictive relationship between the first and last half-hour returns became stronger during the crisis.</p>
-<p>The twelfth half-hour return also showed greater predictive power during the crisis.</p>
-<p>For example, the <span class="math inline">\(R^2\)</span> of the regression using both predictors increased to 6.9% during the financial crisis, compared with 1.1% when the crisis period was excluded.</p>
-<p>This suggests that intraday momentum may become more pronounced during periods of market stress.</p>
-<p>However, this result does not necessarily mean that the twelfth half-hour return itself became more volatile than the first half-hour return.</p>
-<p>Rather, its ability to predict the last half-hour return became stronger.</p>
+<p>For the financial crisis, the authors examined intraday momentum during the 2007–2009 financial crisis.</p>
+<p>Conventional monthly momentum strategies are known to have performed poorly during this period.</p>
+<p>However, the authors found that the predictive ability of the first half-hour return became stronger during the crisis.</p>
+<p>They further showed that the predictive ability of the twelfth half-hour return also became stronger.</p>
+<p>For example, the combined regression achieved an <span class="math inline">\(R^2\)</span> of 6.9% during the crisis, compared with 1.1% when the crisis period was excluded.</p>
+<p>The regression using only the twelfth half-hour return achieved an <span class="math inline">\(R^2\)</span> of 3.1% during the crisis, compared with 0.3% outside the crisis period.</p>
+<p>Therefore, the paper provides evidence of stronger intraday predictability during the financial crisis.</p>
+<p>This does not necessarily imply that the twelfth half-hour return became more volatile than the first half-hour return.</p>
+<p>Rather, it means that the twelfth half-hour return became a stronger predictor of the last half-hour return.</p>
 </section>
 <section id="volatility-and-trading-volume" class="level2">
 <h2 class="anchored" data-anchor-id="volatility-and-trading-volume">2.4 Volatility and Trading Volume</h2>
-<p>The increase in volatility generally improved the predictability of the last half-hour return.</p>
-<p>The authors divided trading days into three groups according to first half-hour realized volatility:</p>
+<p>The authors found that the predictability of the last half-hour return generally increased with first half-hour realized volatility.</p>
+<p>They divided trading days into three groups based on volatility:</p>
 <ul>
 <li>Low volatility</li>
 <li>Medium volatility</li>
 <li>High volatility</li>
 </ul>
-<p>They then estimated the predictive regression separately for each group.</p>
-<p>Using both predictors, the <span class="math inline">\(R^2\)</span> increased from 0.6% in the low-volatility group to 3.3% in the high-volatility group.</p>
-<p>This provides evidence that the first half-hour return has stronger predictive power for the last half-hour return on more volatile days.</p>
-<p>In terms of trading volume, they conducted a similar analysis.</p>
-<p>Trading days were divided into three groups based on first half-hour trading volume, with the grouping performed within each year.</p>
-<p>The authors found that the combined regression’s predictive <span class="math inline">\(R^2\)</span> increased with trading volume.</p>
-<p>Therefore, higher trading volume, rather than lower trading volume, was associated with stronger intraday predictability in this analysis.</p>
+<p>Then, they estimated the predictive regressions separately for each group.</p>
+<p>Using both predictors, the regression produced the following results:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Volatility group</th>
+<th style="text-align: right;"><span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low</td>
+<td style="text-align: right;">0.6%</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td style="text-align: right;">1.0%</td>
+</tr>
+<tr class="odd">
+<td>High</td>
+<td style="text-align: right;">3.3%</td>
+</tr>
+</tbody>
+</table>
+<p>This provides evidence that first half-hour momentum is more strongly related to the last half-hour return on high-volatility days.</p>
+<p>In terms of trading volume, the authors conducted a similar analysis using first half-hour trading volume.</p>
+<p>They divided trading days into three volume groups within each year.</p>
+<p>The results were as follows:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Trading volume group</th>
+<th style="text-align: right;"><span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low</td>
+<td style="text-align: right;">1.1%</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td style="text-align: right;">2.3%</td>
+</tr>
+<tr class="odd">
+<td>High</td>
+<td style="text-align: right;">3.1%</td>
+</tr>
+</tbody>
+</table>
+<p>These results indicate that higher first half-hour trading volume was associated with greater overall predictability.</p>
+<p>Thus, the paper does not support the conclusion that lower trading volume generally produces stronger intraday momentum.</p>
 </section>
 <section id="trade-size-and-liquidity" class="level2">
 <h2 class="anchored" data-anchor-id="trade-size-and-liquidity">2.5 Trade Size and Liquidity</h2>
-<p>Furthermore, the authors examined trade size and liquidity.</p>
-<p>First, they estimated average trade size during the last half-hour using</p>
+<p>Furthermore, the authors investigated trade size and liquidity.</p>
+<p>These are related but different concepts.</p>
+<section id="trade-size" class="level3">
+<h3 class="anchored" data-anchor-id="trade-size">Trade Size</h3>
+<p>The authors measured the average trade size during the last half-hour as</p>
 <p><span class="math display">\[
 \boxed{
-\mathrm{TradeSize}_t
+TS_t
 =
 \frac{
-\mathrm{Volume}_{13,t}
+V_{13,t}
 }{
-\mathrm{NumberOfTrades}_{13,t}
+N_{13,t}
 }
-}
-\]</span></p>
-<p>This measure represents the average number of shares per trade.</p>
-<p>It is different from total trading volume.</p>
-<p>The authors divided trading days into small- and large-trade-size groups and estimated the predictive regressions separately.</p>
-<p>They found that the predictive power of the first half-hour return was relatively stable across the two groups.</p>
-<p>However, the predictive power of the twelfth half-hour return was stronger on large-trade-size days.</p>
-<p>Next, they examined liquidity using the Amihud illiquidity measure.</p>
-<p>A conventional expression of the measure is</p>
-<p><span class="math display">\[
-ILLIQ_{i,d}
-=
-\frac{1}{5}
-\sum_{k=1}^{5}
-\frac{
-|R_{i,d-k}|
-}{
-DV_{i,d-k}
 }
 \]</span></p>
 <p>where:</p>
 <ul>
-<li><span class="math inline">\(R_{i,d-k}\)</span>: Daily return of stock <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(DV_{i,d-k}\)</span>: Dollar trading volume</li>
-<li>The measure uses the previous five trading days</li>
+<li><span class="math inline">\(V_{13,t}\)</span>: Trading volume in the last half-hour</li>
+<li><span class="math inline">\(N_{13,t}\)</span>: Number of trades in the last half-hour</li>
 </ul>
-<p>A higher Amihud measure indicates lower liquidity.</p>
-<p>The predictive ability of the first half-hour return remained relatively similar between high- and low-liquidity portfolios.</p>
-<p>However, the twelfth half-hour return showed stronger predictive power for less liquid stocks.</p>
-<p>This suggests that liquidity affects the two intraday momentum predictors differently.</p>
+<p>They divided trading days into small- and large-trade-size groups.</p>
+<p>The predictive ability of the first half-hour return was relatively similar across the two groups.</p>
+<p>The authors described the twelfth half-hour return as having stronger predictive ability on large-trade-size days.</p>
+<p>However, the detailed regression results require a more careful interpretation.</p>
+<p>For <span class="math inline">\(r_{12}\)</span> alone:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Trade size group</th>
+<th style="text-align: right;"><span class="math inline">\(R^2\)</span></th>
+<th style="text-align: right;">t-statistic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Small trade size</td>
+<td style="text-align: right;">1.0%</td>
+<td style="text-align: right;">1.69</td>
+</tr>
+<tr class="even">
+<td>Large trade size</td>
+<td style="text-align: right;">0.9%</td>
+<td style="text-align: right;">2.53</td>
+</tr>
+</tbody>
+</table>
+<p>The statistical significance is stronger on large-trade-size days, but the <span class="math inline">\(R^2\)</span> values are similar, and the large-trade-size group does not have a higher <span class="math inline">\(R^2\)</span>.</p>
+<p>Therefore, the results should not be interpreted as a uniform increase in explanatory power across all measures.</p>
+</section>
+<section id="liquidity" class="level3">
+<h3 class="anchored" data-anchor-id="liquidity">Liquidity</h3>
+<p>Next, the authors examined liquidity using the Amihud illiquidity measure.</p>
+<p>They divided S&amp;P 500 stocks into portfolios with low and high Amihud measures.</p>
+<p>A high Amihud measure indicates lower liquidity.</p>
+<p>The measure was calculated using the average ratio of absolute stock returns to dollar trading volume over the previous five trading days.</p>
+<p>A mathematical representation is</p>
+<p><span class="math display">\[
+ILLIQ_{i,t}
+=
+\frac{1}{5}
+\sum_{k=1}^{5}
+\frac{|R_{i,t-k}|}{DV_{i,t-k}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(R_{i,t-k}\)</span>: Return on stock <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(DV_{i,t-k}\)</span>: Dollar trading volume</li>
+<li><span class="math inline">\(k=1,\ldots,5\)</span></li>
+</ul>
+<p>The authors found that the predictive ability of the first half-hour return was relatively similar for high- and low-liquidity portfolios.</p>
+<p>However, the predictive ability of the twelfth half-hour return was substantially stronger for less liquid stocks.</p>
+<p>The results can be summarized as follows:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Predictor</th>
+<th style="text-align: right;">Low Amihud (more liquid) <span class="math inline">\(R^2\)</span></th>
+<th style="text-align: right;">High Amihud (less liquid) <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(r_1\)</span></td>
+<td style="text-align: right;">1.8%</td>
+<td style="text-align: right;">2.3%</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r_{12}\)</span></td>
+<td style="text-align: right;">1.2%</td>
+<td style="text-align: right;">5.9%</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_{12}\)</span></td>
+<td style="text-align: right;">2.9%</td>
+<td style="text-align: right;">8.1%</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, less liquid stock portfolios showed greater overall predictability, particularly when the twelfth half-hour return was used as a predictor.</p>
+<p>The authors suggested that predictability may be more difficult to exploit away in less liquid markets.</p>
+<p>This means that predictable return patterns may persist because arbitrage is more difficult.</p>
+<p>However, greater statistical predictability does not necessarily imply greater trading profitability, since lower liquidity may increase trading costs.</p>
+</section>
 </section>
 <section id="institutional-trading" class="level2">
 <h2 class="anchored" data-anchor-id="institutional-trading">2.6 Institutional Trading</h2>
-<p>The authors also examined whether institutional trading contributes to intraday momentum.</p>
+<p>The authors also investigated the relationship between institutional trading and intraday momentum.</p>
 <p>They analyzed institutional holdings and institutional order imbalances.</p>
-<p>The institutional order imbalance measure is defined as</p>
+<p>The institutional order imbalance was measured as</p>
 <p><span class="math display">\[
 \boxed{
 OI_t
 =
-\frac{
-BV_t-SV_t
-}{
-BV_t+SV_t
-}
+\frac{BV_t-SV_t}{BV_t+SV_t}
 }
 \]</span></p>
 <p>where:</p>
@@ -544,17 +660,20 @@ BV_t+SV_t
 <li><span class="math inline">\(BV_t\)</span>: Institutional buy volume</li>
 <li><span class="math inline">\(SV_t\)</span>: Institutional sell volume</li>
 </ul>
-<p>A positive order imbalance indicates that institutional buying exceeds selling.</p>
-<p>The results suggest that institutional trading activity is more closely associated with the predictive power of the twelfth half-hour return than with that of the first half-hour return.</p>
-<p>In particular, predictability was stronger on days with higher institutional order imbalances.</p>
-<p>However, institutional activity was only partially observed, so these findings should not be interpreted as direct causal evidence.</p>
+<p>This is a signed measure of institutional net buying relative to total institutional trading volume.</p>
+<p>A larger positive value indicates stronger net buying relative to selling.</p>
+<p>It should not be confused with the absolute magnitude of the imbalance.</p>
+<p>The authors found that the first half-hour return had relatively stable predictive ability across groups with different institutional holdings.</p>
+<p>In contrast, the predictive ability of the twelfth half-hour return varied more substantially.</p>
+<p>The results also showed stronger combined predictability on days with higher institutional order imbalance values.</p>
+<p>The authors suggested that institutional trading near the market close may contribute to intraday momentum.</p>
+<p>However, the institutional trading data did not cover all institutions, so the results should be interpreted as supporting evidence rather than definitive proof of causation.</p>
 </section>
 </section>
 <section id="economic-significance" class="level1">
 <h1>3. Economic Significance</h1>
-<p>The authors also investigated whether intraday predictability could be used in a trading strategy.</p>
-<p>One simple strategy uses the sign of the first half-hour return to determine the position during the last half-hour.</p>
-<p>The strategy return is defined as</p>
+<p>The paper also evaluated whether the predictive relationship could be used for market timing.</p>
+<p>The first strategy takes a long position in the last half-hour when the first half-hour return is positive and a short position otherwise.</p>
 <p><span class="math display">\[
 \eta_t(r_1)
 =
@@ -563,48 +682,62 @@ r_{13,t}, &amp; r_{1,t}&gt;0\\
 -r_{13,t}, &amp; r_{1,t}\leq0
 \end{cases}
 \]</span></p>
-<p>If the first half-hour return is positive, the strategy takes a long position during the last half-hour.</p>
-<p>Otherwise, it takes a short position.</p>
-<p>The position is closed at the end of the trading day.</p>
+<p>The position is opened at 3:30 p.m. and closed at 4:00 p.m.</p>
 <p>The authors also considered a strategy using both the first and twelfth half-hour returns.</p>
 <p><span class="math display">\[
 \eta_t(r_1,r_{12})
 =
 \begin{cases}
-r_{13,t},
-&amp; r_{1,t}&gt;0,\ r_{12,t}&gt;0\\
--r_{13,t},
-&amp; r_{1,t}\leq0,\ r_{12,t}\leq0\\
-0,
-&amp; \text{otherwise}
+r_{13,t}, &amp;
+r_{1,t}&gt;0,\ r_{12,t}&gt;0\\
+-r_{13,t}, &amp;
+r_{1,t}\leq0,\ r_{12,t}\leq0\\
+0, &amp; \text{otherwise}
 \end{cases}
 \]</span></p>
-<p>In this strategy, a position is taken only when both predictors indicate the same direction.</p>
-<p>The first-half-hour-only strategy generated an annualized average return of 6.67% and a Sharpe ratio of 1.08 in the paper’s sample.</p>
-<p>The authors also examined bid-ask spreads, commissions, and other transaction costs.</p>
-<p>The results indicate that intraday momentum can have economic value, although transaction costs reduce the realized profitability.</p>
+<p>This second strategy trades only when both predictors indicate the same direction.</p>
+<p>The first-half-hour-only strategy produced an annualized average return of 6.67% and a Sharpe ratio of 1.08 over the full sample.</p>
+<p>The authors also examined transaction costs.</p>
+<p>For the post-July 2001 sample, the first-half-hour strategy’s average annualized return was 4.46% after accounting for the bid-ask spread, before the separately evaluated commission and fee estimates.</p>
+<p>This result uses a different sample period from the full-sample 6.67% figure, so the two numbers should not be directly subtracted to estimate transaction costs.</p>
+<p>Overall, the results suggest that intraday momentum can have economic value, but practical profitability depends on trading costs and implementation conditions.</p>
 </section>
 <section id="explanations-of-intraday-momentum" class="level1">
 <h1>4. Explanations of Intraday Momentum</h1>
-<p>The paper suggests two possible explanations for intraday momentum.</p>
+<p>The paper suggests two possible economic explanations for the observed intraday momentum.</p>
 <p>The first is <strong>infrequent portfolio rebalancing</strong>.</p>
-<p>Institutional investors may adjust their portfolios at different times during the trading day. Some may trade near the market open, while others may execute similar trades near the market close.</p>
-<p>This may generate a positive relationship between the first and last half-hour returns.</p>
+<p>Some institutional investors may rebalance their portfolios near the market open, while others may execute similar trades near the market close.</p>
+<p>These trading patterns may generate positive correlations between the first and last half-hour returns.</p>
 <p>The second explanation is <strong>late-informed trading</strong>.</p>
 <p>Some investors may receive or process information later than others.</p>
-<p>These investors may trade near the market close in response to information that had already affected prices near the market open.</p>
-<p>As a result, trading in the same direction near the close may contribute to intraday momentum.</p>
-<p>These are proposed economic explanations consistent with the empirical evidence, rather than definitive proof of causality.</p>
+<p>If they trade near the market close in response to information that already affected prices earlier in the day, their trading activity may contribute to intraday momentum.</p>
+<p>These explanations are consistent with the empirical results, but the paper does not establish them as the only possible causal mechanisms.</p>
+</section>
+<section id="additional-findings" class="level1">
+<h1>5. Additional Findings</h1>
+<p>The authors also examined several robustness checks.</p>
+<p>First, they found that the first half-hour return had stronger predictive power on days when the first half-hour return was positive than on days when it was negative.</p>
+<p>Second, they separated the first half-hour return into the overnight return and the return from 9:30 a.m. to 10:00 a.m.</p>
+<p>They found that much of the predictive ability came from the overnight return.</p>
+<p>They also examined alternative measurement endpoints at five-minute intervals from the market open to 10:00 a.m. and found relatively similar predictive results.</p>
+<p>Therefore, this analysis does not establish that shorter time intervals necessarily produce better predictions.</p>
+<p>Finally, the authors examined ten additional actively traded ETFs and found evidence of intraday momentum beyond SPY.</p>
 </section>
 <section id="personal-insight" class="level1">
-<h1>5. Personal Insight</h1>
-<p>My personal insight from this review is that the beginning of the trading day may provide useful information for intraday trading.</p>
-<p>However, the paper does not necessarily imply that shorter time intervals or lower trading volume are always better.</p>
-<p>Instead, the results suggest that intraday momentum is generally stronger on days with higher opening volatility and trading volume.</p>
-<p>Another important point is that the first half-hour return includes overnight information. Therefore, the information reflected in prices before the market opens may be particularly important.</p>
-<p>The early market trend is also more likely to be related to the final half-hour return, although this does not mean that the trend must persist throughout the entire day.</p>
-<p>Thus, it may be useful to consider the market’s initial return, opening volatility, and trading volume rather than relying only on the entire intraday price trajectory.</p>
-<p>For practical trading, I would also consider market liquidity, transaction costs, and unexpected news, since statistical predictability does not guarantee profitable trades.</p>
+<h1>6. Personal Insight</h1>
+<p>My personal insight from this review is that the beginning of the trading day may provide important information for intraday trading.</p>
+<p>The paper suggests that the market’s initial direction is positively related to the return during the last half-hour.</p>
+<p>However, this does not mean that the trend necessarily continues throughout the entire trading day.</p>
+<p>I initially thought that shorter time intervals and lower trading volume might be better for intraday trading.</p>
+<p>However, the empirical results do not directly support this interpretation.</p>
+<p>Instead, the authors found stronger overall predictability on days with higher first half-hour volatility and trading volume.</p>
+<p>At the same time, they found greater predictability in less liquid stock portfolios, particularly for the twelfth half-hour return.</p>
+<p>These are different results because trading volume and liquidity are not interchangeable measures.</p>
+<p>Another important finding is that the overnight return contributes substantially to the predictive ability of the first half-hour return.</p>
+<p>Thus, I think it would be useful to consider the information reflected in prices before the market opens, as well as the initial market return, volatility, and trading volume.</p>
+<p>It may also be important to consider the last half-hour return in relation to the twelfth half-hour return, especially under different liquidity conditions.</p>
+<p>However, statistical predictability does not guarantee profitable trading. Transaction costs, market liquidity, and unexpected news should also be considered.</p>
+<p>Finally, since the sample period ends in 2013, the results would need to be tested using more recent market data before being applied to a current trading strategy.</p>
 </section>
 <section id="works-cited" class="level1">
 <h1>Works Cited</h1>
