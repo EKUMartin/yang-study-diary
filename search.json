@@ -16,7 +16,7 @@
     "href": "reinforcement-review.html",
     "title": "Reinforcement Learning Paper Review",
     "section": "",
-    "text": "Paper review on Reinforcement Learning Paper\n\n\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n일치 없음",
+    "text": "Paper review on Reinforcement Learning Paper\n\n\n\n\n\n\n\n\n\n\n\nFundamental Concepts of Reinforcement Learning\n\n\n\nRL\n\nconcept\n\n\n\nOn-policy, off-policy, model-based, model-free reinforcement learning, and the policy gradient theorem.\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n일치 없음",
     "crumbs": [
       "Posts",
       "Research",
@@ -164,123 +164,53 @@
     "text": "10.3 Arcade Learning Environment\nThe paper also applies Option-Critic with deep neural network function approximation to Atari environments.\nThis demonstrates that the architecture can be combined with nonlinear function approximation.\nHowever, the experimental results should not be interpreted as proving that Option-Critic is universally superior to other reinforcement learning algorithms."
   },
   {
-    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
-    "href": "posts/Research/Finance-review/Exponential Moving Average.html",
-    "title": "Exponential Moving Average (EMA)",
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html",
+    "title": "Paper Review - Market Intraday Momentum",
     "section": "",
-    "text": "This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.\nThe equation for the Exponential Moving Average is as follows:\n\\[\nEMA_t = \\alpha P_t + (1-\\alpha)EMA_{t-1}\n\\]\nThe equation consists of three components: the current price, the smoothing factor, and the previous period’s EMA.\nWhere:\nThe smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.\nThe smoothing factor is calculated as follows:\n\\[\n\\alpha = \\frac{2}{N+1}\n\\]\nwhere \\(N\\) represents the number of periods.\nIf we want to place less emphasis on previous values, we can increase the smoothing factor.\nEMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.\nHowever, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.\nAnother limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors."
+    "text": "This post is a paper review of “Market Intraday Momentum” (2018) by Lei Gao, Yufeng Han, Sophia Zhengzi Li, and Guofu Zhou. This post mainly focuses on the methods used in the paper rather than the empirical results.\nThis paper presents the first study of market intraday time-series momentum, according to the authors.\nThey found that the first half-hour market return, measured from the previous day’s market close to 10:00 a.m., predicts the last half-hour market return.\nThey also showed that the predictability of the last half-hour return generally increases with volatility.\nTherefore, the first half-hour return could be used as an indicator for predicting the last half-hour return."
   },
   {
-    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
-    "href": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
-    "title": "Exponential Moving Average (EMA)",
-    "section": "Works Cited",
-    "text": "Works Cited\nInvestopedia - Exponential Moving Average (EMA)"
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#predictive-regression-analysis",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#predictive-regression-analysis",
+    "title": "Paper Review - Market Intraday Momentum",
+    "section": "2.1 Predictive Regression Analysis",
+    "text": "2.1 Predictive Regression Analysis\nIn the predictive regression analysis, they first considered a regression of the last half-hour return on the first half-hour return.\nThe regression equation is\n\\[\n\\boxed{\nr_{13,t}\n=\n\\alpha+\\beta r_{1,t}+\\varepsilon_t\n}\n\\]\nwhere:\n\n\\(r_{13,t}\\): Last half-hour return\n\\(r_{1,t}\\): First half-hour return\n\\(\\alpha\\): Intercept\n\\(\\beta\\): Regression coefficient\n\\(\\varepsilon_t\\): Error term\n\nA positive \\(\\beta\\) indicates a positive relationship between the first and last half-hour returns.\nThen, they added the twelfth half-hour return to the regression to see whether it improved the explanatory power of the first regression.\nThe extended regression is\n\\[\n\\boxed{\nr_{13,t}\n=\n\\alpha\n+\n\\beta_1r_{1,t}\n+\n\\beta_{12}r_{12,t}\n+\n\\varepsilon_t\n}\n\\]\nThe authors compared the \\(R^2\\) values of the two regressions.\nThe first regression achieved an in-sample \\(R^2\\) of 1.6%, while the regression using both predictors achieved an \\(R^2\\) of 2.6%.\nThis suggests that the twelfth half-hour return provides additional predictive information.\nThe paper also used Newey-West robust t-statistics to evaluate the statistical significance of the regression coefficients."
   },
   {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "",
-    "text": "This post will cover “Classes and Sets”.\nThe following contents are mainly about notations and symbols that are frequently used throughout this book.\nThe first topic is statements, also known as propositions."
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#out-of-sample-predictability",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#out-of-sample-predictability",
+    "title": "Paper Review - Market Intraday Momentum",
+    "section": "2.2 Out-of-Sample Predictability",
+    "text": "2.2 Out-of-Sample Predictability\nIn the out-of-sample predictability analysis, the authors conducted recursive regressions similar to the predictive regression analysis.\nTo forecast the last half-hour return on day \\(t\\), they estimated the regression coefficients using historical data available through day \\(t-1\\).\nFor the first-half-hour-only regression, the forecast is\n\\[\n\\widehat r_{13,t}\n=\n\\widehat\\alpha_{t-1}\n+\n\\widehat\\beta_{t-1}r_{1,t}\n\\]\nThe coefficients are estimated from historical data, but \\(r_{1,t}\\) is observed on the same day before the last half-hour begins.\nWhen the twelfth half-hour return is added, it is also observable by 3:30 p.m., before the prediction target period begins.\nThe authors initially estimated the model using observations through the end of 1997 and then expanded the estimation window by one month at a time.\nTo evaluate predictive performance, they used the out-of-sample \\(R^2\\):\n\\[\n\\boxed{\nR^2_{OS}\n=\n1-\n\\frac{\n\\sum_{t\\in\\mathcal{T}_{OS}}\n(r_{13,t}-\\widehat r_{13,t})^2\n}{\n\\sum_{t\\in\\mathcal{T}_{OS}}\n(r_{13,t}-\\overline r_{13,t})^2\n}\n}\n\\]\nwhere:\n\n\\(r_{13,t}\\): Actual last half-hour return\n\\(\\widehat r_{13,t}\\): Predicted return\n\\(\\overline r_{13,t}\\): Historical-average forecast estimated through \\(t-1\\)\n\\(\\mathcal{T}_{OS}\\): Out-of-sample evaluation period\n\nIf\n\\[\nR^2_{OS}&gt;0\n\\]\nthe predictive regression outperforms the historical-average benchmark in terms of squared forecast errors.\nThe authors reported an out-of-sample \\(R^2\\) of 1.4% using only the first half-hour return and 2.0% using both predictors.\nThis suggests that the predictability was not limited to the in-sample analysis."
   },
   {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.1 Negation",
-    "text": "2.1 Negation\nNegation is denoted by\n\\[\n\\neg P\n\\]\nand read as “Not P”.\nNegation reverses the truth value of a statement.\nIf \\(P\\) is true, then \\(\\neg P\\) is false, and vice versa.\n\n\n\n\\(P\\)\n\\(\\neg P\\)\n\n\n\n\nT\nF\n\n\nF\nT\n\n\n\nFor example:\nLet \\(P\\) be the statement\n\\[\nP: 1+1=2\n\\]\nThen its negation is\n\\[\n\\neg P: 1+1\\neq 2\n\\]\nSince \\(P\\) is true, \\(\\neg P\\) is false."
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#financial-crisis",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#financial-crisis",
+    "title": "Paper Review - Market Intraday Momentum",
+    "section": "2.3 Financial Crisis",
+    "text": "2.3 Financial Crisis\nFor the financial crisis, the authors examined intraday momentum during the 2007–2009 financial crisis.\nConventional monthly momentum strategies are known to have performed poorly during this period.\nHowever, the authors found that the predictive ability of the first half-hour return became stronger during the crisis.\nThey further showed that the predictive ability of the twelfth half-hour return also became stronger.\nFor example, the combined regression achieved an \\(R^2\\) of 6.9% during the crisis, compared with 1.1% when the crisis period was excluded.\nThe regression using only the twelfth half-hour return achieved an \\(R^2\\) of 3.1% during the crisis, compared with 0.3% outside the crisis period.\nTherefore, the paper provides evidence of stronger intraday predictability during the financial crisis.\nThis does not necessarily imply that the twelfth half-hour return became more volatile than the first half-hour return.\nRather, it means that the twelfth half-hour return became a stronger predictor of the last half-hour return."
   },
   {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.2 Conjunction",
-    "text": "2.2 Conjunction\nConjunction is denoted by\n\\[\nP \\land Q\n\\]\nand read as “P and Q”.\nThis means that both \\(P\\) and \\(Q\\) must be true for the conjunction to be true.\nIn other words,\n\\[\nP \\land Q = T\n\\iff P=T \\text{ and } Q=T\n\\]\nThe conjunction is false if at least one of the statements is false.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\land Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nF\n\n\nF\nF\nF"
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#volatility-and-trading-volume",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#volatility-and-trading-volume",
+    "title": "Paper Review - Market Intraday Momentum",
+    "section": "2.4 Volatility and Trading Volume",
+    "text": "2.4 Volatility and Trading Volume\nThe authors found that the predictability of the last half-hour return generally increased with first half-hour realized volatility.\nThey divided trading days into three groups based on volatility:\n\nLow volatility\nMedium volatility\nHigh volatility\n\nThen, they estimated the predictive regressions separately for each group.\nUsing both predictors, the regression produced the following results:\n\n\n\nVolatility group\n\\(R^2\\)\n\n\n\n\nLow\n0.6%\n\n\nMedium\n1.0%\n\n\nHigh\n3.3%\n\n\n\nThis provides evidence that first half-hour momentum is more strongly related to the last half-hour return on high-volatility days.\nIn terms of trading volume, the authors conducted a similar analysis using first half-hour trading volume.\nThey divided trading days into three volume groups within each year.\nThe results were as follows:\n\n\n\nTrading volume group\n\\(R^2\\)\n\n\n\n\nLow\n1.1%\n\n\nMedium\n2.3%\n\n\nHigh\n3.1%\n\n\n\nThese results indicate that higher first half-hour trading volume was associated with greater overall predictability.\nThus, the paper does not support the conclusion that lower trading volume generally produces stronger intraday momentum."
   },
   {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.3 Disjunction",
-    "text": "2.3 Disjunction\nDisjunction is denoted by\n\\[\nP \\lor Q\n\\]\nand read as “P or Q”.\nUnlike conjunction, disjunction is true whenever at least one of the statements is true.\nIt is false only when both \\(P\\) and \\(Q\\) are false.\n\\[\nP \\lor Q = F\n\\iff P=F \\text{ and } Q=F\n\\]\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\lor Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nT\n\n\nF\nT\nT\n\n\nF\nF\nF\n\n\n\nAn important point is that the logical OR is inclusive.\nThis means that \\(P\\lor Q\\) is also true when both \\(P\\) and \\(Q\\) are true."
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#trade-size-and-liquidity",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#trade-size-and-liquidity",
+    "title": "Paper Review - Market Intraday Momentum",
+    "section": "2.5 Trade Size and Liquidity",
+    "text": "2.5 Trade Size and Liquidity\nFurthermore, the authors investigated trade size and liquidity.\nThese are related but different concepts.\n\nTrade Size\nThe authors measured the average trade size during the last half-hour as\n\\[\n\\boxed{\nTS_t\n=\n\\frac{\nV_{13,t}\n}{\nN_{13,t}\n}\n}\n\\]\nwhere:\n\n\\(V_{13,t}\\): Trading volume in the last half-hour\n\\(N_{13,t}\\): Number of trades in the last half-hour\n\nThey divided trading days into small- and large-trade-size groups.\nThe predictive ability of the first half-hour return was relatively similar across the two groups.\nThe authors described the twelfth half-hour return as having stronger predictive ability on large-trade-size days.\nHowever, the detailed regression results require a more careful interpretation.\nFor \\(r_{12}\\) alone:\n\n\n\nTrade size group\n\\(R^2\\)\nt-statistic\n\n\n\n\nSmall trade size\n1.0%\n1.69\n\n\nLarge trade size\n0.9%\n2.53\n\n\n\nThe statistical significance is stronger on large-trade-size days, but the \\(R^2\\) values are similar, and the large-trade-size group does not have a higher \\(R^2\\).\nTherefore, the results should not be interpreted as a uniform increase in explanatory power across all measures.\n\n\nLiquidity\nNext, the authors examined liquidity using the Amihud illiquidity measure.\nThey divided S&P 500 stocks into portfolios with low and high Amihud measures.\nA high Amihud measure indicates lower liquidity.\nThe measure was calculated using the average ratio of absolute stock returns to dollar trading volume over the previous five trading days.\nA mathematical representation is\n\\[\nILLIQ_{i,t}\n=\n\\frac{1}{5}\n\\sum_{k=1}^{5}\n\\frac{|R_{i,t-k}|}{DV_{i,t-k}}\n\\]\nwhere:\n\n\\(R_{i,t-k}\\): Return on stock \\(i\\)\n\\(DV_{i,t-k}\\): Dollar trading volume\n\\(k=1,\\ldots,5\\)\n\nThe authors found that the predictive ability of the first half-hour return was relatively similar for high- and low-liquidity portfolios.\nHowever, the predictive ability of the twelfth half-hour return was substantially stronger for less liquid stocks.\nThe results can be summarized as follows:\n\n\n\n\n\n\n\n\nPredictor\nLow Amihud (more liquid) \\(R^2\\)\nHigh Amihud (less liquid) \\(R^2\\)\n\n\n\n\n\\(r_1\\)\n1.8%\n2.3%\n\n\n\\(r_{12}\\)\n1.2%\n5.9%\n\n\n\\(r_1\\) and \\(r_{12}\\)\n2.9%\n8.1%\n\n\n\nTherefore, less liquid stock portfolios showed greater overall predictability, particularly when the twelfth half-hour return was used as a predictor.\nThe authors suggested that predictability may be more difficult to exploit away in less liquid markets.\nThis means that predictable return patterns may persist because arbitrage is more difficult.\nHowever, greater statistical predictability does not necessarily imply greater trading profitability, since lower liquidity may increase trading costs."
   },
   {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.4 Implication",
-    "text": "2.4 Implication\nNext, we have implication, which is denoted by\n\\[\nP \\implies Q\n\\]\nand read as “P implies Q”.\nIt can also be interpreted as:\n“If P is true, then Q is true.”\nHowever, this does not necessarily mean that there is a causal relationship between \\(P\\) and \\(Q\\).\nIn classical propositional logic, an implication is false only when \\(P\\) is true and \\(Q\\) is false.\nIn all other cases, it is true.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nT\n\n\nF\nF\nT\n\n\n\nTherefore,\n\\[\nP\\implies Q \\equiv \\neg P\\lor Q\n\\]\nThis equivalence shows that implication can be expressed using negation and disjunction.\n\nExample\nConsider the following statements.\n\\[\nP: 1+1=2\n\\]\n\\[\nQ: \\text{Water is } H_2O\n\\]\nBoth statements are true.\nTherefore,\n\\[\nP\\implies Q\n\\]\nis true.\nHowever, the fact that \\(1+1=2\\) does not cause water to be \\(H_2O\\).\nThis illustrates that logical implication does not necessarily indicate causation.\nIn propositional logic, implication is determined by the truth values of the statements, not by their causal relationship."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "3.1 Steps for Constructing a Truth Table",
-    "text": "3.1 Steps for Constructing a Truth Table\n\nStep 1. Identify the Variables\nWrite down all the basic statements in the logical expression.\nFor example,\n\\[\nP,\\ Q,\\ R\n\\]\nrepresent three distinct propositional variables.\n\n\nStep 2. Determine the Number of Rows\nFor \\(n\\) distinct propositional variables, the number of possible combinations is\n\\[\n\\boxed{2^n}\n\\]\nFor example:\n\n2 variables: \\(2^2=4\\) rows\n3 variables: \\(2^3=8\\) rows\n4 variables: \\(2^4=16\\) rows\n\n\n\nStep 3. Create Columns\nMake a column for each propositional variable.\nAdd additional columns for intermediate logical operations and the final expression.\n\n\nStep 4. Fill in All Combinations\nList every possible combination of True (T) and False (F).\nFor two variables, the possible combinations are\n\\[\n(T,T),\\ (T,F),\\ (F,T),\\ (F,F)\n\\]\n\n\nStep 5. Evaluate the Expression\nEvaluate each intermediate operation using the logical rules introduced earlier.\nFinally, determine the truth value of the complete expression."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "3.2 Truth Table for the Four Logical Connectives",
-    "text": "3.2 Truth Table for the Four Logical Connectives\nThe four logical connectives can be summarized in a single truth table.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(\\neg P\\)\n\\(P\\land Q\\)\n\\(P\\lor Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nF\nT\nT\nT\n\n\nT\nF\nF\nF\nT\nF\n\n\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT"
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "4.1 Number of Possible Combinations",
-    "text": "4.1 Number of Possible Combinations\nSince there are four propositional variables,\n\\[\nn=4\n\\]\nthe truth table must contain\n\\[\n2^4=16\n\\]\nrows."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "4.2 Evaluate Intermediate Expressions",
-    "text": "4.2 Evaluate Intermediate Expressions\nFirst, evaluate the negation:\n\\[\n\\neg P\n\\]\nNext, evaluate the conjunction:\n\\[\n\\neg P\\land Q\n\\]\nThen, evaluate the disjunction:\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nFinally, evaluate the implication:\n\\[\n((\\neg P\\land Q)\\lor R)\\implies S\n\\]"
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "4.3 Complete Truth Table",
-    "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
-  },
-  {
-    "objectID": "healthcare-review.html",
-    "href": "healthcare-review.html",
-    "title": "Healthcare Paper Review",
-    "section": "",
-    "text": "Paper review on Healthcare Paper\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Healthcare Paper Review"
-    ]
-  },
-  {
-    "objectID": "finance-review.html",
-    "href": "finance-review.html",
-    "title": "Finance Paper Review",
-    "section": "",
-    "text": "Paper review on Finance Paper & Finance Related Topics\n\n\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Finance Paper Review"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "All Posts"
-    ]
+    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#institutional-trading",
+    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#institutional-trading",
+    "title": "Paper Review - Market Intraday Momentum",
+    "section": "2.6 Institutional Trading",
+    "text": "2.6 Institutional Trading\nThe authors also investigated the relationship between institutional trading and intraday momentum.\nThey analyzed institutional holdings and institutional order imbalances.\nThe institutional order imbalance was measured as\n\\[\n\\boxed{\nOI_t\n=\n\\frac{BV_t-SV_t}{BV_t+SV_t}\n}\n\\]\nwhere:\n\n\\(BV_t\\): Institutional buy volume\n\\(SV_t\\): Institutional sell volume\n\nThis is a signed measure of institutional net buying relative to total institutional trading volume.\nA larger positive value indicates stronger net buying relative to selling.\nIt should not be confused with the absolute magnitude of the imbalance.\nThe authors found that the first half-hour return had relatively stable predictive ability across groups with different institutional holdings.\nIn contrast, the predictive ability of the twelfth half-hour return varied more substantially.\nThe results also showed stronger combined predictability on days with higher institutional order imbalance values.\nThe authors suggested that institutional trading near the market close may contribute to intraday momentum.\nHowever, the institutional trading data did not cover all institutions, so the results should be interpreted as supporting evidence rather than definitive proof of causation."
   },
   {
     "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html",
@@ -381,53 +311,221 @@
     "text": "1.19 Definition — Complement\nThe complement of a class \\(A\\) is the class of all elements that do not belong to \\(A\\).\nIn symbols,\n\\[\n\\boxed{\nA'=\\{x:x\\notin A\\}\n}\n\\]\nThus,\n\\[\nx\\in A'\n\\iff\nx\\notin A\n\\]\nSince the complement is taken with respect to the universal class, we can also write\n\\[\nA'=\\mathcal{U}\\setminus A\n\\]"
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html",
-    "title": "Paper Review - Market Intraday Momentum",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
     "section": "",
-    "text": "This post is a paper review of “Market Intraday Momentum” (2018) by Lei Gao, Yufeng Han, Sophia Zhengzi Li, and Guofu Zhou. This post mainly focuses on the methods used in the paper rather than the empirical results.\nThis paper presents the first study of market intraday time-series momentum, according to the authors.\nThey found that the first half-hour market return, measured from the previous day’s market close to 10:00 a.m., predicts the last half-hour market return.\nThey also showed that the predictability of the last half-hour return generally increases with volatility.\nTherefore, the first half-hour return could be used as an indicator for predicting the last half-hour return."
+    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nFundamental Concepts of Reinforcement Learning\n\n\n\nRL\n\nconcept\n\n\n\nOn-policy, off-policy, model-based, model-free reinforcement learning, and the policy gradient theorem.\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "All Posts"
+    ]
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#predictive-regression-analysis",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#predictive-regression-analysis",
-    "title": "Paper Review - Market Intraday Momentum",
-    "section": "2.1 Predictive Regression Analysis",
-    "text": "2.1 Predictive Regression Analysis\nIn the predictive regression analysis, they first considered a regression of the last half-hour return on the first half-hour return.\nThe regression equation is\n\\[\n\\boxed{\nr_{13,t}\n=\n\\alpha+\\beta r_{1,t}+\\varepsilon_t\n}\n\\]\nwhere:\n\n\\(r_{13,t}\\): Last half-hour return\n\\(r_{1,t}\\): First half-hour return\n\\(\\alpha\\): Intercept\n\\(\\beta\\): Regression coefficient\n\\(\\varepsilon_t\\): Error term\n\nA positive \\(\\beta\\) indicates a positive relationship between the first and last half-hour returns.\nThen, they added the twelfth half-hour return to the regression to see whether it improved the explanatory power of the first regression.\nThe extended regression is\n\\[\n\\boxed{\nr_{13,t}\n=\n\\alpha\n+\n\\beta_1r_{1,t}\n+\n\\beta_{12}r_{12,t}\n+\n\\varepsilon_t\n}\n\\]\nThe authors compared the \\(R^2\\) values of the two regressions.\nThe first regression achieved an in-sample \\(R^2\\) of 1.6%, while the regression using both predictors achieved an \\(R^2\\) of 2.6%.\nThis suggests that the twelfth half-hour return provides additional predictive information.\nThe paper also used Newey-West robust t-statistics to evaluate the statistical significance of the regression coefficients."
+    "objectID": "finance-review.html",
+    "href": "finance-review.html",
+    "title": "Finance Paper Review",
+    "section": "",
+    "text": "Paper review on Finance Paper & Finance Related Topics\n\n\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Finance Paper Review"
+    ]
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#out-of-sample-predictability",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#out-of-sample-predictability",
-    "title": "Paper Review - Market Intraday Momentum",
-    "section": "2.2 Out-of-Sample Predictability",
-    "text": "2.2 Out-of-Sample Predictability\nIn the out-of-sample predictability analysis, the authors conducted recursive regressions similar to the predictive regression analysis.\nTo forecast the last half-hour return on day \\(t\\), they estimated the regression coefficients using historical data available through day \\(t-1\\).\nFor the first-half-hour-only regression, the forecast is\n\\[\n\\widehat r_{13,t}\n=\n\\widehat\\alpha_{t-1}\n+\n\\widehat\\beta_{t-1}r_{1,t}\n\\]\nThe coefficients are estimated from historical data, but \\(r_{1,t}\\) is observed on the same day before the last half-hour begins.\nWhen the twelfth half-hour return is added, it is also observable by 3:30 p.m., before the prediction target period begins.\nThe authors initially estimated the model using observations through the end of 1997 and then expanded the estimation window by one month at a time.\nTo evaluate predictive performance, they used the out-of-sample \\(R^2\\):\n\\[\n\\boxed{\nR^2_{OS}\n=\n1-\n\\frac{\n\\sum_{t\\in\\mathcal{T}_{OS}}\n(r_{13,t}-\\widehat r_{13,t})^2\n}{\n\\sum_{t\\in\\mathcal{T}_{OS}}\n(r_{13,t}-\\overline r_{13,t})^2\n}\n}\n\\]\nwhere:\n\n\\(r_{13,t}\\): Actual last half-hour return\n\\(\\widehat r_{13,t}\\): Predicted return\n\\(\\overline r_{13,t}\\): Historical-average forecast estimated through \\(t-1\\)\n\\(\\mathcal{T}_{OS}\\): Out-of-sample evaluation period\n\nIf\n\\[\nR^2_{OS}&gt;0\n\\]\nthe predictive regression outperforms the historical-average benchmark in terms of squared forecast errors.\nThe authors reported an out-of-sample \\(R^2\\) of 1.4% using only the first half-hour return and 2.0% using both predictors.\nThis suggests that the predictability was not limited to the in-sample analysis."
+    "objectID": "healthcare-review.html",
+    "href": "healthcare-review.html",
+    "title": "Healthcare Paper Review",
+    "section": "",
+    "text": "Paper review on Healthcare Paper\n\n\n\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Healthcare Paper Review"
+    ]
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#financial-crisis",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#financial-crisis",
-    "title": "Paper Review - Market Intraday Momentum",
-    "section": "2.3 Financial Crisis",
-    "text": "2.3 Financial Crisis\nFor the financial crisis, the authors examined intraday momentum during the 2007–2009 financial crisis.\nConventional monthly momentum strategies are known to have performed poorly during this period.\nHowever, the authors found that the predictive ability of the first half-hour return became stronger during the crisis.\nThey further showed that the predictive ability of the twelfth half-hour return also became stronger.\nFor example, the combined regression achieved an \\(R^2\\) of 6.9% during the crisis, compared with 1.1% when the crisis period was excluded.\nThe regression using only the twelfth half-hour return achieved an \\(R^2\\) of 3.1% during the crisis, compared with 0.3% outside the crisis period.\nTherefore, the paper provides evidence of stronger intraday predictability during the financial crisis.\nThis does not necessarily imply that the twelfth half-hour return became more volatile than the first half-hour return.\nRather, it means that the twelfth half-hour return became a stronger predictor of the last half-hour return."
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "",
+    "text": "This post will cover “Classes and Sets”.\nThe following contents are mainly about notations and symbols that are frequently used throughout this book.\nThe first topic is statements, also known as propositions."
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#volatility-and-trading-volume",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#volatility-and-trading-volume",
-    "title": "Paper Review - Market Intraday Momentum",
-    "section": "2.4 Volatility and Trading Volume",
-    "text": "2.4 Volatility and Trading Volume\nThe authors found that the predictability of the last half-hour return generally increased with first half-hour realized volatility.\nThey divided trading days into three groups based on volatility:\n\nLow volatility\nMedium volatility\nHigh volatility\n\nThen, they estimated the predictive regressions separately for each group.\nUsing both predictors, the regression produced the following results:\n\n\n\nVolatility group\n\\(R^2\\)\n\n\n\n\nLow\n0.6%\n\n\nMedium\n1.0%\n\n\nHigh\n3.3%\n\n\n\nThis provides evidence that first half-hour momentum is more strongly related to the last half-hour return on high-volatility days.\nIn terms of trading volume, the authors conducted a similar analysis using first half-hour trading volume.\nThey divided trading days into three volume groups within each year.\nThe results were as follows:\n\n\n\nTrading volume group\n\\(R^2\\)\n\n\n\n\nLow\n1.1%\n\n\nMedium\n2.3%\n\n\nHigh\n3.1%\n\n\n\nThese results indicate that higher first half-hour trading volume was associated with greater overall predictability.\nThus, the paper does not support the conclusion that lower trading volume generally produces stronger intraday momentum."
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.1 Negation",
+    "text": "2.1 Negation\nNegation is denoted by\n\\[\n\\neg P\n\\]\nand read as “Not P”.\nNegation reverses the truth value of a statement.\nIf \\(P\\) is true, then \\(\\neg P\\) is false, and vice versa.\n\n\n\n\\(P\\)\n\\(\\neg P\\)\n\n\n\n\nT\nF\n\n\nF\nT\n\n\n\nFor example:\nLet \\(P\\) be the statement\n\\[\nP: 1+1=2\n\\]\nThen its negation is\n\\[\n\\neg P: 1+1\\neq 2\n\\]\nSince \\(P\\) is true, \\(\\neg P\\) is false."
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#trade-size-and-liquidity",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#trade-size-and-liquidity",
-    "title": "Paper Review - Market Intraday Momentum",
-    "section": "2.5 Trade Size and Liquidity",
-    "text": "2.5 Trade Size and Liquidity\nFurthermore, the authors investigated trade size and liquidity.\nThese are related but different concepts.\n\nTrade Size\nThe authors measured the average trade size during the last half-hour as\n\\[\n\\boxed{\nTS_t\n=\n\\frac{\nV_{13,t}\n}{\nN_{13,t}\n}\n}\n\\]\nwhere:\n\n\\(V_{13,t}\\): Trading volume in the last half-hour\n\\(N_{13,t}\\): Number of trades in the last half-hour\n\nThey divided trading days into small- and large-trade-size groups.\nThe predictive ability of the first half-hour return was relatively similar across the two groups.\nThe authors described the twelfth half-hour return as having stronger predictive ability on large-trade-size days.\nHowever, the detailed regression results require a more careful interpretation.\nFor \\(r_{12}\\) alone:\n\n\n\nTrade size group\n\\(R^2\\)\nt-statistic\n\n\n\n\nSmall trade size\n1.0%\n1.69\n\n\nLarge trade size\n0.9%\n2.53\n\n\n\nThe statistical significance is stronger on large-trade-size days, but the \\(R^2\\) values are similar, and the large-trade-size group does not have a higher \\(R^2\\).\nTherefore, the results should not be interpreted as a uniform increase in explanatory power across all measures.\n\n\nLiquidity\nNext, the authors examined liquidity using the Amihud illiquidity measure.\nThey divided S&P 500 stocks into portfolios with low and high Amihud measures.\nA high Amihud measure indicates lower liquidity.\nThe measure was calculated using the average ratio of absolute stock returns to dollar trading volume over the previous five trading days.\nA mathematical representation is\n\\[\nILLIQ_{i,t}\n=\n\\frac{1}{5}\n\\sum_{k=1}^{5}\n\\frac{|R_{i,t-k}|}{DV_{i,t-k}}\n\\]\nwhere:\n\n\\(R_{i,t-k}\\): Return on stock \\(i\\)\n\\(DV_{i,t-k}\\): Dollar trading volume\n\\(k=1,\\ldots,5\\)\n\nThe authors found that the predictive ability of the first half-hour return was relatively similar for high- and low-liquidity portfolios.\nHowever, the predictive ability of the twelfth half-hour return was substantially stronger for less liquid stocks.\nThe results can be summarized as follows:\n\n\n\n\n\n\n\n\nPredictor\nLow Amihud (more liquid) \\(R^2\\)\nHigh Amihud (less liquid) \\(R^2\\)\n\n\n\n\n\\(r_1\\)\n1.8%\n2.3%\n\n\n\\(r_{12}\\)\n1.2%\n5.9%\n\n\n\\(r_1\\) and \\(r_{12}\\)\n2.9%\n8.1%\n\n\n\nTherefore, less liquid stock portfolios showed greater overall predictability, particularly when the twelfth half-hour return was used as a predictor.\nThe authors suggested that predictability may be more difficult to exploit away in less liquid markets.\nThis means that predictable return patterns may persist because arbitrage is more difficult.\nHowever, greater statistical predictability does not necessarily imply greater trading profitability, since lower liquidity may increase trading costs."
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.2 Conjunction",
+    "text": "2.2 Conjunction\nConjunction is denoted by\n\\[\nP \\land Q\n\\]\nand read as “P and Q”.\nThis means that both \\(P\\) and \\(Q\\) must be true for the conjunction to be true.\nIn other words,\n\\[\nP \\land Q = T\n\\iff P=T \\text{ and } Q=T\n\\]\nThe conjunction is false if at least one of the statements is false.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\land Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nF\n\n\nF\nF\nF"
   },
   {
-    "objectID": "posts/Research/Finance-review/intraday-momentumqmd.html#institutional-trading",
-    "href": "posts/Research/Finance-review/intraday-momentumqmd.html#institutional-trading",
-    "title": "Paper Review - Market Intraday Momentum",
-    "section": "2.6 Institutional Trading",
-    "text": "2.6 Institutional Trading\nThe authors also investigated the relationship between institutional trading and intraday momentum.\nThey analyzed institutional holdings and institutional order imbalances.\nThe institutional order imbalance was measured as\n\\[\n\\boxed{\nOI_t\n=\n\\frac{BV_t-SV_t}{BV_t+SV_t}\n}\n\\]\nwhere:\n\n\\(BV_t\\): Institutional buy volume\n\\(SV_t\\): Institutional sell volume\n\nThis is a signed measure of institutional net buying relative to total institutional trading volume.\nA larger positive value indicates stronger net buying relative to selling.\nIt should not be confused with the absolute magnitude of the imbalance.\nThe authors found that the first half-hour return had relatively stable predictive ability across groups with different institutional holdings.\nIn contrast, the predictive ability of the twelfth half-hour return varied more substantially.\nThe results also showed stronger combined predictability on days with higher institutional order imbalance values.\nThe authors suggested that institutional trading near the market close may contribute to intraday momentum.\nHowever, the institutional trading data did not cover all institutions, so the results should be interpreted as supporting evidence rather than definitive proof of causation."
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.3 Disjunction",
+    "text": "2.3 Disjunction\nDisjunction is denoted by\n\\[\nP \\lor Q\n\\]\nand read as “P or Q”.\nUnlike conjunction, disjunction is true whenever at least one of the statements is true.\nIt is false only when both \\(P\\) and \\(Q\\) are false.\n\\[\nP \\lor Q = F\n\\iff P=F \\text{ and } Q=F\n\\]\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\lor Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nT\n\n\nF\nT\nT\n\n\nF\nF\nF\n\n\n\nAn important point is that the logical OR is inclusive.\nThis means that \\(P\\lor Q\\) is also true when both \\(P\\) and \\(Q\\) are true."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.4 Implication",
+    "text": "2.4 Implication\nNext, we have implication, which is denoted by\n\\[\nP \\implies Q\n\\]\nand read as “P implies Q”.\nIt can also be interpreted as:\n“If P is true, then Q is true.”\nHowever, this does not necessarily mean that there is a causal relationship between \\(P\\) and \\(Q\\).\nIn classical propositional logic, an implication is false only when \\(P\\) is true and \\(Q\\) is false.\nIn all other cases, it is true.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nT\n\n\nF\nF\nT\n\n\n\nTherefore,\n\\[\nP\\implies Q \\equiv \\neg P\\lor Q\n\\]\nThis equivalence shows that implication can be expressed using negation and disjunction.\n\nExample\nConsider the following statements.\n\\[\nP: 1+1=2\n\\]\n\\[\nQ: \\text{Water is } H_2O\n\\]\nBoth statements are true.\nTherefore,\n\\[\nP\\implies Q\n\\]\nis true.\nHowever, the fact that \\(1+1=2\\) does not cause water to be \\(H_2O\\).\nThis illustrates that logical implication does not necessarily indicate causation.\nIn propositional logic, implication is determined by the truth values of the statements, not by their causal relationship."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "3.1 Steps for Constructing a Truth Table",
+    "text": "3.1 Steps for Constructing a Truth Table\n\nStep 1. Identify the Variables\nWrite down all the basic statements in the logical expression.\nFor example,\n\\[\nP,\\ Q,\\ R\n\\]\nrepresent three distinct propositional variables.\n\n\nStep 2. Determine the Number of Rows\nFor \\(n\\) distinct propositional variables, the number of possible combinations is\n\\[\n\\boxed{2^n}\n\\]\nFor example:\n\n2 variables: \\(2^2=4\\) rows\n3 variables: \\(2^3=8\\) rows\n4 variables: \\(2^4=16\\) rows\n\n\n\nStep 3. Create Columns\nMake a column for each propositional variable.\nAdd additional columns for intermediate logical operations and the final expression.\n\n\nStep 4. Fill in All Combinations\nList every possible combination of True (T) and False (F).\nFor two variables, the possible combinations are\n\\[\n(T,T),\\ (T,F),\\ (F,T),\\ (F,F)\n\\]\n\n\nStep 5. Evaluate the Expression\nEvaluate each intermediate operation using the logical rules introduced earlier.\nFinally, determine the truth value of the complete expression."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "3.2 Truth Table for the Four Logical Connectives",
+    "text": "3.2 Truth Table for the Four Logical Connectives\nThe four logical connectives can be summarized in a single truth table.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(\\neg P\\)\n\\(P\\land Q\\)\n\\(P\\lor Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nF\nT\nT\nT\n\n\nT\nF\nF\nF\nT\nF\n\n\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.1 Number of Possible Combinations",
+    "text": "4.1 Number of Possible Combinations\nSince there are four propositional variables,\n\\[\nn=4\n\\]\nthe truth table must contain\n\\[\n2^4=16\n\\]\nrows."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.2 Evaluate Intermediate Expressions",
+    "text": "4.2 Evaluate Intermediate Expressions\nFirst, evaluate the negation:\n\\[\n\\neg P\n\\]\nNext, evaluate the conjunction:\n\\[\n\\neg P\\land Q\n\\]\nThen, evaluate the disjunction:\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nFinally, evaluate the implication:\n\\[\n((\\neg P\\land Q)\\lor R)\\implies S\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.3 Complete Truth Table",
+    "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
+  },
+  {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "",
+    "text": "This post will cover the Exponential Moving Average (EMA), a technical indicator used to identify stock price trends and find potential buy or sell signals.\nThe equation for the Exponential Moving Average is as follows:\n\\[\nEMA_t = \\alpha P_t + (1-\\alpha)EMA_{t-1}\n\\]\nThe equation consists of three components: the current price, the smoothing factor, and the previous period’s EMA.\nWhere:\nThe smoothing factor decreases as the number of periods increases, while the weights assigned to older prices decrease exponentially over time.\nThe smoothing factor is calculated as follows:\n\\[\n\\alpha = \\frac{2}{N+1}\n\\]\nwhere \\(N\\) represents the number of periods.\nIf we want to place less emphasis on previous values, we can increase the smoothing factor.\nEMA is also used in other technical indicators and for intraday trading. EMA is useful because it assigns greater weights to recent data, which helps reduce the impact of time lags compared to a Simple Moving Average (SMA) with the same period. Thus, EMA can respond more quickly to price changes than a simple moving average.\nHowever, there are limitations to EMA. The first limitation is that recent trends are not necessarily more important than older ones. Therefore, if recent price movements do not reflect the underlying market trend, EMA may generate false signals.\nAnother limitation is that EMA relies on historical data. Like all other moving averages, it is calculated using past prices. Under the Efficient Market Hypothesis (EMH), market prices are assumed to reflect available information, meaning that historical price data alone may not reliably predict future price movements. Therefore, it is not advisable to rely solely on EMA; instead, it should be used in combination with other technical indicators or alpha factors."
+  },
+  {
+    "objectID": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "href": "posts/Research/Finance-review/Exponential Moving Average.html#works-cited",
+    "title": "Exponential Moving Average (EMA)",
+    "section": "Works Cited",
+    "text": "Works Cited\nInvestopedia - Exponential Moving Average (EMA)"
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "",
+    "text": "This post is about some of the most fundamental concepts in Reinforcement Learning: on-policy, off-policy, model-based, model-free learning, and policy gradients.\nI will explain these concepts not only in words but also through equations and proofs."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#on-policy-sarsa",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#on-policy-sarsa",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "1.1 On-Policy: SARSA",
+    "text": "1.1 On-Policy: SARSA\n\\[\n\\begin{aligned}\nQ(s_t,a_t)\\leftarrow Q(s_t,a_t)+\\alpha\\Big[\n&r_{t+1}\\\\\n&+\\gamma Q(s_{t+1},a_{t+1})\\\\\n&-Q(s_t,a_t)\n\\Big]\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#off-policy-q-learning",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#off-policy-q-learning",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "1.2 Off-Policy: Q-Learning",
+    "text": "1.2 Off-Policy: Q-Learning\n\\[\n\\begin{aligned}\nQ(s_t,a_t)\\leftarrow Q(s_t,a_t)+\\alpha\\Big[\n&r_{t+1}\\\\\n&+\\gamma\\max_{a}Q(s_{t+1},a)\\\\\n&-Q(s_t,a_t)\n\\Big]\n\\end{aligned}\n\\]\nThe first equation is the on-policy SARSA update, and the second is the off-policy Q-learning update.\nThe main difference between these two equations is how they calculate the target for the future Q-value.\nSARSA uses the next action actually selected by the current behavior policy.\nIn contrast, Q-learning uses the maximum estimated Q-value at the next state, regardless of which action the behavior policy actually chooses.\nMore technically, on-policy learning evaluates or improves the same policy that generates the agent’s behavior.\nTherefore, its behavior policy and target policy are the same.\nIn contrast, off-policy learning can learn about a target policy using data generated by a different behavior policy.\nFor example, in Q-learning, the behavior policy may choose exploratory actions, while the update target uses the greedy action’s estimated value.\nThus, the behavior policy does not necessarily have to choose the same action as the target policy."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#advantages-and-limitations",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#advantages-and-limitations",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "1.3 Advantages and Limitations",
+    "text": "1.3 Advantages and Limitations\nThen, what is the advantage of using on-policy learning?\nWhen an agent explores the environment, on-policy methods can learn the value of the policy it actually follows, including the effects of exploration.\nThis can be useful when we want to evaluate and improve the agent’s actual behavior.\nHowever, on-policy learning is not necessarily better when the state or action space is large.\nOff-policy methods can also explore and may reuse experiences generated by other behavior policies, depending on the algorithm.\nTherefore, neither method is universally better. Their suitability depends on the learning objective, exploration strategy, and available data."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#value-iteration",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#value-iteration",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "2.1 Value Iteration",
+    "text": "2.1 Value Iteration\nOne typical model-based method is Value Iteration.\nThe value function is updated using the Bellman optimality equation:\n\\[\n\\boxed{\nV_{k+1}(s)\n=\n\\max_{a\\in\\mathcal{A}}\n\\left[\nR(s,a)\n+\n\\gamma\n\\sum_{s'\\in\\mathcal{S}}\nP(s'\\mid s,a)V_k(s')\n\\right]\n}\n\\]\nAfter estimating the value function, we can obtain a greedy policy:\n\\[\n\\boxed{\n\\pi_{k+1}(s)\n\\in\n\\arg\\max_{a\\in\\mathcal{A}}\n\\left[\nR(s,a)\n+\n\\gamma\n\\sum_{s'}\nP(s'\\mid s,a)V_k(s')\n\\right]\n}\n\\]\nThe first equation calculates the value of a state by considering the immediate reward and the expected value of the next state.\nIt then selects the action that maximizes this value.\nThe updated value function is used in the next iteration.\nThis process is repeated until the value function converges to the optimal value function under the usual assumptions for a discounted MDP.\nThe optimal policy can then be obtained by selecting the action with the highest expected return.\nThus, Value Iteration primarily updates the value function using the Bellman optimality operator.\nThe policy is derived from the resulting value function.\nThis is model-based because the algorithm uses the transition probabilities and reward function to evaluate possible actions."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#policy-iteration",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#policy-iteration",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "2.2 Policy Iteration",
+    "text": "2.2 Policy Iteration\nAnother example is Policy Iteration, which is divided into Policy Evaluation and Policy Improvement.\nUnlike Value Iteration, Policy Iteration explicitly alternates between evaluating a given policy and improving that policy.\n\nStep 1. Policy Evaluation\nFirst, Policy Evaluation can be written as\n\\[\n\\boxed{\n\\begin{aligned}\nV^{\\pi_k}(s)\n={}&R(s,\\pi_k(s))\\\\\n&+\\gamma\\sum_{s'}\nP(s'\\mid s,\\pi_k(s))\nV^{\\pi_k}(s')\n\\end{aligned}\n}\n\\]\nThis equation evaluates the value of each state under the given policy \\(\\pi_k\\).\nIn Policy Evaluation, the policy is held fixed while its value function is calculated.\nFor a discounted MDP, this can be done by solving the Bellman expectation equation or by repeatedly applying its update until convergence.\n\n\nStep 2. Policy Improvement\nAfter evaluating the current policy, we calculate the Q-value of each possible action using the evaluated value function.\n\\[\nQ^{\\pi_k}(s,a)\n=\nR(s,a)\n+\n\\gamma\\sum_{s'}\nP(s'\\mid s,a)V^{\\pi_k}(s')\n\\]\nThen, we update the policy to select an action that maximizes the Q-value:\n\\[\n\\boxed{\n\\pi_{k+1}(s)\n\\in\n\\arg\\max_{a\\in\\mathcal{A}}\nQ^{\\pi_k}(s,a)\n}\n\\]\nThe new policy is evaluated again, and the process is repeated.\nThus, Policy Iteration alternates between evaluating the current policy and improving it.\nThis is also model-based because the model is used to calculate the value of possible future states."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#discounted-state-visitation-measure",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#discounted-state-visitation-measure",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "4.1 Discounted State-Visitation Measure",
+    "text": "4.1 Discounted State-Visitation Measure\nLet \\(p_0(s_0)\\) represent the initial state distribution.\nThe expected return can also be written as\n\\[\nJ(\\theta)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)V^{\\pi_\\theta}(s_0)\\,ds_0\n\\]\nDefine the discounted state-visitation measure as\n\\[\n\\boxed{\n\\rho^{\\pi_\\theta}(s)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)\n\\sum_{t=0}^{\\infty}\n\\gamma^t\np_{\\pi_\\theta}^{(t)}(s\\mid s_0)\n\\,ds_0\n}\n\\]\nwhere\n\\[\np_{\\pi_\\theta}^{(t)}(s\\mid s_0)\n\\]\nis the probability density of reaching state \\(s\\) after \\(t\\) steps from \\(s_0\\) while following the policy \\(\\pi_\\theta\\).\nUsing this measure, the expected return can be written as\n\\[\n\\boxed{\nJ(\\theta)\n=\n\\int_{\\mathcal{S}}\n\\rho^{\\pi_\\theta}(s)\n\\int_{\\mathcal{A}}\n\\pi_\\theta(a\\mid s)\nR(s,a)\\,da\\,ds\n}\n\\]\nThe discounted state-visitation measure represents the expected discounted frequency of visiting each state.\nIt is not necessarily a normalized probability distribution.\nFor an infinite-horizon discounted MDP, the normalized discounted state distribution can be defined as\n\\[\nd^{\\pi_\\theta}(s)\n=\n(1-\\gamma)\\rho^{\\pi_\\theta}(s)\n\\]"
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#policy-gradient-theorem-1",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#policy-gradient-theorem-1",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "4.2 Policy Gradient Theorem",
+    "text": "4.2 Policy Gradient Theorem\nThe Policy Gradient Theorem states that\n\\[\n\\boxed{\n\\begin{aligned}\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}\n\\rho^{\\pi_\\theta}(s)\n\\int_{\\mathcal{A}}\n&\\nabla_\\theta\\pi_\\theta(a\\mid s)\\\\\n&\\times Q^{\\pi_\\theta}(s,a)\n\\,da\\,ds\n\\end{aligned}\n}\n\\]\nThis equation gives the gradient of the expected return with respect to the policy parameters.\nThe gradient indicates how the parameters should change locally to increase the expected return.\nAn important property is that we do not need to explicitly differentiate the discounted state-visitation measure in the final expression.\nWe will derive this equation step by step."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-1.-express-the-objective-using-the-value-function",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-1.-express-the-objective-using-the-value-function",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "Step 1. Express the objective using the value function",
+    "text": "Step 1. Express the objective using the value function\nWe begin with\n\\[\nJ(\\theta)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)V^{\\pi_\\theta}(s_0)\\,ds_0\n\\]\nSince the value function can be written in terms of the action-value function,\n\\[\nV^{\\pi_\\theta}(s_0)\n=\n\\int_{\\mathcal{A}}\n\\pi_\\theta(a_0\\mid s_0)\nQ^{\\pi_\\theta}(s_0,a_0)\n\\,da_0\n\\]\nwe obtain\n\\[\n\\begin{aligned}\nJ(\\theta)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)\n\\int_{\\mathcal{A}}\n&\\pi_\\theta(a_0\\mid s_0)\\\\\n&\\times Q^{\\pi_\\theta}(s_0,a_0)\n\\,da_0\\,ds_0\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-2.-differentiate-with-respect-to-theta",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-2.-differentiate-with-respect-to-theta",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "Step 2. Differentiate with respect to theta",
+    "text": "Step 2. Differentiate with respect to theta\nTaking the gradient gives\n\\[\n\\begin{aligned}\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}p_0(s_0)\n\\int_{\\mathcal{A}}\n\\nabla_\\theta\n\\Big[\n&\\pi_\\theta(a_0\\mid s_0)\\\\\n&\\times Q^{\\pi_\\theta}(s_0,a_0)\n\\Big]\n\\,da_0\\,ds_0\n\\end{aligned}\n\\]\nApplying the product rule,\n\\[\n\\begin{aligned}\n\\nabla_\\theta J(\\theta)\n={}&\n\\int_{\\mathcal{S}}p_0(s_0)\n\\int_{\\mathcal{A}}\n\\nabla_\\theta\\pi_\\theta(a_0\\mid s_0)\nQ^{\\pi_\\theta}(s_0,a_0)\n\\,da_0\\,ds_0\\\\\n&+\n\\int_{\\mathcal{S}}p_0(s_0)\n\\int_{\\mathcal{A}}\n\\pi_\\theta(a_0\\mid s_0)\n\\nabla_\\theta Q^{\\pi_\\theta}(s_0,a_0)\n\\,da_0\\,ds_0\n\\end{aligned}\n\\]\nThe first term represents the direct effect of changing the action probabilities.\nThe second term represents the effect of changing the policy on future returns."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-3.-expand-the-action-value-function",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-3.-expand-the-action-value-function",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "Step 3. Expand the action-value function",
+    "text": "Step 3. Expand the action-value function\nThe Bellman equation for the action-value function is\n\\[\nQ^{\\pi_\\theta}(s,a)\n=\nR(s,a)\n+\n\\gamma\n\\int_{\\mathcal{S}}\nP(s'\\mid s,a)\nV^{\\pi_\\theta}(s')\n\\,ds'\n\\]\nDifferentiating with respect to \\(\\theta\\) gives\n\\[\n\\begin{aligned}\n\\nabla_\\theta Q^{\\pi_\\theta}(s,a)\n={}&\n\\nabla_\\theta R(s,a)\\\\\n&+\n\\gamma\\int_{\\mathcal{S}}\nP(s'\\mid s,a)\n\\nabla_\\theta V^{\\pi_\\theta}(s')\n\\,ds'\n\\end{aligned}\n\\]\nSince the immediate reward function is assumed to be independent of \\(\\theta\\),\n\\[\n\\nabla_\\theta R(s,a)=0\n\\]\nTherefore,\n\\[\n\\boxed{\n\\nabla_\\theta Q^{\\pi_\\theta}(s,a)\n=\n\\gamma\n\\int_{\\mathcal{S}}\nP(s'\\mid s,a)\n\\nabla_\\theta V^{\\pi_\\theta}(s')\n\\,ds'\n}\n\\]\nThis shows that the gradient of the action-value function depends on the gradients of future state values."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-4.-substitute-into-the-value-function-gradient",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-4.-substitute-into-the-value-function-gradient",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "Step 4. Substitute into the value-function gradient",
+    "text": "Step 4. Substitute into the value-function gradient\nRecall that\n\\[\nV^{\\pi_\\theta}(s)\n=\n\\int_{\\mathcal{A}}\n\\pi_\\theta(a\\mid s)\nQ^{\\pi_\\theta}(s,a)\n\\,da\n\\]\nDifferentiating and using the previous result,\n\\[\n\\begin{aligned}\n\\nabla_\\theta V^{\\pi_\\theta}(s)\n={}&\n\\int_{\\mathcal{A}}\n\\nabla_\\theta\\pi_\\theta(a\\mid s)\nQ^{\\pi_\\theta}(s,a)\\,da\\\\\n&+\n\\gamma\n\\int_{\\mathcal{A}}\n\\pi_\\theta(a\\mid s)\n\\int_{\\mathcal{S}}\nP(s'\\mid s,a)\n\\nabla_\\theta V^{\\pi_\\theta}(s')\n\\,ds'\\,da\n\\end{aligned}\n\\]\nDefine\n\\[\ng_\\theta(s)\n=\n\\int_{\\mathcal{A}}\n\\nabla_\\theta\\pi_\\theta(a\\mid s)\nQ^{\\pi_\\theta}(s,a)\\,da\n\\]\nand the policy-induced transition kernel\n\\[\nP_{\\pi_\\theta}(s'\\mid s)\n=\n\\int_{\\mathcal{A}}\n\\pi_\\theta(a\\mid s)\nP(s'\\mid s,a)\\,da\n\\]\nThen the gradient becomes\n\\[\n\\boxed{\n\\begin{aligned}\n\\nabla_\\theta V^{\\pi_\\theta}(s)\n={}&\ng_\\theta(s)\\\\\n&+\n\\gamma\\int_{\\mathcal{S}}\nP_{\\pi_\\theta}(s'\\mid s)\n\\nabla_\\theta V^{\\pi_\\theta}(s')\n\\,ds'\n\\end{aligned}\n}\n\\]\nThis is a recursive expression because the gradient of the current state’s value depends on the gradients of future states’ values."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-5.-expand-the-recursion",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-5.-expand-the-recursion",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "Step 5. Expand the recursion",
+    "text": "Step 5. Expand the recursion\nSubstituting the same recursive expression repeatedly gives\n\\[\n\\begin{aligned}\n\\nabla_\\theta V^{\\pi_\\theta}(s_0)\n={}&\ng_\\theta(s_0)\\\\\n&+\n\\gamma\n\\int_{\\mathcal{S}}\nP_{\\pi_\\theta}(s_1\\mid s_0)\ng_\\theta(s_1)\\,ds_1\\\\\n&+\n\\gamma^2\n\\int_{\\mathcal{S}}\np_{\\pi_\\theta}^{(2)}(s_2\\mid s_0)\ng_\\theta(s_2)\\,ds_2\\\\\n&+\\cdots\n\\end{aligned}\n\\]\nHere,\n\\[\np_{\\pi_\\theta}^{(2)}(s_2\\mid s_0)\n=\n\\int_{\\mathcal{S}}\nP_{\\pi_\\theta}(s_1\\mid s_0)\nP_{\\pi_\\theta}(s_2\\mid s_1)\\,ds_1\n\\]\nrepresents the two-step transition probability density under policy \\(\\pi_\\theta\\).\nIn general, the recursive expansion becomes\n\\[\n\\boxed{\n\\begin{aligned}\n\\nabla_\\theta V^{\\pi_\\theta}(s_0)\n=\n\\sum_{t=0}^{\\infty}\n\\gamma^t\n\\int_{\\mathcal{S}}\n&p_{\\pi_\\theta}^{(t)}(s\\mid s_0)\\\\\n&\\times g_\\theta(s)\\,ds\n\\end{aligned}\n}\n\\]\nThis means that the gradient at the initial state can be expressed as the discounted sum of local policy gradients over all future states."
+  },
+  {
+    "objectID": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-6.-substitute-into-the-objective-gradient",
+    "href": "posts/Research/reinforcementLearning-review/model-policy-gradient.html#step-6.-substitute-into-the-objective-gradient",
+    "title": "Fundamental Concepts of Reinforcement Learning",
+    "section": "Step 6. Substitute into the objective gradient",
+    "text": "Step 6. Substitute into the objective gradient\nRecall that\n\\[\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)\n\\nabla_\\theta V^{\\pi_\\theta}(s_0)\n\\,ds_0\n\\]\nSubstituting the recursive expansion,\n\\[\n\\begin{aligned}\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)\n\\sum_{t=0}^{\\infty}\n\\gamma^t\n\\int_{\\mathcal{S}}\n&p_{\\pi_\\theta}^{(t)}(s\\mid s_0)\\\\\n&\\times g_\\theta(s)\n\\,ds\\,ds_0\n\\end{aligned}\n\\]\nRearranging the integrals and summation gives\n\\[\n\\begin{aligned}\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}\n\\Bigg[\n\\int_{\\mathcal{S}}\np_0(s_0)\n\\sum_{t=0}^{\\infty}\n\\gamma^t\np_{\\pi_\\theta}^{(t)}(s\\mid s_0)\n\\,ds_0\n\\Bigg]\ng_\\theta(s)\\,ds\n\\end{aligned}\n\\]\nFrom the definition of the discounted state-visitation measure,\n\\[\n\\rho^{\\pi_\\theta}(s)\n=\n\\int_{\\mathcal{S}}\np_0(s_0)\n\\sum_{t=0}^{\\infty}\n\\gamma^t\np_{\\pi_\\theta}^{(t)}(s\\mid s_0)\n\\,ds_0\n\\]\nwe obtain\n\\[\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}\n\\rho^{\\pi_\\theta}(s)\ng_\\theta(s)\\,ds\n\\]\nFinally, substituting the definition of \\(g_\\theta(s)\\),\n\\[\n\\boxed{\n\\begin{aligned}\n\\nabla_\\theta J(\\theta)\n=\n\\int_{\\mathcal{S}}\n\\rho^{\\pi_\\theta}(s)\n\\int_{\\mathcal{A}}\n&\\nabla_\\theta\\pi_\\theta(a\\mid s)\\\\\n&\\times Q^{\\pi_\\theta}(s,a)\n\\,da\\,ds\n\\end{aligned}\n}\n\\]\nThis is the Policy Gradient Theorem.\nQ.E.D."
   },
   {
     "objectID": "real-analysis.html",
