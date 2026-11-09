@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="An introduction to useful theorems and their provings.">
+<meta name="description" content="An introduction to useful theorems and their proofs.">
 
 <title>Classes and Sets 2 - The algebra of classes – Yang’s study diary</title>
 <style>
@@ -249,7 +249,7 @@ window.Quarto = {
 
 <div>
   <div class="description">
-    An introduction to useful theorems and their provings.
+    An introduction to useful theorems and their proofs.
   </div>
 </div>
 
@@ -287,12 +287,20 @@ window.Quarto = {
 </ul>
 <p>For proving, we need the relationships from the previous post: negation, conjunction, disjunction, and implication, along with their theorems. In particular, we use 1.5(i), 1.5(i)‘, 1.5(ii), and 1.5(ii)’.</p>
 <p>By Definition 1.13, <span class="math inline">\(x\in A\cup B\)</span> if and only if <span class="math inline">\(x\in A\lor x\in B\)</span>. By Definition 1.14, <span class="math inline">\(x\in A\cap B\)</span> if and only if <span class="math inline">\(x\in A\land x\in B\)</span>.</p>
+<p><strong>References used in Theorem 1.20:</strong></p>
+<ul>
+<li><strong>1.5(i), 1.5(i)’ (Disjunction introduction):</strong> <span class="math inline">\(P\Rightarrow P\lor Q\)</span>; <span class="math inline">\(Q\Rightarrow P\lor Q\)</span>.</li>
+<li><strong>1.5(ii), 1.5(ii)’ (Conjunction elimination):</strong> <span class="math inline">\(P\land Q\Rightarrow P\)</span>; <span class="math inline">\(P\land Q\Rightarrow Q\)</span>.</li>
+<li><strong>1.10 (Definition of subclass):</strong> <span class="math inline">\(A\subseteq B\iff\forall x\,(x\in A\Rightarrow x\in B)\)</span>.</li>
+<li><strong>1.13 (Definition of union):</strong> <span class="math inline">\(x\in A\cup B\iff (x\in A)\lor(x\in B)\)</span>.</li>
+<li><strong>1.14 (Definition of intersection):</strong> <span class="math inline">\(x\in A\cap B\iff (x\in A)\land(x\in B)\)</span>.</li>
+</ul>
 <p><strong>Proof (i).</strong> To prove the first statement, we need to show that every element of <span class="math inline">\(A\)</span> is also an element of <span class="math inline">\(A \cup B\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
 x \in A
-&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.5(i)}\\
-&amp;\Rightarrow x \in A \cup B &amp;&amp;\text{by 1.13}.
+&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.5(i) (disjunction introduction)}\\
+&amp;\Rightarrow x \in A \cup B &amp;&amp;\text{by 1.13 (union definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A \subseteq A \cup B\)</span> by Definition 1.10.</p>
@@ -300,8 +308,8 @@ x \in A
 <p><span class="math display">\[
 \begin{aligned}
 x \in B
-&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.5(i)'}\\
-&amp;\Rightarrow x \in A \cup B &amp;&amp;\text{by 1.13}.
+&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.5(i)' (disjunction introduction)}\\
+&amp;\Rightarrow x \in A \cup B &amp;&amp;\text{by 1.13 (union definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(B \subseteq A \cup B\)</span> by 1.10.</p>
@@ -309,8 +317,8 @@ x \in B
 <p><span class="math display">\[
 \begin{aligned}
 x \in A \cap B
-&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{by 1.14}\\
-&amp;\Rightarrow x \in A &amp;&amp;\text{by 1.5(ii)}.
+&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Rightarrow x \in A &amp;&amp;\text{by 1.5(ii) (conjunction elimination)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A \cap B \subseteq A\)</span> by 1.10.</p>
@@ -318,8 +326,8 @@ x \in A \cap B
 <p><span class="math display">\[
 \begin{aligned}
 x \in B \cap A
-&amp;\Rightarrow x \in B \land x \in A &amp;&amp;\text{by 1.14}\\
-&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.5(ii)}.
+&amp;\Rightarrow x \in B \land x \in A &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.5(ii) (conjunction elimination)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(B \cap A \subseteq B\)</span> by 1.10.</p>
@@ -337,13 +345,23 @@ x \in B \cap A
 <li><span class="math inline">\(A \subseteq B\)</span> if and only if <span class="math inline">\(A \cap B = A\)</span>.</li>
 </ol></li>
 </ul>
+<p><strong>References used in Theorem 1.21:</strong></p>
+<ul>
+<li><strong>1.10 (Subclass):</strong> <span class="math inline">\(A\subseteq B\)</span> means <span class="math inline">\(x\in A\Rightarrow x\in B\)</span> for every <span class="math inline">\(x\)</span>.</li>
+<li><strong>1.11(iv) (Equality by mutual inclusion):</strong> <span class="math inline">\(X\subseteq Y\)</span> and <span class="math inline">\(Y\subseteq X\)</span> imply <span class="math inline">\(X=Y\)</span>.</li>
+<li><strong>1.20(i) (Union inclusion):</strong> <span class="math inline">\(X\subseteq X\cup Y\)</span> and <span class="math inline">\(Y\subseteq X\cup Y\)</span>.</li>
+<li><strong>1.20(ii) (Intersection inclusion):</strong> <span class="math inline">\(X\cap Y\subseteq X\)</span>.</li>
+<li><strong>Axiom A1 (Equality of classes):</strong> <span class="math inline">\(X=Y\iff\forall x\,[x\in X\Leftrightarrow x\in Y]\)</span>.</li>
+<li><strong>1.7(i) (Disjunction under implication):</strong> If <span class="math inline">\(Q\Rightarrow R\)</span>, then <span class="math inline">\(P\lor Q\Rightarrow P\lor R\)</span>.</li>
+<li><strong>1.8(iv) (Logical idempotence):</strong> <span class="math inline">\(P\lor P\Leftrightarrow P\)</span>.</li>
+</ul>
 <p><strong>Proof (i).</strong> First, suppose <span class="math inline">\(A \subseteq B\)</span>. We need to show <span class="math inline">\(A \cup B = B\)</span>.</p>
 <p><span class="math display">\[
 \begin{aligned}
 x \in A \cup B
-&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.13}\\
-&amp;\Rightarrow x \in B \lor x \in B &amp;&amp;\text{since } A \subseteq B\\
-&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.8(iv)}.
+&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Rightarrow x \in B \lor x \in B &amp;&amp;\text{by 1.10 (subset condition)}\\
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.8(iv) (idempotence of OR)}.
 \end{aligned}
 \]</span></p>
 <p>Thus, <span class="math inline">\(A \cup B \subseteq B\)</span> by 1.10. Also, <span class="math inline">\(B \subseteq A \cup B\)</span> by 1.20(i). Therefore, <span class="math inline">\(A \cup B = B\)</span> by 1.11(iv).</p>
@@ -357,9 +375,9 @@ A \subseteq B \iff A \cup B = B.
 <p><span class="math display">\[
 \begin{aligned}
 x \in A
-&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.10}\\
-&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{since }x \in A\\
-&amp;\Rightarrow x \in A \cap B &amp;&amp;\text{by 1.14}.
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.10 (subset definition)}\\
+&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{with the assumed } x \in A\\
+&amp;\Rightarrow x \in A \cap B &amp;&amp;\text{by 1.14 (intersection definition)}.
 \end{aligned}
 \]</span></p>
 <p>Thus, <span class="math inline">\(A \subseteq A \cap B\)</span> by 1.10. Consequently, <span class="math inline">\(A \cap B = A\)</span> by 1.11(iv).</p>
@@ -367,9 +385,9 @@ x \in A
 <p><span class="math display">\[
 \begin{aligned}
 x \in A
-&amp;\Rightarrow x \in A \cap B &amp;&amp;\text{by Axiom A1}\\
-&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{by 1.14}\\
-&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.5(ii)'}.
+&amp;\Rightarrow x \in A \cap B &amp;&amp;\text{by Axiom A1 (class equality)}\\
+&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.5(ii)' (conjunction elimination)}.
 \end{aligned}
 \]</span></p>
 <p>Thus, <span class="math inline">\(A \subseteq B\)</span> by 1.10, and therefore</p>
@@ -390,6 +408,13 @@ A \subseteq B \iff A \cap B = A.
 </ol></li>
 </ul>
 <p>These can be proved with the theorems we have just covered.</p>
+<p><strong>References used in Theorem 1.22:</strong></p>
+<ul>
+<li><strong>1.20(ii):</strong> <span class="math inline">\(A\cap B\subseteq A\)</span>.</li>
+<li><strong>1.21(i):</strong> <span class="math inline">\(X\subseteq Y\iff X\cup Y=Y\)</span>.</li>
+<li><strong>1.20(i):</strong> <span class="math inline">\(A\subseteq A\cup B\)</span>.</li>
+<li><strong>1.21(ii):</strong> <span class="math inline">\(X\subseteq Y\iff X\cap Y=X\)</span>.</li>
+</ul>
 <p><strong>Proof (i).</strong> By 1.20(ii), <span class="math inline">\(A \cap B \subseteq A\)</span>; therefore, by 1.21(i),</p>
 <p><span class="math display">\[
 A \cup (A \cap B)=A.
@@ -406,20 +431,26 @@ A \cap (A \cup B)=A.
 <p><span class="math display">\[
 (A')'=A.
 \]</span></p>
+<p><strong>References used in Theorem 1.23:</strong></p>
+<ul>
+<li><strong>1.19 (Definition of complement):</strong> <span class="math inline">\(x\in A'\iff x\notin A\)</span>.</li>
+<li><strong>1.11(iv):</strong> <span class="math inline">\(X\subseteq Y\)</span> and <span class="math inline">\(Y\subseteq X\)</span> imply <span class="math inline">\(X=Y\)</span>.</li>
+<li><strong>Axiom A1:</strong> Two classes are equal if and only if they have the same elements.</li>
+</ul>
 <p><strong>Proof.</strong> By Definition 1.19,</p>
 <p><span class="math display">\[
 \begin{aligned}
 x \in (A')'
-&amp;\Rightarrow x \notin A' &amp;&amp;\text{by 1.19}\\
-&amp;\Rightarrow x \in A &amp;&amp;\text{by 1.19}.
+&amp;\Rightarrow x \notin A' &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Rightarrow x \in A &amp;&amp;\text{by 1.19 (complement definition)}.
 \end{aligned}
 \]</span></p>
 <p>Conversely,</p>
 <p><span class="math display">\[
 \begin{aligned}
 x \in A
-&amp;\Rightarrow x \notin A' &amp;&amp;\text{by 1.19}\\
-&amp;\Rightarrow x \in (A')' &amp;&amp;\text{by 1.19}.
+&amp;\Rightarrow x \notin A' &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Rightarrow x \in (A')' &amp;&amp;\text{by 1.19 (complement definition)}.
 \end{aligned}
 \]</span></p>
 <p>Thus, <span class="math inline">\((A')' \subseteq A\)</span> and <span class="math inline">\(A \subseteq (A')'\)</span>. Therefore, <span class="math inline">\((A')'=A\)</span> by 1.11(iv) (or Axiom A1).</p>
@@ -436,24 +467,33 @@ x \in A
 <li><span class="math inline">\((A \cap B)'=A'\cup B'\)</span>.</li>
 </ol></li>
 </ul>
+<p><strong>References used in Theorem 1.24:</strong></p>
+<ul>
+<li><strong>1.19 (Complement):</strong> <span class="math inline">\(x\in X'\iff x\notin X\)</span>.</li>
+<li><strong>1.13 (Union):</strong> <span class="math inline">\(x\in X\cup Y\iff (x\in X)\lor(x\in Y)\)</span>.</li>
+<li><strong>1.14 (Intersection):</strong> <span class="math inline">\(x\in X\cap Y\iff (x\in X)\land(x\in Y)\)</span>.</li>
+<li><strong>Exercise 1.1, Question 2(a) (Logical De Morgan):</strong> <span class="math inline">\(\neg(P\lor Q)\Leftrightarrow(\neg P\land\neg Q)\)</span>.</li>
+<li><strong>Exercise 1.1, Question 2(b) (Logical De Morgan):</strong> <span class="math inline">\(\neg(P\land Q)\Leftrightarrow(\neg P\lor\neg Q)\)</span>.</li>
+<li><strong>Axiom A1 (Equality):</strong> <span class="math inline">\(X=Y\)</span> if and only if <span class="math inline">\(x\in X\Leftrightarrow x\in Y\)</span> for all <span class="math inline">\(x\)</span>.</li>
+</ul>
 <p><strong>Proof (i).</strong> First, by 1.19, the definition of union (1.13), and the logical De Morgan’s law (Exercise 1.1, Question 2(a)),</p>
 <p><span class="math display">\[
 \begin{aligned}
 x \in (A \cup B)'
-&amp;\Rightarrow x \notin A \cup B &amp;&amp;\text{by 1.19}\\
-&amp;\Rightarrow x \notin A \land x \notin B &amp;&amp;\text{by 1.13 and logical De Morgan's law}\\
-&amp;\Rightarrow x \in A' \land x \in B' &amp;&amp;\text{by 1.19}\\
-&amp;\Rightarrow x \in A'\cap B' &amp;&amp;\text{by 1.14}.
+&amp;\Rightarrow x \notin A \cup B &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Rightarrow x \notin A \land x \notin B &amp;&amp;\text{by 1.13 (union) and Ex. 1.1(2a) (De Morgan)}\\
+&amp;\Rightarrow x \in A' \land x \in B' &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Rightarrow x \in A'\cap B' &amp;&amp;\text{by 1.14 (intersection definition)}.
 \end{aligned}
 \]</span></p>
 <p>Conversely,</p>
 <p><span class="math display">\[
 \begin{aligned}
 x \in A'\cap B'
-&amp;\Rightarrow x \in A' \land x \in B' &amp;&amp;\text{by 1.14}\\
-&amp;\Rightarrow x \notin A \land x \notin B &amp;&amp;\text{by 1.19}\\
-&amp;\Rightarrow x \notin A \cup B &amp;&amp;\text{by 1.13 and logical De Morgan's law}\\
-&amp;\Rightarrow x \in (A\cup B)' &amp;&amp;\text{by 1.19}.
+&amp;\Rightarrow x \in A' \land x \in B' &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Rightarrow x \notin A \land x \notin B &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Rightarrow x \notin A \cup B &amp;&amp;\text{by 1.13 (union) and Ex. 1.1(2a) (De Morgan)}\\
+&amp;\Rightarrow x \in (A\cup B)' &amp;&amp;\text{by 1.19 (complement definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\((A \cup B)'=A'\cap B'\)</span> by Axiom A1.</p>
@@ -461,11 +501,11 @@ x \in A'\cap B'
 <p><span class="math display">\[
 \begin{aligned}
 x \in (A\cap B)'
-&amp;\Leftrightarrow x \notin A\cap B &amp;&amp;\text{by 1.19}\\
-&amp;\Leftrightarrow \neg[(x\in A)\land(x\in B)] &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow x\notin A\lor x\notin B &amp;&amp;\text{by logical De Morgan's law}\\
-&amp;\Leftrightarrow x\in A'\lor x\in B' &amp;&amp;\text{by 1.19}\\
-&amp;\Leftrightarrow x\in A'\cup B' &amp;&amp;\text{by 1.13}.
+&amp;\Leftrightarrow x \notin A\cap B &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Leftrightarrow \neg[(x\in A)\land(x\in B)] &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow x\notin A\lor x\notin B &amp;&amp;\text{by Ex. 1.1(2b) (logical De Morgan)}\\
+&amp;\Leftrightarrow x\in A'\lor x\in B' &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Leftrightarrow x\in A'\cup B' &amp;&amp;\text{by 1.13 (union definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\((A \cap B)'=A'\cup B'\)</span> by Axiom A1.</p>
@@ -510,13 +550,23 @@ x \in (A\cap B)'
 <li><span class="math inline">\(A\cup(B\cap C)=(A\cup B)\cap(A\cup C)\)</span>.</li>
 </ol></li>
 </ul>
+<p><strong>References used in Theorem 1.25:</strong></p>
+<ul>
+<li><strong>1.13 (Union):</strong> <span class="math inline">\(x\in X\cup Y\iff (x\in X)\lor(x\in Y)\)</span>.</li>
+<li><strong>1.14 (Intersection):</strong> <span class="math inline">\(x\in X\cap Y\iff (x\in X)\land(x\in Y)\)</span>.</li>
+<li><strong>1.8(i), (i)’ (Commutativity):</strong> <span class="math inline">\(P\lor Q\Leftrightarrow Q\lor P\)</span>; <span class="math inline">\(P\land Q\Leftrightarrow Q\land P\)</span>.</li>
+<li><strong>1.8(ii), (ii)’ (Associativity):</strong> <span class="math inline">\(P\lor(Q\lor R)\Leftrightarrow(P\lor Q)\lor R\)</span>; <span class="math inline">\(P\land(Q\land R)\Leftrightarrow(P\land Q)\land R\)</span>.</li>
+<li><strong>1.8(iii), (iii)’ (Distributivity):</strong> <span class="math inline">\(P\land(Q\lor R)\Leftrightarrow(P\land Q)\lor(P\land R)\)</span>; <span class="math inline">\(P\lor(Q\land R)\Leftrightarrow(P\lor Q)\land(P\lor R)\)</span>.</li>
+<li><strong>1.8(iv), (iv)’ (Idempotence):</strong> <span class="math inline">\(P\lor P\Leftrightarrow P\)</span>; <span class="math inline">\(P\land P\Leftrightarrow P\)</span>.</li>
+<li><strong>Axiom A1 (Equality):</strong> <span class="math inline">\(X=Y\)</span> if and only if both classes have exactly the same elements.</li>
+</ul>
 <p><strong>Proof (i).</strong> By the definition of union and the commutative law of disjunction,</p>
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cup B
-&amp;\Leftrightarrow x\in A\lor x\in B &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow x\in B\lor x\in A &amp;&amp;\text{by 1.8(i)}\\
-&amp;\Leftrightarrow x\in B\cup A &amp;&amp;\text{by 1.13}.
+&amp;\Leftrightarrow x\in A\lor x\in B &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow x\in B\lor x\in A &amp;&amp;\text{by 1.8(i) (commutativity of OR)}\\
+&amp;\Leftrightarrow x\in B\cup A &amp;&amp;\text{by 1.13 (union definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cup B=B\cup A\)</span> by Axiom A1.</p>
@@ -524,9 +574,9 @@ x\in A\cup B
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cap B
-&amp;\Leftrightarrow x\in A\land x\in B &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow x\in B\land x\in A &amp;&amp;\text{by 1.8(i)'}\\
-&amp;\Leftrightarrow x\in B\cap A &amp;&amp;\text{by 1.14}.
+&amp;\Leftrightarrow x\in A\land x\in B &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow x\in B\land x\in A &amp;&amp;\text{by 1.8(i)' (commutativity of AND)}\\
+&amp;\Leftrightarrow x\in B\cap A &amp;&amp;\text{by 1.14 (intersection definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cap B=B\cap A\)</span> by Axiom A1.</p>
@@ -534,8 +584,8 @@ x\in A\cap B
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cup A
-&amp;\Leftrightarrow x\in A\lor x\in A &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow x\in A &amp;&amp;\text{by 1.8(iv)}.
+&amp;\Leftrightarrow x\in A\lor x\in A &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow x\in A &amp;&amp;\text{by 1.8(iv) (idempotence of OR)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cup A=A\)</span> by Axiom A1.</p>
@@ -543,8 +593,8 @@ x\in A\cup A
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cap A
-&amp;\Leftrightarrow x\in A\land x\in A &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow x\in A &amp;&amp;\text{by 1.8(iv)'}.
+&amp;\Leftrightarrow x\in A\land x\in A &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow x\in A &amp;&amp;\text{by 1.8(iv)' (idempotence of AND)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cap A=A\)</span> by Axiom A1.</p>
@@ -552,11 +602,11 @@ x\in A\cap A
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cup(B\cup C)
-&amp;\Leftrightarrow x\in A\lor x\in B\cup C &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow (x\in A)\lor[(x\in B)\lor(x\in C)] &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow [(x\in A)\lor(x\in B)]\lor(x\in C) &amp;&amp;\text{by 1.8(ii)}\\
-&amp;\Leftrightarrow x\in A\cup B\lor x\in C &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow x\in(A\cup B)\cup C &amp;&amp;\text{by 1.13}.
+&amp;\Leftrightarrow x\in A\lor x\in B\cup C &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow (x\in A)\lor[(x\in B)\lor(x\in C)] &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow [(x\in A)\lor(x\in B)]\lor(x\in C) &amp;&amp;\text{by 1.8(ii) (associativity of OR)}\\
+&amp;\Leftrightarrow x\in A\cup B\lor x\in C &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow x\in(A\cup B)\cup C &amp;&amp;\text{by 1.13 (union definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cup(B\cup C)=(A\cup B)\cup C\)</span> by Axiom A1.</p>
@@ -564,11 +614,11 @@ x\in A\cup(B\cup C)
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cap(B\cap C)
-&amp;\Leftrightarrow (x\in A)\land[x\in B\cap C] &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow (x\in A)\land[(x\in B)\land(x\in C)] &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow [(x\in A)\land(x\in B)]\land(x\in C) &amp;&amp;\text{by 1.8(ii)'}\\
-&amp;\Leftrightarrow [x\in A\cap B]\land(x\in C) &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow x\in(A\cap B)\cap C &amp;&amp;\text{by 1.14}.
+&amp;\Leftrightarrow (x\in A)\land[x\in B\cap C] &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow (x\in A)\land[(x\in B)\land(x\in C)] &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow [(x\in A)\land(x\in B)]\land(x\in C) &amp;&amp;\text{by 1.8(ii)' (associativity of AND)}\\
+&amp;\Leftrightarrow [x\in A\cap B]\land(x\in C) &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow x\in(A\cap B)\cap C &amp;&amp;\text{by 1.14 (intersection definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cap(B\cap C)=(A\cap B)\cap C\)</span> by Axiom A1.</p>
@@ -576,11 +626,11 @@ x\in A\cap(B\cap C)
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cap(B\cup C)
-&amp;\Leftrightarrow (x\in A)\land[x\in B\cup C] &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow (x\in A)\land[(x\in B)\lor(x\in C)] &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow [(x\in A)\land(x\in B)]\lor[(x\in A)\land(x\in C)] &amp;&amp;\text{by 1.8(iii)}\\
-&amp;\Leftrightarrow [x\in A\cap B]\lor[x\in A\cap C] &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow x\in(A\cap B)\cup(A\cap C) &amp;&amp;\text{by 1.13}.
+&amp;\Leftrightarrow (x\in A)\land[x\in B\cup C] &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow (x\in A)\land[(x\in B)\lor(x\in C)] &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow [(x\in A)\land(x\in B)]\lor[(x\in A)\land(x\in C)] &amp;&amp;\text{by 1.8(iii) (AND distributes over OR)}\\
+&amp;\Leftrightarrow [x\in A\cap B]\lor[x\in A\cap C] &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow x\in(A\cap B)\cup(A\cap C) &amp;&amp;\text{by 1.13 (union definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\)</span> by Axiom A1.</p>
@@ -588,11 +638,11 @@ x\in A\cap(B\cup C)
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cup(B\cap C)
-&amp;\Leftrightarrow (x\in A)\lor[x\in B\cap C] &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow (x\in A)\lor[(x\in B)\land(x\in C)] &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow [(x\in A)\lor(x\in B)]\land[(x\in A)\lor(x\in C)] &amp;&amp;\text{by 1.8(iii)'}\\
-&amp;\Leftrightarrow [x\in A\cup B]\land[x\in A\cup C] &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow x\in(A\cup B)\cap(A\cup C) &amp;&amp;\text{by 1.14}.
+&amp;\Leftrightarrow (x\in A)\lor[x\in B\cap C] &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow (x\in A)\lor[(x\in B)\land(x\in C)] &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow [(x\in A)\lor(x\in B)]\land[(x\in A)\lor(x\in C)] &amp;&amp;\text{by 1.8(iii)' (OR distributes over AND)}\\
+&amp;\Leftrightarrow [x\in A\cup B]\land[x\in A\cup C] &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow x\in(A\cup B)\cap(A\cup C) &amp;&amp;\text{by 1.14 (intersection definition)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cup(B\cap C)=(A\cup B)\cap(A\cup C)\)</span> by Axiom A1.</p>
@@ -627,6 +677,17 @@ x\in A\cup(B\cap C)
 <li><span class="math inline">\(A\cap A'=\varnothing\)</span>.</li>
 </ol></li>
 </ul>
+<p><strong>References used in Theorem 1.26:</strong></p>
+<ul>
+<li><strong>1.15 (Universal class):</strong> <span class="math inline">\(\mathcal U=\{x:x=x\}\)</span>; every element belongs to <span class="math inline">\(\mathcal U\)</span>.</li>
+<li><strong>1.16 (Empty class):</strong> <span class="math inline">\(\varnothing\)</span> has no elements.</li>
+<li><strong>1.17(i), (ii):</strong> <span class="math inline">\(\varnothing\subseteq A\)</span>; <span class="math inline">\(A\subseteq\mathcal U\)</span>.</li>
+<li><strong>1.19 (Complement):</strong> <span class="math inline">\(x\in A'\iff x\notin A\)</span>.</li>
+<li><strong>1.21(i), (ii):</strong> <span class="math inline">\(X\subseteq Y\iff X\cup Y=Y\)</span>; <span class="math inline">\(X\subseteq Y\iff X\cap Y=X\)</span>.</li>
+<li><strong>1.25(i), (ii) (Commutativity):</strong> <span class="math inline">\(X\cup Y=Y\cup X\)</span>; <span class="math inline">\(X\cap Y=Y\cap X\)</span>.</li>
+<li><strong>Axiom A1 (Equality):</strong> <span class="math inline">\(X=Y\)</span> if and only if they have the same elements.</li>
+<li><strong>Excluded middle / noncontradiction:</strong> <span class="math inline">\(P\lor\neg P\)</span> is true; <span class="math inline">\(P\land\neg P\)</span> is false.</li>
+</ul>
 <p><strong>Proof (i).</strong> By 1.17(i), <span class="math inline">\(\varnothing\subseteq A\)</span>. Thus, by 1.21(i), <span class="math inline">\(\varnothing\cup A=A\)</span>. Therefore, by the commutative law 1.25(i),</p>
 <p><span class="math display">\[
 A\cup\varnothing=A.
@@ -647,9 +708,9 @@ A\cap\mathcal U=A.
 <p><span class="math display">\[
 \begin{aligned}
 x\in\mathcal U'
-&amp;\Leftrightarrow x\notin\mathcal U &amp;&amp;\text{by 1.19}\\
-&amp;\Leftrightarrow \text{false} &amp;&amp;\text{by 1.15}\\
-&amp;\Leftrightarrow x\in\varnothing &amp;&amp;\text{by 1.16}.
+&amp;\Leftrightarrow x\notin\mathcal U &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Leftrightarrow \text{false} &amp;&amp;\text{by 1.15 (universal class)}\\
+&amp;\Leftrightarrow x\in\varnothing &amp;&amp;\text{by 1.16 (empty class)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(\mathcal U'=\varnothing\)</span> by Axiom A1.</p>
@@ -657,9 +718,9 @@ x\in\mathcal U'
 <p><span class="math display">\[
 \begin{aligned}
 x\in\varnothing'
-&amp;\Leftrightarrow x\notin\varnothing &amp;&amp;\text{by 1.19}\\
-&amp;\Leftrightarrow \text{true} &amp;&amp;\text{by 1.16}\\
-&amp;\Leftrightarrow x\in\mathcal U &amp;&amp;\text{by 1.15}.
+&amp;\Leftrightarrow x\notin\varnothing &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Leftrightarrow \text{true} &amp;&amp;\text{by 1.16 (empty class)}\\
+&amp;\Leftrightarrow x\in\mathcal U &amp;&amp;\text{by 1.15 (universal class)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(\varnothing'=\mathcal U\)</span> by Axiom A1.</p>
@@ -667,10 +728,10 @@ x\in\varnothing'
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cup A'
-&amp;\Leftrightarrow (x\in A)\lor(x\in A') &amp;&amp;\text{by 1.13}\\
-&amp;\Leftrightarrow (x\in A)\lor(x\notin A) &amp;&amp;\text{by 1.19}\\
-&amp;\Leftrightarrow \text{true} &amp;&amp;\text{by the law of excluded middle}\\
-&amp;\Leftrightarrow x\in\mathcal U &amp;&amp;\text{by 1.15}.
+&amp;\Leftrightarrow (x\in A)\lor(x\in A') &amp;&amp;\text{by 1.13 (union definition)}\\
+&amp;\Leftrightarrow (x\in A)\lor(x\notin A) &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Leftrightarrow \text{true} &amp;&amp;\text{by excluded middle (P or not P)}\\
+&amp;\Leftrightarrow x\in\mathcal U &amp;&amp;\text{by 1.15 (universal class)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cup A'=\mathcal U\)</span> by Axiom A1.</p>
@@ -678,10 +739,10 @@ x\in A\cup A'
 <p><span class="math display">\[
 \begin{aligned}
 x\in A\cap A'
-&amp;\Leftrightarrow (x\in A)\land(x\in A') &amp;&amp;\text{by 1.14}\\
-&amp;\Leftrightarrow (x\in A)\land(x\notin A) &amp;&amp;\text{by 1.19}\\
-&amp;\Leftrightarrow \text{false} &amp;&amp;\text{by the law of noncontradiction}\\
-&amp;\Leftrightarrow x\in\varnothing &amp;&amp;\text{by 1.16}.
+&amp;\Leftrightarrow (x\in A)\land(x\in A') &amp;&amp;\text{by 1.14 (intersection definition)}\\
+&amp;\Leftrightarrow (x\in A)\land(x\notin A) &amp;&amp;\text{by 1.19 (complement definition)}\\
+&amp;\Leftrightarrow \text{false} &amp;&amp;\text{by noncontradiction (not both P and not P)}\\
+&amp;\Leftrightarrow x\in\varnothing &amp;&amp;\text{by 1.16 (empty class)}.
 \end{aligned}
 \]</span></p>
 <p>Therefore, <span class="math inline">\(A\cap A'=\varnothing\)</span> by Axiom A1.</p>
