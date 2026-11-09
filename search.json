@@ -4,7 +4,7 @@
     "href": "set-theory.html",
     "title": "Set Theory",
     "section": "",
-    "text": "Self Studying Set Theory from 2026.10~\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n일치 없음",
+    "text": "Self Studying Set Theory from 2026.10~\n\n\n\n\n\n\n\n\n\n\n\n1.20 Theorem\n\n\n\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n일치 없음",
     "crumbs": [
       "Posts",
       "Math",
@@ -213,6 +213,167 @@
     "text": "2.6 Institutional Trading\nThe authors also investigated the relationship between institutional trading and intraday momentum.\nThey analyzed institutional holdings and institutional order imbalances.\nThe institutional order imbalance was measured as\n\\[\n\\boxed{\nOI_t\n=\n\\frac{BV_t-SV_t}{BV_t+SV_t}\n}\n\\]\nwhere:\n\n\\(BV_t\\): Institutional buy volume\n\\(SV_t\\): Institutional sell volume\n\nThis is a signed measure of institutional net buying relative to total institutional trading volume.\nA larger positive value indicates stronger net buying relative to selling.\nIt should not be confused with the absolute magnitude of the imbalance.\nThe authors found that the first half-hour return had relatively stable predictive ability across groups with different institutional holdings.\nIn contrast, the predictive ability of the twelfth half-hour return varied more substantially.\nThe results also showed stronger combined predictability on days with higher institutional order imbalance values.\nThe authors suggested that institutional trading near the market close may contribute to intraday momentum.\nHowever, the institutional trading data did not cover all institutions, so the results should be interpreted as supporting evidence rather than definitive proof of causation."
   },
   {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html",
+    "title": "Yang's study diary",
+    "section": "",
+    "text": "This post is about “The algebra of classes”.\nThis topic mainly covers theorems that will be useful for proving. Thus, the main contents will be theorems and their proofs."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem",
+    "title": "Yang's study diary",
+    "section": "1.20 Theorem",
+    "text": "1.20 Theorem\nIf \\(A\\) and \\(B\\) are any classes, then\n\n\n\\(A \\subseteq A \\cup B\\) and \\(B \\subseteq A \\cup B\\).\n\n\n\\(A \\cap B \\subseteq A\\) and \\(B \\cap A \\subseteq B\\).\n\n\nFor proving, we need the relationships from the previous post: negation, conjunction, disjunction, and implication, along with their theorems. In particular, we use 1.5(i), 1.5(i)‘, 1.5(ii), and 1.5(ii)’.\nBy Definition 1.13, \\(x\\in A\\cup B\\) if and only if \\(x\\in A\\lor x\\in B\\). By Definition 1.14, \\(x\\in A\\cap B\\) if and only if \\(x\\in A\\land x\\in B\\).\nProof (i). To prove the first statement, we need to show that every element of \\(A\\) is also an element of \\(A \\cup B\\):\n\\[\n\\begin{aligned}\nx \\in A\n&\\Rightarrow x \\in A \\lor x \\in B &&\\text{by 1.5(i)}\\\\\n&\\Rightarrow x \\in A \\cup B &&\\text{by 1.13}.\n\\end{aligned}\n\\]\nTherefore, \\(A \\subseteq A \\cup B\\) by Definition 1.10.\nSimilarly, for \\(B \\subseteq A \\cup B\\),\n\\[\n\\begin{aligned}\nx \\in B\n&\\Rightarrow x \\in A \\lor x \\in B &&\\text{by 1.5(i)'}\\\\\n&\\Rightarrow x \\in A \\cup B &&\\text{by 1.13}.\n\\end{aligned}\n\\]\nTherefore, \\(B \\subseteq A \\cup B\\) by 1.10.\nProof (ii). For the second statement, we need to show \\(x \\in A \\cap B \\Rightarrow x \\in A\\).\n\\[\n\\begin{aligned}\nx \\in A \\cap B\n&\\Rightarrow x \\in A \\land x \\in B &&\\text{by 1.14}\\\\\n&\\Rightarrow x \\in A &&\\text{by 1.5(ii)}.\n\\end{aligned}\n\\]\nTherefore, \\(A \\cap B \\subseteq A\\) by 1.10.\nSimilarly,\n\\[\n\\begin{aligned}\nx \\in B \\cap A\n&\\Rightarrow x \\in B \\land x \\in A &&\\text{by 1.14}\\\\\n&\\Rightarrow x \\in B &&\\text{by 1.5(ii)}.\n\\end{aligned}\n\\]\nTherefore, \\(B \\cap A \\subseteq B\\) by 1.10.\nNote: The book prints \\(B \\cap B \\subseteq B\\) in 1.20(ii). This is true, but \\(B \\cap A \\subseteq B\\) gives the symmetric statement corresponding to \\(A \\cap B \\subseteq A\\).\nNext, we have the following theorem."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-1",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-1",
+    "title": "Yang's study diary",
+    "section": "1.21 Theorem",
+    "text": "1.21 Theorem\nIf \\(A\\) and \\(B\\) are classes, then\n\n\n\\(A \\subseteq B\\) if and only if \\(A \\cup B = B\\).\n\n\n\\(A \\subseteq B\\) if and only if \\(A \\cap B = A\\).\n\n\nProof (i). First, suppose \\(A \\subseteq B\\). We need to show \\(A \\cup B = B\\).\n\\[\n\\begin{aligned}\nx \\in A \\cup B\n&\\Rightarrow x \\in A \\lor x \\in B &&\\text{by 1.13}\\\\\n&\\Rightarrow x \\in B \\lor x \\in B &&\\text{since } A \\subseteq B\\\\\n&\\Rightarrow x \\in B &&\\text{by 1.8(iv)}.\n\\end{aligned}\n\\]\nThus, \\(A \\cup B \\subseteq B\\) by 1.10. Also, \\(B \\subseteq A \\cup B\\) by 1.20(i). Therefore, \\(A \\cup B = B\\) by 1.11(iv).\nConversely, suppose \\(A \\cup B = B\\). By 1.20(i), \\(A \\subseteq A \\cup B\\). Hence \\(A \\subseteq B\\) by substitution (Axiom A1).\nTherefore,\n\\[\nA \\subseteq B \\iff A \\cup B = B.\n\\]\nProof (ii). First, suppose \\(A \\subseteq B\\). By 1.20(ii), \\(A \\cap B \\subseteq A\\).\nFor the other inclusion,\n\\[\n\\begin{aligned}\nx \\in A\n&\\Rightarrow x \\in B &&\\text{by 1.10}\\\\\n&\\Rightarrow x \\in A \\land x \\in B &&\\text{since }x \\in A\\\\\n&\\Rightarrow x \\in A \\cap B &&\\text{by 1.14}.\n\\end{aligned}\n\\]\nThus, \\(A \\subseteq A \\cap B\\) by 1.10. Consequently, \\(A \\cap B = A\\) by 1.11(iv).\nConversely, suppose \\(A \\cap B = A\\).\n\\[\n\\begin{aligned}\nx \\in A\n&\\Rightarrow x \\in A \\cap B &&\\text{by Axiom A1}\\\\\n&\\Rightarrow x \\in A \\land x \\in B &&\\text{by 1.14}\\\\\n&\\Rightarrow x \\in B &&\\text{by 1.5(ii)'}.\n\\end{aligned}\n\\]\nThus, \\(A \\subseteq B\\) by 1.10, and therefore\n\\[\nA \\subseteq B \\iff A \\cap B = A.\n\\]\nNext, we have"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-absorption-laws",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-absorption-laws",
+    "title": "Yang's study diary",
+    "section": "1.22 Theorem (Absorption Laws)",
+    "text": "1.22 Theorem (Absorption Laws)\nFor all classes \\(A\\) and \\(B\\),\n\n\n\\(A \\cup (A \\cap B)=A\\).\n\n\n\\(A \\cap (A \\cup B)=A\\).\n\n\nThese can be proved with the theorems we have just covered.\nProof (i). By 1.20(ii), \\(A \\cap B \\subseteq A\\); therefore, by 1.21(i),\n\\[\nA \\cup (A \\cap B)=A.\n\\]\nProof (ii). By 1.20(i), \\(A \\subseteq A \\cup B\\); therefore, by 1.21(ii),\n\\[\nA \\cap (A \\cup B)=A.\n\\]\nNext, we have"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-2",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-2",
+    "title": "Yang's study diary",
+    "section": "1.23 Theorem",
+    "text": "1.23 Theorem\nFor every class \\(A\\),\n\\[\n(A')'=A.\n\\]\nProof. By Definition 1.19,\n\\[\n\\begin{aligned}\nx \\in (A')'\n&\\Rightarrow x \\notin A' &&\\text{by 1.19}\\\\\n&\\Rightarrow x \\in A &&\\text{by 1.19}.\n\\end{aligned}\n\\]\nConversely,\n\\[\n\\begin{aligned}\nx \\in A\n&\\Rightarrow x \\notin A' &&\\text{by 1.19}\\\\\n&\\Rightarrow x \\in (A')' &&\\text{by 1.19}.\n\\end{aligned}\n\\]\nThus, \\((A')' \\subseteq A\\) and \\(A \\subseteq (A')'\\). Therefore, \\((A')'=A\\) by 1.11(iv) (or Axiom A1).\nNext, we have"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-de-morgans-laws",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-de-morgans-laws",
+    "title": "Yang's study diary",
+    "section": "1.24 Theorem (De Morgan’s Laws)",
+    "text": "1.24 Theorem (De Morgan’s Laws)\nFor all classes \\(A\\) and \\(B\\),\n\n\n\\((A \\cup B)'=A'\\cap B'\\).\n\n\n\\((A \\cap B)'=A'\\cup B'\\).\n\n\nProof (i). First, by 1.19, the definition of union (1.13), and the logical De Morgan’s law (Exercise 1.1, Question 2(a)),\n\\[\n\\begin{aligned}\nx \\in (A \\cup B)'\n&\\Rightarrow x \\notin A \\cup B &&\\text{by 1.19}\\\\\n&\\Rightarrow x \\notin A \\land x \\notin B &&\\text{by 1.13 and logical De Morgan's law}\\\\\n&\\Rightarrow x \\in A' \\land x \\in B' &&\\text{by 1.19}\\\\\n&\\Rightarrow x \\in A'\\cap B' &&\\text{by 1.14}.\n\\end{aligned}\n\\]\nConversely,\n\\[\n\\begin{aligned}\nx \\in A'\\cap B'\n&\\Rightarrow x \\in A' \\land x \\in B' &&\\text{by 1.14}\\\\\n&\\Rightarrow x \\notin A \\land x \\notin B &&\\text{by 1.19}\\\\\n&\\Rightarrow x \\notin A \\cup B &&\\text{by 1.13 and logical De Morgan's law}\\\\\n&\\Rightarrow x \\in (A\\cup B)' &&\\text{by 1.19}.\n\\end{aligned}\n\\]\nTherefore, \\((A \\cup B)'=A'\\cap B'\\) by Axiom A1.\nProof (ii). To prove the second one, we can use the same definitions and the logical De Morgan’s law (Exercise 1.1, Question 2(b)).\n\\[\n\\begin{aligned}\nx \\in (A\\cap B)'\n&\\Leftrightarrow x \\notin A\\cap B &&\\text{by 1.19}\\\\\n&\\Leftrightarrow \\neg[(x\\in A)\\land(x\\in B)] &&\\text{by 1.14}\\\\\n&\\Leftrightarrow x\\notin A\\lor x\\notin B &&\\text{by logical De Morgan's law}\\\\\n&\\Leftrightarrow x\\in A'\\lor x\\in B' &&\\text{by 1.19}\\\\\n&\\Leftrightarrow x\\in A'\\cup B' &&\\text{by 1.13}.\n\\end{aligned}\n\\]\nTherefore, \\((A \\cap B)'=A'\\cup B'\\) by Axiom A1.\nNext, we have"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-3",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-3",
+    "title": "Yang's study diary",
+    "section": "1.25 Theorem",
+    "text": "1.25 Theorem\nFor all classes \\(A\\), \\(B\\), and \\(C\\), the following are true.\nCommutative Laws\n\n\n\\(A\\cup B=B\\cup A\\).\n\n\n\\(A\\cap B=B\\cap A\\).\n\n\nIdempotent Laws\n\n\n\\(A\\cup A=A\\).\n\n\n\\(A\\cap A=A\\).\n\n\nAssociative Laws\n\n\n\\(A\\cup(B\\cup C)=(A\\cup B)\\cup C\\).\n\n\n\\(A\\cap(B\\cap C)=(A\\cap B)\\cap C\\).\n\n\nDistributive Laws\n\n\n\\(A\\cap(B\\cup C)=(A\\cap B)\\cup(A\\cap C)\\).\n\n\n\\(A\\cup(B\\cap C)=(A\\cup B)\\cap(A\\cup C)\\).\n\n\nProof (i). By the definition of union and the commutative law of disjunction,\n\\[\n\\begin{aligned}\nx\\in A\\cup B\n&\\Leftrightarrow x\\in A\\lor x\\in B &&\\text{by 1.13}\\\\\n&\\Leftrightarrow x\\in B\\lor x\\in A &&\\text{by 1.8(i)}\\\\\n&\\Leftrightarrow x\\in B\\cup A &&\\text{by 1.13}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cup B=B\\cup A\\) by Axiom A1.\nProof (ii). Similarly,\n\\[\n\\begin{aligned}\nx\\in A\\cap B\n&\\Leftrightarrow x\\in A\\land x\\in B &&\\text{by 1.14}\\\\\n&\\Leftrightarrow x\\in B\\land x\\in A &&\\text{by 1.8(i)'}\\\\\n&\\Leftrightarrow x\\in B\\cap A &&\\text{by 1.14}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cap B=B\\cap A\\) by Axiom A1.\nProof (iii).\n\\[\n\\begin{aligned}\nx\\in A\\cup A\n&\\Leftrightarrow x\\in A\\lor x\\in A &&\\text{by 1.13}\\\\\n&\\Leftrightarrow x\\in A &&\\text{by 1.8(iv)}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cup A=A\\) by Axiom A1.\nProof (iv).\n\\[\n\\begin{aligned}\nx\\in A\\cap A\n&\\Leftrightarrow x\\in A\\land x\\in A &&\\text{by 1.14}\\\\\n&\\Leftrightarrow x\\in A &&\\text{by 1.8(iv)'}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cap A=A\\) by Axiom A1.\nProof (v). By the definition of union and associativity of disjunction,\n\\[\n\\begin{aligned}\nx\\in A\\cup(B\\cup C)\n&\\Leftrightarrow x\\in A\\lor x\\in B\\cup C &&\\text{by 1.13}\\\\\n&\\Leftrightarrow (x\\in A)\\lor[(x\\in B)\\lor(x\\in C)] &&\\text{by 1.13}\\\\\n&\\Leftrightarrow [(x\\in A)\\lor(x\\in B)]\\lor(x\\in C) &&\\text{by 1.8(ii)}\\\\\n&\\Leftrightarrow x\\in A\\cup B\\lor x\\in C &&\\text{by 1.13}\\\\\n&\\Leftrightarrow x\\in(A\\cup B)\\cup C &&\\text{by 1.13}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cup(B\\cup C)=(A\\cup B)\\cup C\\) by Axiom A1.\nProof (vi). Similarly, by associativity of conjunction,\n\\[\n\\begin{aligned}\nx\\in A\\cap(B\\cap C)\n&\\Leftrightarrow (x\\in A)\\land[x\\in B\\cap C] &&\\text{by 1.14}\\\\\n&\\Leftrightarrow (x\\in A)\\land[(x\\in B)\\land(x\\in C)] &&\\text{by 1.14}\\\\\n&\\Leftrightarrow [(x\\in A)\\land(x\\in B)]\\land(x\\in C) &&\\text{by 1.8(ii)'}\\\\\n&\\Leftrightarrow [x\\in A\\cap B]\\land(x\\in C) &&\\text{by 1.14}\\\\\n&\\Leftrightarrow x\\in(A\\cap B)\\cap C &&\\text{by 1.14}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cap(B\\cap C)=(A\\cap B)\\cap C\\) by Axiom A1.\nProof (vii). Using the distributive law of conjunction over disjunction,\n\\[\n\\begin{aligned}\nx\\in A\\cap(B\\cup C)\n&\\Leftrightarrow (x\\in A)\\land[x\\in B\\cup C] &&\\text{by 1.14}\\\\\n&\\Leftrightarrow (x\\in A)\\land[(x\\in B)\\lor(x\\in C)] &&\\text{by 1.13}\\\\\n&\\Leftrightarrow [(x\\in A)\\land(x\\in B)]\\lor[(x\\in A)\\land(x\\in C)] &&\\text{by 1.8(iii)}\\\\\n&\\Leftrightarrow [x\\in A\\cap B]\\lor[x\\in A\\cap C] &&\\text{by 1.14}\\\\\n&\\Leftrightarrow x\\in(A\\cap B)\\cup(A\\cap C) &&\\text{by 1.13}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cap(B\\cup C)=(A\\cap B)\\cup(A\\cap C)\\) by Axiom A1.\nProof (viii). Using the distributive law of disjunction over conjunction,\n\\[\n\\begin{aligned}\nx\\in A\\cup(B\\cap C)\n&\\Leftrightarrow (x\\in A)\\lor[x\\in B\\cap C] &&\\text{by 1.13}\\\\\n&\\Leftrightarrow (x\\in A)\\lor[(x\\in B)\\land(x\\in C)] &&\\text{by 1.14}\\\\\n&\\Leftrightarrow [(x\\in A)\\lor(x\\in B)]\\land[(x\\in A)\\lor(x\\in C)] &&\\text{by 1.8(iii)'}\\\\\n&\\Leftrightarrow [x\\in A\\cup B]\\land[x\\in A\\cup C] &&\\text{by 1.13}\\\\\n&\\Leftrightarrow x\\in(A\\cup B)\\cap(A\\cup C) &&\\text{by 1.14}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cup(B\\cap C)=(A\\cup B)\\cap(A\\cup C)\\) by Axiom A1.\nNext, we have"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-4",
+    "href": "posts/math/set-theory/Classes and Sets 2 - Algebra.html#theorem-4",
+    "title": "Yang's study diary",
+    "section": "1.26 Theorem",
+    "text": "1.26 Theorem\nFor every class \\(A\\), where \\(\\mathcal U\\) is the universal class and \\(\\varnothing\\) is the empty class,\n\n\n\\(A\\cup\\varnothing=A\\).\n\n\n\\(A\\cap\\varnothing=\\varnothing\\).\n\n\n\\(A\\cup\\mathcal U=\\mathcal U\\).\n\n\n\\(A\\cap\\mathcal U=A\\).\n\n\n\\(\\mathcal U'=\\varnothing\\).\n\n\n\\(\\varnothing'=\\mathcal U\\).\n\n\n\\(A\\cup A'=\\mathcal U\\).\n\n\n\\(A\\cap A'=\\varnothing\\).\n\n\nProof (i). By 1.17(i), \\(\\varnothing\\subseteq A\\). Thus, by 1.21(i), \\(\\varnothing\\cup A=A\\). Therefore, by the commutative law 1.25(i),\n\\[\nA\\cup\\varnothing=A.\n\\]\nProof (ii). By 1.17(i), \\(\\varnothing\\subseteq A\\). Thus, by 1.21(ii), \\(\\varnothing\\cap A=\\varnothing\\). Therefore, by 1.25(ii),\n\\[\nA\\cap\\varnothing=\\varnothing.\n\\]\nProof (iii). By 1.17(ii), \\(A\\subseteq\\mathcal U\\). Therefore, by 1.21(i),\n\\[\nA\\cup\\mathcal U=\\mathcal U.\n\\]\nProof (iv). By 1.17(ii), \\(A\\subseteq\\mathcal U\\). Therefore, by 1.21(ii),\n\\[\nA\\cap\\mathcal U=A.\n\\]\nProof (v). By the definitions of complement, universal class, and empty class,\n\\[\n\\begin{aligned}\nx\\in\\mathcal U'\n&\\Leftrightarrow x\\notin\\mathcal U &&\\text{by 1.19}\\\\\n&\\Leftrightarrow \\text{false} &&\\text{by 1.15}\\\\\n&\\Leftrightarrow x\\in\\varnothing &&\\text{by 1.16}.\n\\end{aligned}\n\\]\nTherefore, \\(\\mathcal U'=\\varnothing\\) by Axiom A1.\nProof (vi).\n\\[\n\\begin{aligned}\nx\\in\\varnothing'\n&\\Leftrightarrow x\\notin\\varnothing &&\\text{by 1.19}\\\\\n&\\Leftrightarrow \\text{true} &&\\text{by 1.16}\\\\\n&\\Leftrightarrow x\\in\\mathcal U &&\\text{by 1.15}.\n\\end{aligned}\n\\]\nTherefore, \\(\\varnothing'=\\mathcal U\\) by Axiom A1.\nProof (vii).\n\\[\n\\begin{aligned}\nx\\in A\\cup A'\n&\\Leftrightarrow (x\\in A)\\lor(x\\in A') &&\\text{by 1.13}\\\\\n&\\Leftrightarrow (x\\in A)\\lor(x\\notin A) &&\\text{by 1.19}\\\\\n&\\Leftrightarrow \\text{true} &&\\text{by the law of excluded middle}\\\\\n&\\Leftrightarrow x\\in\\mathcal U &&\\text{by 1.15}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cup A'=\\mathcal U\\) by Axiom A1.\nProof (viii).\n\\[\n\\begin{aligned}\nx\\in A\\cap A'\n&\\Leftrightarrow (x\\in A)\\land(x\\in A') &&\\text{by 1.14}\\\\\n&\\Leftrightarrow (x\\in A)\\land(x\\notin A) &&\\text{by 1.19}\\\\\n&\\Leftrightarrow \\text{false} &&\\text{by the law of noncontradiction}\\\\\n&\\Leftrightarrow x\\in\\varnothing &&\\text{by 1.16}.\n\\end{aligned}\n\\]\nTherefore, \\(A\\cap A'=\\varnothing\\) by Axiom A1."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "",
+    "text": "This post will cover “Classes and Sets”.\nThe following contents are mainly about notations and symbols that are frequently used throughout this book.\nThe first topic is statements, also known as propositions."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.1 Negation",
+    "text": "2.1 Negation\nNegation is denoted by\n\\[\n\\neg P\n\\]\nand read as “Not P”.\nNegation reverses the truth value of a statement.\nIf \\(P\\) is true, then \\(\\neg P\\) is false, and vice versa.\n\n\n\n\\(P\\)\n\\(\\neg P\\)\n\n\n\n\nT\nF\n\n\nF\nT\n\n\n\nFor example:\nLet \\(P\\) be the statement\n\\[\nP: 1+1=2\n\\]\nThen its negation is\n\\[\n\\neg P: 1+1\\neq 2\n\\]\nSince \\(P\\) is true, \\(\\neg P\\) is false."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.2 Conjunction",
+    "text": "2.2 Conjunction\nConjunction is denoted by\n\\[\nP \\land Q\n\\]\nand read as “P and Q”.\nThis means that both \\(P\\) and \\(Q\\) must be true for the conjunction to be true.\nIn other words,\n\\[\nP \\land Q = T\n\\iff P=T \\text{ and } Q=T\n\\]\nThe conjunction is false if at least one of the statements is false.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\land Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nF\n\n\nF\nF\nF"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.3 Disjunction",
+    "text": "2.3 Disjunction\nDisjunction is denoted by\n\\[\nP \\lor Q\n\\]\nand read as “P or Q”.\nUnlike conjunction, disjunction is true whenever at least one of the statements is true.\nIt is false only when both \\(P\\) and \\(Q\\) are false.\n\\[\nP \\lor Q = F\n\\iff P=F \\text{ and } Q=F\n\\]\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\lor Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nT\n\n\nF\nT\nT\n\n\nF\nF\nF\n\n\n\nAn important point is that the logical OR is inclusive.\nThis means that \\(P\\lor Q\\) is also true when both \\(P\\) and \\(Q\\) are true."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "2.4 Implication",
+    "text": "2.4 Implication\nNext, we have implication, which is denoted by\n\\[\nP \\implies Q\n\\]\nand read as “P implies Q”.\nIt can also be interpreted as:\n“If P is true, then Q is true.”\nHowever, this does not necessarily mean that there is a causal relationship between \\(P\\) and \\(Q\\).\nIn classical propositional logic, an implication is false only when \\(P\\) is true and \\(Q\\) is false.\nIn all other cases, it is true.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nT\n\n\nF\nF\nT\n\n\n\nTherefore,\n\\[\nP\\implies Q \\equiv \\neg P\\lor Q\n\\]\nThis equivalence shows that implication can be expressed using negation and disjunction.\n\nExample\nConsider the following statements.\n\\[\nP: 1+1=2\n\\]\n\\[\nQ: \\text{Water is } H_2O\n\\]\nBoth statements are true.\nTherefore,\n\\[\nP\\implies Q\n\\]\nis true.\nHowever, the fact that \\(1+1=2\\) does not cause water to be \\(H_2O\\).\nThis illustrates that logical implication does not necessarily indicate causation.\nIn propositional logic, implication is determined by the truth values of the statements, not by their causal relationship."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "3.1 Steps for Constructing a Truth Table",
+    "text": "3.1 Steps for Constructing a Truth Table\n\nStep 1. Identify the Variables\nWrite down all the basic statements in the logical expression.\nFor example,\n\\[\nP,\\ Q,\\ R\n\\]\nrepresent three distinct propositional variables.\n\n\nStep 2. Determine the Number of Rows\nFor \\(n\\) distinct propositional variables, the number of possible combinations is\n\\[\n\\boxed{2^n}\n\\]\nFor example:\n\n2 variables: \\(2^2=4\\) rows\n3 variables: \\(2^3=8\\) rows\n4 variables: \\(2^4=16\\) rows\n\n\n\nStep 3. Create Columns\nMake a column for each propositional variable.\nAdd additional columns for intermediate logical operations and the final expression.\n\n\nStep 4. Fill in All Combinations\nList every possible combination of True (T) and False (F).\nFor two variables, the possible combinations are\n\\[\n(T,T),\\ (T,F),\\ (F,T),\\ (F,F)\n\\]\n\n\nStep 5. Evaluate the Expression\nEvaluate each intermediate operation using the logical rules introduced earlier.\nFinally, determine the truth value of the complete expression."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "3.2 Truth Table for the Four Logical Connectives",
+    "text": "3.2 Truth Table for the Four Logical Connectives\nThe four logical connectives can be summarized in a single truth table.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(\\neg P\\)\n\\(P\\land Q\\)\n\\(P\\lor Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nF\nT\nT\nT\n\n\nT\nF\nF\nF\nT\nF\n\n\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.1 Number of Possible Combinations",
+    "text": "4.1 Number of Possible Combinations\nSince there are four propositional variables,\n\\[\nn=4\n\\]\nthe truth table must contain\n\\[\n2^4=16\n\\]\nrows."
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.2 Evaluate Intermediate Expressions",
+    "text": "4.2 Evaluate Intermediate Expressions\nFirst, evaluate the negation:\n\\[\n\\neg P\n\\]\nNext, evaluate the conjunction:\n\\[\n\\neg P\\land Q\n\\]\nThen, evaluate the disjunction:\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nFinally, evaluate the implication:\n\\[\n((\\neg P\\land Q)\\lor R)\\implies S\n\\]"
+  },
+  {
+    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
+    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
+    "title": "Classes and Sets 0 - Sentences",
+    "section": "4.3 Complete Truth Table",
+    "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
+  },
+  {
+    "objectID": "healthcare-review.html",
+    "href": "healthcare-review.html",
+    "title": "Healthcare Paper Review",
+    "section": "",
+    "text": "Paper review on Healthcare Paper\n\n\n\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Healthcare Paper Review"
+    ]
+  },
+  {
+    "objectID": "finance-review.html",
+    "href": "finance-review.html",
+    "title": "Finance Paper Review",
+    "section": "",
+    "text": "Paper review on Finance Paper & Finance Related Topics\n\n\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "Research",
+      "Finance Paper Review"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\n1.20 Theorem\n\n\n\n\n\n\n\n\n\n\n\n\nFundamental Concepts of Reinforcement Learning\n\n\n\nRL\n\nconcept\n\n\n\nOn-policy, off-policy, model-based, model-free reinforcement learning, and the policy gradient theorem.\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
+    "crumbs": [
+      "Posts",
+      "All Posts"
+    ]
+  },
+  {
     "objectID": "posts/math/set-theory/Classes and Sets 1 - Classes.html",
     "href": "posts/math/set-theory/Classes and Sets 1 - Classes.html",
     "title": "Classes and Sets 1 - Building Classes",
@@ -309,111 +470,6 @@
     "title": "Classes and Sets 1 - Building Classes",
     "section": "1.19 Definition — Complement",
     "text": "1.19 Definition — Complement\nThe complement of a class \\(A\\) is the class of all elements that do not belong to \\(A\\).\nIn symbols,\n\\[\n\\boxed{\nA'=\\{x:x\\notin A\\}\n}\n\\]\nThus,\n\\[\nx\\in A'\n\\iff\nx\\notin A\n\\]\nSince the complement is taken with respect to the universal class, we can also write\n\\[\nA'=\\mathcal{U}\\setminus A\n\\]"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Yang’s study diary\nSelf-studied materials in:\nHealthcare, Finance, Reinforcement Learning, Maths, etc.\nMay contain incorrect information or misinterpretations.\nOpen to academic advice and feedback.\n\n\n\n\n\n\n\n\n\n\n\n\nFundamental Concepts of Reinforcement Learning\n\n\n\nRL\n\nconcept\n\n\n\nOn-policy, off-policy, model-based, model-free reinforcement learning, and the policy gradient theorem.\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nClasses and Sets 1 - Building Classes\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to classes, membership, equality, inclusion, and class construction.\n\n\n\n\n\n\n\n\n\nPaper Review: The Option-Critic Architecture\n\n\n\nResearch\n\nReinforcement Learning\n\nPaper Review\n\n\n\nA review of the options framework, intra-option policy gradients, termination gradients, and the Option-Critic architecture.\n\n\n\n\n\n\n\n\n\nClasses and Sets 0 - Sentences\n\n\n\nMath\n\nSet Theory\n\n\n\nAn introduction to propositions, logical connectives, and truth tables.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "All Posts"
-    ]
-  },
-  {
-    "objectID": "finance-review.html",
-    "href": "finance-review.html",
-    "title": "Finance Paper Review",
-    "section": "",
-    "text": "Paper review on Finance Paper & Finance Related Topics\n\n\n\n\n\n\n\n\n\n\n\nPaper Review - Market Intraday Momentum\n\n\n\nFinance\n\nPaper-Review\n\n\n\nA methodology-focused review of market intraday momentum, predictive regressions, volatility, volume, and liquidity.\n\n\n\n\n\n\n\n\n\nExponential Moving Average (EMA)\n\n\n\nFinance\n\nTechnical Indicators\n\n\n\nAn introduction to EMA, its calculation, applications, and limitations.\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Finance Paper Review"
-    ]
-  },
-  {
-    "objectID": "healthcare-review.html",
-    "href": "healthcare-review.html",
-    "title": "Healthcare Paper Review",
-    "section": "",
-    "text": "Paper review on Healthcare Paper\n\n\n\n\n\n\n\n\n일치 없음",
-    "crumbs": [
-      "Posts",
-      "Research",
-      "Healthcare Paper Review"
-    ]
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "",
-    "text": "This post will cover “Classes and Sets”.\nThe following contents are mainly about notations and symbols that are frequently used throughout this book.\nThe first topic is statements, also known as propositions."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#negation",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.1 Negation",
-    "text": "2.1 Negation\nNegation is denoted by\n\\[\n\\neg P\n\\]\nand read as “Not P”.\nNegation reverses the truth value of a statement.\nIf \\(P\\) is true, then \\(\\neg P\\) is false, and vice versa.\n\n\n\n\\(P\\)\n\\(\\neg P\\)\n\n\n\n\nT\nF\n\n\nF\nT\n\n\n\nFor example:\nLet \\(P\\) be the statement\n\\[\nP: 1+1=2\n\\]\nThen its negation is\n\\[\n\\neg P: 1+1\\neq 2\n\\]\nSince \\(P\\) is true, \\(\\neg P\\) is false."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#conjunction",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.2 Conjunction",
-    "text": "2.2 Conjunction\nConjunction is denoted by\n\\[\nP \\land Q\n\\]\nand read as “P and Q”.\nThis means that both \\(P\\) and \\(Q\\) must be true for the conjunction to be true.\nIn other words,\n\\[\nP \\land Q = T\n\\iff P=T \\text{ and } Q=T\n\\]\nThe conjunction is false if at least one of the statements is false.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\land Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nF\n\n\nF\nF\nF"
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#disjunction",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.3 Disjunction",
-    "text": "2.3 Disjunction\nDisjunction is denoted by\n\\[\nP \\lor Q\n\\]\nand read as “P or Q”.\nUnlike conjunction, disjunction is true whenever at least one of the statements is true.\nIt is false only when both \\(P\\) and \\(Q\\) are false.\n\\[\nP \\lor Q = F\n\\iff P=F \\text{ and } Q=F\n\\]\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\lor Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nT\n\n\nF\nT\nT\n\n\nF\nF\nF\n\n\n\nAn important point is that the logical OR is inclusive.\nThis means that \\(P\\lor Q\\) is also true when both \\(P\\) and \\(Q\\) are true."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#implication",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "2.4 Implication",
-    "text": "2.4 Implication\nNext, we have implication, which is denoted by\n\\[\nP \\implies Q\n\\]\nand read as “P implies Q”.\nIt can also be interpreted as:\n“If P is true, then Q is true.”\nHowever, this does not necessarily mean that there is a causal relationship between \\(P\\) and \\(Q\\).\nIn classical propositional logic, an implication is false only when \\(P\\) is true and \\(Q\\) is false.\nIn all other cases, it is true.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nT\n\n\nT\nF\nF\n\n\nF\nT\nT\n\n\nF\nF\nT\n\n\n\nTherefore,\n\\[\nP\\implies Q \\equiv \\neg P\\lor Q\n\\]\nThis equivalence shows that implication can be expressed using negation and disjunction.\n\nExample\nConsider the following statements.\n\\[\nP: 1+1=2\n\\]\n\\[\nQ: \\text{Water is } H_2O\n\\]\nBoth statements are true.\nTherefore,\n\\[\nP\\implies Q\n\\]\nis true.\nHowever, the fact that \\(1+1=2\\) does not cause water to be \\(H_2O\\).\nThis illustrates that logical implication does not necessarily indicate causation.\nIn propositional logic, implication is determined by the truth values of the statements, not by their causal relationship."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#steps-for-constructing-a-truth-table",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "3.1 Steps for Constructing a Truth Table",
-    "text": "3.1 Steps for Constructing a Truth Table\n\nStep 1. Identify the Variables\nWrite down all the basic statements in the logical expression.\nFor example,\n\\[\nP,\\ Q,\\ R\n\\]\nrepresent three distinct propositional variables.\n\n\nStep 2. Determine the Number of Rows\nFor \\(n\\) distinct propositional variables, the number of possible combinations is\n\\[\n\\boxed{2^n}\n\\]\nFor example:\n\n2 variables: \\(2^2=4\\) rows\n3 variables: \\(2^3=8\\) rows\n4 variables: \\(2^4=16\\) rows\n\n\n\nStep 3. Create Columns\nMake a column for each propositional variable.\nAdd additional columns for intermediate logical operations and the final expression.\n\n\nStep 4. Fill in All Combinations\nList every possible combination of True (T) and False (F).\nFor two variables, the possible combinations are\n\\[\n(T,T),\\ (T,F),\\ (F,T),\\ (F,F)\n\\]\n\n\nStep 5. Evaluate the Expression\nEvaluate each intermediate operation using the logical rules introduced earlier.\nFinally, determine the truth value of the complete expression."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#truth-table-for-the-four-logical-connectives",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "3.2 Truth Table for the Four Logical Connectives",
-    "text": "3.2 Truth Table for the Four Logical Connectives\nThe four logical connectives can be summarized in a single truth table.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(\\neg P\\)\n\\(P\\land Q\\)\n\\(P\\lor Q\\)\n\\(P\\implies Q\\)\n\n\n\n\nT\nT\nF\nT\nT\nT\n\n\nT\nF\nF\nF\nT\nF\n\n\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT"
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#number-of-possible-combinations",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "4.1 Number of Possible Combinations",
-    "text": "4.1 Number of Possible Combinations\nSince there are four propositional variables,\n\\[\nn=4\n\\]\nthe truth table must contain\n\\[\n2^4=16\n\\]\nrows."
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#evaluate-intermediate-expressions",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "4.2 Evaluate Intermediate Expressions",
-    "text": "4.2 Evaluate Intermediate Expressions\nFirst, evaluate the negation:\n\\[\n\\neg P\n\\]\nNext, evaluate the conjunction:\n\\[\n\\neg P\\land Q\n\\]\nThen, evaluate the disjunction:\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nFinally, evaluate the implication:\n\\[\n((\\neg P\\land Q)\\lor R)\\implies S\n\\]"
-  },
-  {
-    "objectID": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
-    "href": "posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html#complete-truth-table",
-    "title": "Classes and Sets 0 - Sentences",
-    "section": "4.3 Complete Truth Table",
-    "text": "4.3 Complete Truth Table\nFor convenience, define\n\\[\nA=\\neg P\\land Q\n\\]\n\\[\nB=A\\lor R\n\\]\n\\[\nE=B\\implies S\n\\]\nThe complete truth table is as follows.\n\n\n\n\\(P\\)\n\\(Q\\)\n\\(R\\)\n\\(S\\)\n\\(A\\)\n\\(B\\)\n\\(E\\)\n\n\n\n\nT\nT\nT\nT\nF\nT\nT\n\n\nT\nT\nT\nF\nF\nT\nF\n\n\nT\nT\nF\nT\nF\nF\nT\n\n\nT\nT\nF\nF\nF\nF\nT\n\n\nT\nF\nT\nT\nF\nT\nT\n\n\nT\nF\nT\nF\nF\nT\nF\n\n\nT\nF\nF\nT\nF\nF\nT\n\n\nT\nF\nF\nF\nF\nF\nT\n\n\nF\nT\nT\nT\nT\nT\nT\n\n\nF\nT\nT\nF\nT\nT\nF\n\n\nF\nT\nF\nT\nT\nT\nT\n\n\nF\nT\nF\nF\nT\nT\nF\n\n\nF\nF\nT\nT\nF\nT\nT\n\n\nF\nF\nT\nF\nF\nT\nF\n\n\nF\nF\nF\nT\nF\nF\nT\n\n\nF\nF\nF\nF\nF\nF\nT\n\n\n\n\nInterpretation\nThe expression is false only when its antecedent is true and its consequent is false.\nIn this example, the antecedent is\n\\[\n(\\neg P\\land Q)\\lor R\n\\]\nand the consequent is \\(S\\).\nTherefore, the entire expression is false exactly when\n\\[\n((\\neg P\\land Q)\\lor R)=T\n\\]\nand\n\\[\nS=F\n\\]\nIn all other cases, the implication is true."
   },
   {
     "objectID": "posts/Research/Finance-review/Exponential Moving Average.html",

@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>classes-and-sets-2---algebra – Yang's study diary</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-2aa33e8751edae3f9b77d048c1294c38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Yang’s study diary</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">All Posts</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Math</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../set-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../real-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Real Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Research</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Research</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../healthcare-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Healthcare Paper Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../finance-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finance Paper Review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../reinforcement-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#theorem" id="toc-theorem" class="nav-link active" data-scroll-target="#theorem">1.20 Theorem</a></li>
+  <li><a href="#theorem-1" id="toc-theorem-1" class="nav-link" data-scroll-target="#theorem-1">1.21 Theorem</a></li>
+  <li><a href="#theorem-absorption-laws" id="toc-theorem-absorption-laws" class="nav-link" data-scroll-target="#theorem-absorption-laws">1.22 Theorem (Absorption Laws)</a></li>
+  <li><a href="#theorem-2" id="toc-theorem-2" class="nav-link" data-scroll-target="#theorem-2">1.23 Theorem</a></li>
+  <li><a href="#theorem-de-morgans-laws" id="toc-theorem-de-morgans-laws" class="nav-link" data-scroll-target="#theorem-de-morgans-laws">1.24 Theorem (De Morgan’s Laws)</a></li>
+  <li><a href="#theorem-3" id="toc-theorem-3" class="nav-link" data-scroll-target="#theorem-3">1.25 Theorem</a></li>
+  <li><a href="#theorem-4" id="toc-theorem-4" class="nav-link" data-scroll-target="#theorem-4">1.26 Theorem</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>This post is about “The algebra of classes”.</p>
+<p>This topic mainly covers theorems that will be useful for proving. Thus, the main contents will be theorems and their proofs.</p>
+<section id="theorem" class="level2">
+<h2 class="anchored" data-anchor-id="theorem">1.20 Theorem</h2>
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are any classes, then</p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\(A \subseteq A \cup B\)</span> and <span class="math inline">\(B \subseteq A \cup B\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\(A \cap B \subseteq A\)</span> and <span class="math inline">\(B \cap A \subseteq B\)</span>.</li>
+</ol></li>
+</ul>
+<p>For proving, we need the relationships from the previous post: negation, conjunction, disjunction, and implication, along with their theorems. In particular, we use 1.5(i), 1.5(i)‘, 1.5(ii), and 1.5(ii)’.</p>
+<p>By Definition 1.13, <span class="math inline">\(x\in A\cup B\)</span> if and only if <span class="math inline">\(x\in A\lor x\in B\)</span>. By Definition 1.14, <span class="math inline">\(x\in A\cap B\)</span> if and only if <span class="math inline">\(x\in A\land x\in B\)</span>.</p>
+<p><strong>Proof (i).</strong> To prove the first statement, we need to show that every element of <span class="math inline">\(A\)</span> is also an element of <span class="math inline">\(A \cup B\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A
+&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.5(i)}\\
+&amp;\Rightarrow x \in A \cup B &amp;&amp;\text{by 1.13}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A \subseteq A \cup B\)</span> by Definition 1.10.</p>
+<p>Similarly, for <span class="math inline">\(B \subseteq A \cup B\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in B
+&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.5(i)'}\\
+&amp;\Rightarrow x \in A \cup B &amp;&amp;\text{by 1.13}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(B \subseteq A \cup B\)</span> by 1.10.</p>
+<p><strong>Proof (ii).</strong> For the second statement, we need to show <span class="math inline">\(x \in A \cap B \Rightarrow x \in A\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A \cap B
+&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{by 1.14}\\
+&amp;\Rightarrow x \in A &amp;&amp;\text{by 1.5(ii)}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A \cap B \subseteq A\)</span> by 1.10.</p>
+<p>Similarly,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in B \cap A
+&amp;\Rightarrow x \in B \land x \in A &amp;&amp;\text{by 1.14}\\
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.5(ii)}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(B \cap A \subseteq B\)</span> by 1.10.</p>
+<p><em>Note:</em> The book prints <span class="math inline">\(B \cap B \subseteq B\)</span> in 1.20(ii). This is true, but <span class="math inline">\(B \cap A \subseteq B\)</span> gives the symmetric statement corresponding to <span class="math inline">\(A \cap B \subseteq A\)</span>.</p>
+<p>Next, we have the following theorem.</p>
+</section>
+<section id="theorem-1" class="level2">
+<h2 class="anchored" data-anchor-id="theorem-1">1.21 Theorem</h2>
+<p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are classes, then</p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\(A \subseteq B\)</span> if and only if <span class="math inline">\(A \cup B = B\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\(A \subseteq B\)</span> if and only if <span class="math inline">\(A \cap B = A\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Proof (i).</strong> First, suppose <span class="math inline">\(A \subseteq B\)</span>. We need to show <span class="math inline">\(A \cup B = B\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A \cup B
+&amp;\Rightarrow x \in A \lor x \in B &amp;&amp;\text{by 1.13}\\
+&amp;\Rightarrow x \in B \lor x \in B &amp;&amp;\text{since } A \subseteq B\\
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.8(iv)}.
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\(A \cup B \subseteq B\)</span> by 1.10. Also, <span class="math inline">\(B \subseteq A \cup B\)</span> by 1.20(i). Therefore, <span class="math inline">\(A \cup B = B\)</span> by 1.11(iv).</p>
+<p>Conversely, suppose <span class="math inline">\(A \cup B = B\)</span>. By 1.20(i), <span class="math inline">\(A \subseteq A \cup B\)</span>. Hence <span class="math inline">\(A \subseteq B\)</span> by substitution (Axiom A1).</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+A \subseteq B \iff A \cup B = B.
+\]</span></p>
+<p><strong>Proof (ii).</strong> First, suppose <span class="math inline">\(A \subseteq B\)</span>. By 1.20(ii), <span class="math inline">\(A \cap B \subseteq A\)</span>.</p>
+<p>For the other inclusion,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.10}\\
+&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{since }x \in A\\
+&amp;\Rightarrow x \in A \cap B &amp;&amp;\text{by 1.14}.
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\(A \subseteq A \cap B\)</span> by 1.10. Consequently, <span class="math inline">\(A \cap B = A\)</span> by 1.11(iv).</p>
+<p>Conversely, suppose <span class="math inline">\(A \cap B = A\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A
+&amp;\Rightarrow x \in A \cap B &amp;&amp;\text{by Axiom A1}\\
+&amp;\Rightarrow x \in A \land x \in B &amp;&amp;\text{by 1.14}\\
+&amp;\Rightarrow x \in B &amp;&amp;\text{by 1.5(ii)'}.
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\(A \subseteq B\)</span> by 1.10, and therefore</p>
+<p><span class="math display">\[
+A \subseteq B \iff A \cap B = A.
+\]</span></p>
+<p>Next, we have</p>
+</section>
+<section id="theorem-absorption-laws" class="level2">
+<h2 class="anchored" data-anchor-id="theorem-absorption-laws">1.22 Theorem (Absorption Laws)</h2>
+<p>For all classes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>,</p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\(A \cup (A \cap B)=A\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\(A \cap (A \cup B)=A\)</span>.</li>
+</ol></li>
+</ul>
+<p>These can be proved with the theorems we have just covered.</p>
+<p><strong>Proof (i).</strong> By 1.20(ii), <span class="math inline">\(A \cap B \subseteq A\)</span>; therefore, by 1.21(i),</p>
+<p><span class="math display">\[
+A \cup (A \cap B)=A.
+\]</span></p>
+<p><strong>Proof (ii).</strong> By 1.20(i), <span class="math inline">\(A \subseteq A \cup B\)</span>; therefore, by 1.21(ii),</p>
+<p><span class="math display">\[
+A \cap (A \cup B)=A.
+\]</span></p>
+<p>Next, we have</p>
+</section>
+<section id="theorem-2" class="level2">
+<h2 class="anchored" data-anchor-id="theorem-2">1.23 Theorem</h2>
+<p>For every class <span class="math inline">\(A\)</span>,</p>
+<p><span class="math display">\[
+(A')'=A.
+\]</span></p>
+<p><strong>Proof.</strong> By Definition 1.19,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in (A')'
+&amp;\Rightarrow x \notin A' &amp;&amp;\text{by 1.19}\\
+&amp;\Rightarrow x \in A &amp;&amp;\text{by 1.19}.
+\end{aligned}
+\]</span></p>
+<p>Conversely,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A
+&amp;\Rightarrow x \notin A' &amp;&amp;\text{by 1.19}\\
+&amp;\Rightarrow x \in (A')' &amp;&amp;\text{by 1.19}.
+\end{aligned}
+\]</span></p>
+<p>Thus, <span class="math inline">\((A')' \subseteq A\)</span> and <span class="math inline">\(A \subseteq (A')'\)</span>. Therefore, <span class="math inline">\((A')'=A\)</span> by 1.11(iv) (or Axiom A1).</p>
+<p>Next, we have</p>
+</section>
+<section id="theorem-de-morgans-laws" class="level2">
+<h2 class="anchored" data-anchor-id="theorem-de-morgans-laws">1.24 Theorem (De Morgan’s Laws)</h2>
+<p>For all classes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>,</p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\((A \cup B)'=A'\cap B'\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\((A \cap B)'=A'\cup B'\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Proof (i).</strong> First, by 1.19, the definition of union (1.13), and the logical De Morgan’s law (Exercise 1.1, Question 2(a)),</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in (A \cup B)'
+&amp;\Rightarrow x \notin A \cup B &amp;&amp;\text{by 1.19}\\
+&amp;\Rightarrow x \notin A \land x \notin B &amp;&amp;\text{by 1.13 and logical De Morgan's law}\\
+&amp;\Rightarrow x \in A' \land x \in B' &amp;&amp;\text{by 1.19}\\
+&amp;\Rightarrow x \in A'\cap B' &amp;&amp;\text{by 1.14}.
+\end{aligned}
+\]</span></p>
+<p>Conversely,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in A'\cap B'
+&amp;\Rightarrow x \in A' \land x \in B' &amp;&amp;\text{by 1.14}\\
+&amp;\Rightarrow x \notin A \land x \notin B &amp;&amp;\text{by 1.19}\\
+&amp;\Rightarrow x \notin A \cup B &amp;&amp;\text{by 1.13 and logical De Morgan's law}\\
+&amp;\Rightarrow x \in (A\cup B)' &amp;&amp;\text{by 1.19}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\((A \cup B)'=A'\cap B'\)</span> by Axiom A1.</p>
+<p><strong>Proof (ii).</strong> To prove the second one, we can use the same definitions and the logical De Morgan’s law (Exercise 1.1, Question 2(b)).</p>
+<p><span class="math display">\[
+\begin{aligned}
+x \in (A\cap B)'
+&amp;\Leftrightarrow x \notin A\cap B &amp;&amp;\text{by 1.19}\\
+&amp;\Leftrightarrow \neg[(x\in A)\land(x\in B)] &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow x\notin A\lor x\notin B &amp;&amp;\text{by logical De Morgan's law}\\
+&amp;\Leftrightarrow x\in A'\lor x\in B' &amp;&amp;\text{by 1.19}\\
+&amp;\Leftrightarrow x\in A'\cup B' &amp;&amp;\text{by 1.13}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\((A \cap B)'=A'\cup B'\)</span> by Axiom A1.</p>
+<p>Next, we have</p>
+</section>
+<section id="theorem-3" class="level2">
+<h2 class="anchored" data-anchor-id="theorem-3">1.25 Theorem</h2>
+<p>For all classes <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>, the following are true.</p>
+<p><strong>Commutative Laws</strong></p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\(A\cup B=B\cup A\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\(A\cap B=B\cap A\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Idempotent Laws</strong></p>
+<ul>
+<li><ol start="3" type="i">
+<li><span class="math inline">\(A\cup A=A\)</span>.</li>
+</ol></li>
+<li><ol start="4" type="i">
+<li><span class="math inline">\(A\cap A=A\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Associative Laws</strong></p>
+<ul>
+<li><ol start="22" type="a">
+<li><span class="math inline">\(A\cup(B\cup C)=(A\cup B)\cup C\)</span>.</li>
+</ol></li>
+<li><ol start="6" type="i">
+<li><span class="math inline">\(A\cap(B\cap C)=(A\cap B)\cap C\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Distributive Laws</strong></p>
+<ul>
+<li><ol start="7" type="i">
+<li><span class="math inline">\(A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\)</span>.</li>
+</ol></li>
+<li><ol start="8" type="i">
+<li><span class="math inline">\(A\cup(B\cap C)=(A\cup B)\cap(A\cup C)\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Proof (i).</strong> By the definition of union and the commutative law of disjunction,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cup B
+&amp;\Leftrightarrow x\in A\lor x\in B &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow x\in B\lor x\in A &amp;&amp;\text{by 1.8(i)}\\
+&amp;\Leftrightarrow x\in B\cup A &amp;&amp;\text{by 1.13}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cup B=B\cup A\)</span> by Axiom A1.</p>
+<p><strong>Proof (ii).</strong> Similarly,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cap B
+&amp;\Leftrightarrow x\in A\land x\in B &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow x\in B\land x\in A &amp;&amp;\text{by 1.8(i)'}\\
+&amp;\Leftrightarrow x\in B\cap A &amp;&amp;\text{by 1.14}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cap B=B\cap A\)</span> by Axiom A1.</p>
+<p><strong>Proof (iii).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cup A
+&amp;\Leftrightarrow x\in A\lor x\in A &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow x\in A &amp;&amp;\text{by 1.8(iv)}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cup A=A\)</span> by Axiom A1.</p>
+<p><strong>Proof (iv).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cap A
+&amp;\Leftrightarrow x\in A\land x\in A &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow x\in A &amp;&amp;\text{by 1.8(iv)'}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cap A=A\)</span> by Axiom A1.</p>
+<p><strong>Proof (v).</strong> By the definition of union and associativity of disjunction,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cup(B\cup C)
+&amp;\Leftrightarrow x\in A\lor x\in B\cup C &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow (x\in A)\lor[(x\in B)\lor(x\in C)] &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow [(x\in A)\lor(x\in B)]\lor(x\in C) &amp;&amp;\text{by 1.8(ii)}\\
+&amp;\Leftrightarrow x\in A\cup B\lor x\in C &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow x\in(A\cup B)\cup C &amp;&amp;\text{by 1.13}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cup(B\cup C)=(A\cup B)\cup C\)</span> by Axiom A1.</p>
+<p><strong>Proof (vi).</strong> Similarly, by associativity of conjunction,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cap(B\cap C)
+&amp;\Leftrightarrow (x\in A)\land[x\in B\cap C] &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow (x\in A)\land[(x\in B)\land(x\in C)] &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow [(x\in A)\land(x\in B)]\land(x\in C) &amp;&amp;\text{by 1.8(ii)'}\\
+&amp;\Leftrightarrow [x\in A\cap B]\land(x\in C) &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow x\in(A\cap B)\cap C &amp;&amp;\text{by 1.14}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cap(B\cap C)=(A\cap B)\cap C\)</span> by Axiom A1.</p>
+<p><strong>Proof (vii).</strong> Using the distributive law of conjunction over disjunction,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cap(B\cup C)
+&amp;\Leftrightarrow (x\in A)\land[x\in B\cup C] &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow (x\in A)\land[(x\in B)\lor(x\in C)] &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow [(x\in A)\land(x\in B)]\lor[(x\in A)\land(x\in C)] &amp;&amp;\text{by 1.8(iii)}\\
+&amp;\Leftrightarrow [x\in A\cap B]\lor[x\in A\cap C] &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow x\in(A\cap B)\cup(A\cap C) &amp;&amp;\text{by 1.13}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\)</span> by Axiom A1.</p>
+<p><strong>Proof (viii).</strong> Using the distributive law of disjunction over conjunction,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cup(B\cap C)
+&amp;\Leftrightarrow (x\in A)\lor[x\in B\cap C] &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow (x\in A)\lor[(x\in B)\land(x\in C)] &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow [(x\in A)\lor(x\in B)]\land[(x\in A)\lor(x\in C)] &amp;&amp;\text{by 1.8(iii)'}\\
+&amp;\Leftrightarrow [x\in A\cup B]\land[x\in A\cup C] &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow x\in(A\cup B)\cap(A\cup C) &amp;&amp;\text{by 1.14}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cup(B\cap C)=(A\cup B)\cap(A\cup C)\)</span> by Axiom A1.</p>
+<p>Next, we have</p>
+</section>
+<section id="theorem-4" class="level2">
+<h2 class="anchored" data-anchor-id="theorem-4">1.26 Theorem</h2>
+<p>For every class <span class="math inline">\(A\)</span>, where <span class="math inline">\(\mathcal U\)</span> is the universal class and <span class="math inline">\(\varnothing\)</span> is the empty class,</p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\(A\cup\varnothing=A\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\(A\cap\varnothing=\varnothing\)</span>.</li>
+</ol></li>
+<li><ol start="3" type="i">
+<li><span class="math inline">\(A\cup\mathcal U=\mathcal U\)</span>.</li>
+</ol></li>
+<li><ol start="4" type="i">
+<li><span class="math inline">\(A\cap\mathcal U=A\)</span>.</li>
+</ol></li>
+<li><ol start="22" type="a">
+<li><span class="math inline">\(\mathcal U'=\varnothing\)</span>.</li>
+</ol></li>
+<li><ol start="6" type="i">
+<li><span class="math inline">\(\varnothing'=\mathcal U\)</span>.</li>
+</ol></li>
+<li><ol start="7" type="i">
+<li><span class="math inline">\(A\cup A'=\mathcal U\)</span>.</li>
+</ol></li>
+<li><ol start="8" type="i">
+<li><span class="math inline">\(A\cap A'=\varnothing\)</span>.</li>
+</ol></li>
+</ul>
+<p><strong>Proof (i).</strong> By 1.17(i), <span class="math inline">\(\varnothing\subseteq A\)</span>. Thus, by 1.21(i), <span class="math inline">\(\varnothing\cup A=A\)</span>. Therefore, by the commutative law 1.25(i),</p>
+<p><span class="math display">\[
+A\cup\varnothing=A.
+\]</span></p>
+<p><strong>Proof (ii).</strong> By 1.17(i), <span class="math inline">\(\varnothing\subseteq A\)</span>. Thus, by 1.21(ii), <span class="math inline">\(\varnothing\cap A=\varnothing\)</span>. Therefore, by 1.25(ii),</p>
+<p><span class="math display">\[
+A\cap\varnothing=\varnothing.
+\]</span></p>
+<p><strong>Proof (iii).</strong> By 1.17(ii), <span class="math inline">\(A\subseteq\mathcal U\)</span>. Therefore, by 1.21(i),</p>
+<p><span class="math display">\[
+A\cup\mathcal U=\mathcal U.
+\]</span></p>
+<p><strong>Proof (iv).</strong> By 1.17(ii), <span class="math inline">\(A\subseteq\mathcal U\)</span>. Therefore, by 1.21(ii),</p>
+<p><span class="math display">\[
+A\cap\mathcal U=A.
+\]</span></p>
+<p><strong>Proof (v).</strong> By the definitions of complement, universal class, and empty class,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in\mathcal U'
+&amp;\Leftrightarrow x\notin\mathcal U &amp;&amp;\text{by 1.19}\\
+&amp;\Leftrightarrow \text{false} &amp;&amp;\text{by 1.15}\\
+&amp;\Leftrightarrow x\in\varnothing &amp;&amp;\text{by 1.16}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(\mathcal U'=\varnothing\)</span> by Axiom A1.</p>
+<p><strong>Proof (vi).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in\varnothing'
+&amp;\Leftrightarrow x\notin\varnothing &amp;&amp;\text{by 1.19}\\
+&amp;\Leftrightarrow \text{true} &amp;&amp;\text{by 1.16}\\
+&amp;\Leftrightarrow x\in\mathcal U &amp;&amp;\text{by 1.15}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(\varnothing'=\mathcal U\)</span> by Axiom A1.</p>
+<p><strong>Proof (vii).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cup A'
+&amp;\Leftrightarrow (x\in A)\lor(x\in A') &amp;&amp;\text{by 1.13}\\
+&amp;\Leftrightarrow (x\in A)\lor(x\notin A) &amp;&amp;\text{by 1.19}\\
+&amp;\Leftrightarrow \text{true} &amp;&amp;\text{by the law of excluded middle}\\
+&amp;\Leftrightarrow x\in\mathcal U &amp;&amp;\text{by 1.15}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cup A'=\mathcal U\)</span> by Axiom A1.</p>
+<p><strong>Proof (viii).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+x\in A\cap A'
+&amp;\Leftrightarrow (x\in A)\land(x\in A') &amp;&amp;\text{by 1.14}\\
+&amp;\Leftrightarrow (x\in A)\land(x\notin A) &amp;&amp;\text{by 1.19}\\
+&amp;\Leftrightarrow \text{false} &amp;&amp;\text{by the law of noncontradiction}\\
+&amp;\Leftrightarrow x\in\varnothing &amp;&amp;\text{by 1.16}.
+\end{aligned}
+\]</span></p>
+<p>Therefore, <span class="math inline">\(A\cap A'=\varnothing\)</span> by Axiom A1.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "복사완료!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "복사완료!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/EKUMartin\.github\.io\/yang-study-diary\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
