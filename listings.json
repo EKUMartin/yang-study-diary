@@ -15,19 +15,9 @@
     ]
   },
   {
-    "listing": "/healthcare-review.html",
-    "items": []
-  },
-  {
-    "listing": "/finance-review.html",
-    "items": [
-      "/posts/Research/Finance-review/intraday-momentumqmd.html",
-      "/posts/Research/Finance-review/Exponential Moving Average.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
+      "/posts/Research/Finance-review/Conformal-predicition.html",
       "/posts/math/set-theory/Classes and Sets 2 - Algebra.html",
       "/posts/Research/reinforcementLearning-review/model-policy-gradient.html",
       "/posts/Research/Finance-review/intraday-momentumqmd.html",
@@ -36,6 +26,18 @@
       "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
       "/posts/Research/Finance-review/Exponential Moving Average.html"
     ]
+  },
+  {
+    "listing": "/finance-review.html",
+    "items": [
+      "/posts/Research/Finance-review/Conformal-predicition.html",
+      "/posts/Research/Finance-review/intraday-momentumqmd.html",
+      "/posts/Research/Finance-review/Exponential Moving Average.html"
+    ]
+  },
+  {
+    "listing": "/healthcare-review.html",
+    "items": []
   },
   {
     "listing": "/real-analysis.html",
