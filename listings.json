@@ -10,22 +10,14 @@
   {
     "listing": "/reinforcement-review.html",
     "items": [
+      "/posts/Research/reinforcementLearning-review/HIRO.html",
       "/posts/Research/reinforcementLearning-review/model-policy-gradient.html",
       "/posts/Research/reinforcementLearning-review/option-critic.html"
     ]
   },
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/Research/Finance-review/Conformal-predicition.html",
-      "/posts/math/set-theory/Classes and Sets 2 - Algebra.html",
-      "/posts/Research/reinforcementLearning-review/model-policy-gradient.html",
-      "/posts/Research/Finance-review/intraday-momentumqmd.html",
-      "/posts/math/set-theory/Classes and Sets 1 - Classes.html",
-      "/posts/Research/reinforcementLearning-review/option-critic.html",
-      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
-      "/posts/Research/Finance-review/Exponential Moving Average.html"
-    ]
+    "listing": "/healthcare-review.html",
+    "items": []
   },
   {
     "listing": "/finance-review.html",
@@ -36,8 +28,18 @@
     ]
   },
   {
-    "listing": "/healthcare-review.html",
-    "items": []
+    "listing": "/index.html",
+    "items": [
+      "/posts/Research/reinforcementLearning-review/HIRO.html",
+      "/posts/Research/Finance-review/Conformal-predicition.html",
+      "/posts/math/set-theory/Classes and Sets 2 - Algebra.html",
+      "/posts/Research/reinforcementLearning-review/model-policy-gradient.html",
+      "/posts/Research/Finance-review/intraday-momentumqmd.html",
+      "/posts/math/set-theory/Classes and Sets 1 - Classes.html",
+      "/posts/Research/reinforcementLearning-review/option-critic.html",
+      "/posts/math/set-theory/Classes and Sets 0 - Statements and Logical Connectives.html",
+      "/posts/Research/Finance-review/Exponential Moving Average.html"
+    ]
   },
   {
     "listing": "/real-analysis.html",
